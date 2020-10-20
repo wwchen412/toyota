@@ -1,0 +1,45 @@
+@import '../../color.scss';
+.information_form{
+
+  &_inputs{
+
+    .input_group{
+      font-size: 0;
+      display: inline-block;
+      width: 100%;
+      max-width: 50%;
+      &:nth-child(2n -1){
+        padding-right: 10px;
+      }
+      &:nth-child(2n){
+        padding-left: 10px;
+      }
+      h4{
+        font-size: 1rem;
+      }
+      input{
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+  &_table{
+    ul{
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 10px;
+      outline: 1px solid #efefef;
+      li{
+        flex: 1;
+        &:last-child{
+          flex: 1.5;
+        }
+      }
+
+    }
+    .title{
+      background:#efefef;
+    }
+  }
+}
