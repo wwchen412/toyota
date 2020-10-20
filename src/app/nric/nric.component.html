@@ -1,4 +1,9 @@
-<div id="form">
+<ng-container *ngIf="!loading">
+  <app-loading-page></app-loading-page>
+</ng-container>
+<ng-container *ngIf="loading">
+  <app-header></app-header>
+  <div id="form">
     <div class="container">
       <div class="main_form">
         <h2 class="main_form_title mb-5">
@@ -13,3 +18,5 @@
       </div>
     </div>
   </div>
+</ng-container>
+

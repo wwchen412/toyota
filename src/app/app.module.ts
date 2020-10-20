@@ -9,6 +9,7 @@ import { NricComponent } from './nric/nric.component';
 import { SelectionComponent } from './selection/selection.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ResultComponent } from './result/result.component';
+import { LoadingPageComponent } from './loading-page/loading-page.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ResultComponent } from './result/result.component';
     SelectionComponent,
     PaymentComponent,
     ResultComponent,
+    LoadingPageComponent,
   ],
   imports: [
     BrowserModule,

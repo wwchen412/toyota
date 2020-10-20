@@ -6,10 +6,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./nric.component.scss']
 })
 export class NricComponent implements OnInit {
-
-  constructor(private router: Router) { }
-
+  constructor(private router: Router) {}
+  public loading = false;
   ngOnInit() {
+    setTimeout(() => {
+      this.loading = true;
+    }, 3000);
   }
-
 }
