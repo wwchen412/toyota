@@ -10,7 +10,10 @@ export class PaymentComponent implements OnInit {
 
   constructor(private router: Router) { }
 
+  public isMobileLayout = false;
   ngOnInit() {
+    this.isMobileLayout = window.innerWidth <= 475;
+    window.onresize = () => this.isMobileLayout = window.innerWidth <= 475;
   }
 
 }

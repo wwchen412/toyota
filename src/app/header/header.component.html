@@ -1,15 +1,15 @@
-<div id="header">
+<div id="header" class="display-none-sm">
   <div class="container d-flex justify-between align-center">
-    <h3>Welcome to TOYOTA</h3>
-    <h3>www.toyotafinancial.sg</h3>
+    <h3></h3>
+    <p>www.toyotafinancial.sg</p>
   </div>
 </div>
 <div id="navigation">
-  <div class="container d-flex justify-between">
+  <div class="container d-flex" [ngClass]="isMobileLayout?'justify-center':'justify-between'">
     <div id="logo">
       <img src="assets/images/logo.svg" alt="">
     </div>
-    <div class="contact">
+    <div *ngIf="!isMobileLayout">
       <div class="contact_block d-inline-block">
         <div class="icon d-inline-block m-1">
           <img src="assets/images/mail.svg" alt="">
@@ -31,50 +31,35 @@
     </div>
   </div>
 </div>
-<div id="bread">
-  <div class="container p-3">
+<div id="bread" *ngIf="!isMobileLayout">
+  <div class="container">
     <p>TOYOTA / Payment system</p>
   </div>
 </div>
 <div id="hero">
   <h2>PAYMENT SYSTEM</h2>
 </div>
-<div id="main">
-  <div id="progressBar" class="progressBar">
-    <div class="container">
-      <ul class="">
-        <li class="d-inline-block active">
-          <div class="progressBar_icon d-inline-block">
-            1
-          </div>
-          <p class="d-inline-block">Enter NRIC</p>
-        </li>
-        <li class="d-inline-block">
-          <div class="progressBar_icon d-inline-block">
-            2
-          </div>
-          <p class="d-inline-block">Enter OTP</p>
-        </li>
-        <li class="d-inline-block">
-          <div class="progressBar_icon d-inline-block">
-            3
-          </div>
-          <p class="d-inline-block">Selection</p>
-        </li>
-        <li class="d-inline-block">
-          <div class="progressBar_icon d-inline-block">
-            4
-          </div>
-          <p class="d-inline-block">Make a payment</p>
-        </li>
-        <li class="d-inline-block">
-          <div class="progressBar_icon d-inline-block">
-            5
-          </div>
-          <p class="d-inline-block">Result</p>
-        </li>
-      </ul>
-    </div>
+<div id="progressBar" class="progressBar" *ngIf="!isMobileLayout">
+  <div class="container">
+    <ul class="">
+      <li class="d-inline-block active">
+        <div class="progressBar_icon d-inline-block">
+          1
+        </div>
+        <p class="d-inline-block">Selection</p>
+      </li>
+      <li class="d-inline-block">
+        <div class="progressBar_icon d-inline-block">
+          2
+        </div>
+        <p class="d-inline-block">Make a payment</p>
+      </li>
+      <li class="d-inline-block">
+        <div class="progressBar_icon d-inline-block">
+          3
+        </div>
+        <p class="d-inline-block">Result</p>
+      </li>
+    </ul>
   </div>
-
 </div>

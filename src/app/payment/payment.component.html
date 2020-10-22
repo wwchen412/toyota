@@ -53,13 +53,15 @@
         </div>
       </div>
       <div class="credit_form mb-3">
-        <div class="credit_form_radio mb-3">
-          <input type="radio" name="pay" id="creditCard" checked>Credit or debit card
-        </div>
+        <!-- <div class="credit_form_radio mb-3 ">
+          <input type="radio" name="pay" id="creditCard" checked>
+          <img src="assets/images/credit_icon.svg" class="vertical-center d-inline-block" alt="">
+          Credit or debit card
+        </div> -->
         <div class="credit_form_inputs">
           <div class="credit_form_input mb-3">
             <p class="mb-3"> Card Number</p>
-            <input type="text">
+            <input type="text" class="credit_form_cardNumber">
           </div>
           <div class="credit_form_input mb-3">
             <p class="mb-3"> Expiry Date</p>
@@ -67,7 +69,7 @@
           </div>
           <div class="credit_form_input mb-3">
             <p class="mb-3"> CVC / CW</p>
-            <input type="text">
+            <input type="text" class="credit_form_cvc">
           </div>
           <div class="credit_form_input mb-3">
             <p class="mb-3"> Name on card</p>
@@ -79,11 +81,13 @@
           Save for my next payment
         </div>
       </div>
-      <div class="credit_form mb-5">
+      <!-- <div class="credit_form mb-5">
         <div class="credit_form_radio mb-3">
-          <input type="radio" name="pay" id="UnionPay">UnionPay
+          <input type="radio" name="pay" id="UnionPay">
+          <img src="assets/images/union-pay.svg" class="vertical-center d-inline-block" alt="">
+          UnionPay
         </div>
-      </div>
+      </div> -->
       <div class="main_form_buttonGroup">
         <button class="button_outline" [routerLink]="'/payment'">Back</button>
         <button class="button_primary" [routerLink]="'/result'">Pay</button>

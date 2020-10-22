@@ -10,7 +10,9 @@ export class SelectionComponent implements OnInit {
 
   constructor(private router: Router) { }
 
+  public isMobileLayout = false;
   ngOnInit() {
+    window.onresize = () => this.isMobileLayout = window.innerWidth <= 475;
   }
 
 }

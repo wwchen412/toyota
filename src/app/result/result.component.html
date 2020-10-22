@@ -2,7 +2,10 @@
 <div id="form">
   <div class="container">
     <div class="main_form">
-      <h1 class="text-center">Success!</h1>
+      <div class="text-center">
+        <img class="success" src="assets/images/success.svg" alt="">
+        <h2>Success!</h2>
+      </div>
       <h2 class="main_form_title mb-5">
         Payment Result Information
       </h2>
@@ -10,13 +13,13 @@
         <div class="payment_form_table">
           <div class="payment_form_row">
             <div class="title">
-                Application Number
+              Application Number
             </div>
             <div class="content">KT20200918001</div>
           </div>
           <div class="payment_form_row">
             <div class="title">
-                Payable Amount
+              Payable Amount
             </div>
             <div class="content">SGD$ <span style="color:red">1307.68</span></div>
           </div>
@@ -36,7 +39,8 @@
         </div>
       </div>
       <div class="main_form_buttonGroup">
-        <button class="button_outline" [routerLink]="'/'">Back to system</button>
+        <button class="button_outline" (click)="printPage()">Print</button>
+        <button class="button_outline" (click)="closewin()">Leave</button>
       </div>
     </div>
   </div>

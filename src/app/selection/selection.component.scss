@@ -8,11 +8,18 @@
       display: inline-block;
       width: 100%;
       max-width: 50%;
-      &:nth-child(2n -1){
-        padding-right: 10px;
+      @media screen and (min-width: 476px){
+        &:nth-child(2n -1){
+          padding-right: 10px;
+        }
+        &:nth-child(2n){
+          padding-left: 10px;
+        }
       }
-      &:nth-child(2n){
-        padding-left: 10px;
+
+      @media screen and (max-width: 475px){
+        display: block;
+        max-width: 100%;
       }
       h4{
         font-size: 1rem;
@@ -40,6 +47,17 @@
     }
     .title{
       background:#efefef;
+    }
+  }
+}
+.information_form_table_mobile{
+  &_group{
+    &>div{
+      padding: 10px;
+      outline: 1px solid $gray;
+    }
+    .title{
+      background: $gray;
     }
   }
 }

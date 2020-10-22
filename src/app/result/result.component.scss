@@ -1,11 +1,21 @@
 @import '../../color.scss';
-
+.success{
+  max-width: 80px;
+  width: 100%;
+  display: inline-block;
+}
 .payment_form{
   border: 1px solid $gray;
-  padding:15px 25px;
+  padding:10px 25px;
+  @media screen and (max-width: 475px){
+    padding: 0;
+  }
   &_table{
     display: flex;
     flex-wrap: wrap;
+    @media screen and (max-width: 475px){
+      flex-direction: column;
+    }
   }
   &_row{
     flex: 0 0 calc(50% - 12px);
@@ -13,13 +23,23 @@
     &-noborder{
       border-bottom: 0;
     }
-    &:nth-child(2n){
-      margin-left: 24px;
+    .content{
+      font-weight: bold;
+    }
+    @media screen and (min-width: 475px){
+      &:nth-child(2n){
+        margin-left: 24px;
+      }
     }
     & > div{
       display: inline-block;
       width: 50%;
-      padding: 15px 0;
+      padding: 10px 0;
+    }
+    @media screen and (max-width: 475px){
+      .title{
+        padding-left: 10px;
+      }
     }
   }
 }
