@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "https://api-uat.toyotafinancial.sg",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {"^/api" : ""}
+  }
+}
