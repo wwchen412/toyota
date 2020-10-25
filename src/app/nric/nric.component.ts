@@ -11,6 +11,6 @@ export class NricComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.loading = true;
-    }, 3000);
+    }, 1500);
   }
 }

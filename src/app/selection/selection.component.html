@@ -1,4 +1,5 @@
 <app-header></app-header>
+<app-progress-bar></app-progress-bar>
 <div id="form">
   <div class="container">
     <div class="main_form">
@@ -24,7 +25,7 @@
             <input type="text">
           </div>
         </div>
-        <div class="information_form_table mb-5" *ngIf="isMobileLayout">
+        <div class="information_form_table mb-5" *ngIf="!isMobileLayout">
           <div class="title">
             <ul>
               <li>Application</li>
@@ -42,7 +43,7 @@
             </ul>
           </div>
         </div>
-        <div class="information_form_table_mobile mb-5" *ngIf="!isMobileLayout">
+        <div class="information_form_table_mobile mb-5" *ngIf="isMobileLayout">
           <div class="information_form_table_mobile_group">
             <div class="title">Application</div>
             <div class="content">KT20200918001</div>
@@ -75,3 +76,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

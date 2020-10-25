@@ -167,13 +167,13 @@ button{
 .main_form{
   padding: 1rem;
   background: $white;
-  min-height: 380px;
+  min-height: calc(100vh - 270px);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   @media screen and (max-width: 475px){
-    min-height: calc(100vh - 230px);
+    min-height: calc(100vh - 300px);
     margin: 15px 0;
   }
   &_title{

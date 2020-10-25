@@ -10,6 +10,8 @@ import { SelectionComponent } from './selection/selection.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ResultComponent } from './result/result.component';
 import { LoadingPageComponent } from './loading-page/loading-page.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { LoadingPageComponent } from './loading-page/loading-page.component';
     PaymentComponent,
     ResultComponent,
     LoadingPageComponent,
+    ProgressBarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

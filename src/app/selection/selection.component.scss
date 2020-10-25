@@ -52,6 +52,7 @@
 }
 .information_form_table_mobile{
   &_group{
+    margin-bottom: 1rem;
     &>div{
       padding: 10px;
       outline: 1px solid $gray;
