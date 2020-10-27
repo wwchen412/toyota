@@ -1,31 +1,29 @@
-
 <app-header></app-header>
 <div id="form">
-    <div class="container">
-      <div class="main_form">
-        <h2 class="main_form_title mb-5">
-          Enter OTP
-        </h2>
-        <p class="mb-5">OTP has been sent to your email
-          <a href="mailto:kinlau2000@gmail.com">kinlau2000@gmail.com
-            </a>
-          </p>
-        <div class="otp_form">
-          <p class=" mb-3">OTP</p>
-          <input type="text">
-          <input type="text">
-          <input type="text">
-          <input type="text">
-          <input type="text">
-          <input type="text">
-        </div>
-        <div class="main_form_buttonGroup">
-            <button class="button_outline">Clear</button>
-            <button class="button_outline" disabled>ReSend(10)</button>
-            <button class="button_primary" [routerLink]="'/selection'">Submit</button>
-          </div>
+  <div class="container">
+    <div class="main_form">
+      <h2 class="main_form_title mb-5">
+        Enter OTP
+      </h2>
+      <p class="mb-5">OTP has been sent to your email
+        <a href="mailto:kinlau2000@gmail.com">kinlau2000@gmail.com
+        </a>
+      </p>
+      <div class="otp_form mb-3">
+        <p class=" mb-3">OTP</p>
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+      </div>
+      <div class="main_form_buttonGroup">
+        <button class="button_outline">Clear</button>
+        <button class="button_outline" disabled>ReSend(10)</button>
+        <button class="button_primary" [routerLink]="'/selection'">Submit</button>
       </div>
     </div>
+  </div>
 </div>
 <app-footer></app-footer>
-
