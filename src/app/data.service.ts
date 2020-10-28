@@ -4,21 +4,19 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-
 export class DataService {
   constructor(private $http: HttpClient) {}
   getRedirect() {
-    return this.$http.get('/payment/api/Redirect');
+    return this.$http.get('/api/payment/api/Redirect');
   }
   // https://api.toyotafinancial.sg/payment/api/PaymentCodeValidation
   statusValidate() {
     const body = JSON.stringify({
-      'paymentCode': '1d68c5de-3f53-4dc9-843b-3d12d52c8076'
+      paymentCode: '55EEDAC0-B564-45E8-ABF1-7D19E6D64631'
     });
     const url = '/api/payment/api/PaymentCodeValidation';
-    return this.$http.post<any>(
-      url ,
-      {paymentCode: '1d68c5de-3f53-4dc9-843b-3d12d52c8076'}
-    );
+    return this.$http.post<any>(url, {
+      paymentCode: '55EEDAC0-B564-45E8-ABF1-7D19E6D64631'
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-result',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class ResultComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(  ) { }
 
   public isMobileLayout = false;
   ngOnInit() {

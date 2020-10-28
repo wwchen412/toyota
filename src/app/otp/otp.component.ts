@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-otp',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class OtpComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(  ) { }
 
   ngOnInit() {
   }

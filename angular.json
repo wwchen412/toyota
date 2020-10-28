@@ -61,7 +61,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "toyota:build"
+            "browserTarget": "toyota:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
