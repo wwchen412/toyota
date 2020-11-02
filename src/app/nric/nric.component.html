@@ -1,18 +1,14 @@
-
-  <div id="form">
-    <div class="container">
-      <div class="main_form">
-        <h2 class="main_form_title mb-5">
-          Enter Your NRIC
-        </h2>
-        <h3 class="mb-3">NRIC</h3>
-        <input type="text" class="mb-5">
-        <div class="main_form_buttonGroup">
-          <button class="button_outline">Cancel</button>
-          <button class="button_primary">Submit</button>
-        </div>
+<div id="form">
+  <div class="container">
+    <div class="main_form">
+      <h2 class="main_form_title mb-5">
+        Enter Your NRIC
+      </h2>
+      <h3 class="mb-3">NRIC</h3>
+      <input type="text" class="mb-5" [(ngModel)]="nricCode">
+      <div class="main_form_buttonGroup">
+        <button class="button_primary" (click)="postStatusValidate($event)">Submit</button>
       </div>
     </div>
   </div>
-
-
+</div>

@@ -1,30 +1,42 @@
-<app-header></app-header>
+<!-- <app-progress-bar></app-progress-bar> -->
 <div id="form">
   <div class="container">
     <div class="main_form">
       <h2 class="main_form_title mb-5">
         Personal Information
       </h2>
-      <div class="information_form">
-        <div class="information_form_inputs">
-          <div class="input_group mb-5">
-            <h4 class="mb-3">Name</h4>
-            <input type="text">
+      <div class="payment_form mb-3" *ngIf="payInfo$ | async as payInfo">
+        <div class="payment_form_table">
+          <div class="payment_form_row">
+            <div class="title">
+              Name
+            </div>
+            <div class="content">{{ payInfo.ResponseData.customerName}}</div>
           </div>
-          <div class="input_group mb-5">
-            <h4 class="mb-3">E-mail</h4>
-            <input type="email">
+          <div class="payment_form_row">
+            <div class="title">
+              E-mail
+            </div>
+            <div class="content">{{payInfo.ResponseData.email}}</div>
           </div>
-          <div class="input_group mb-5">
-            <h4 class="mb-3">NRIC</h4>
-            <input type="text">
+          <div class="payment_form_row payment_form_row-noborder">
+            <div class="title">
+              NRIC
+            </div>
+            <div class="content">{{payInfo.ResponseData.nric}}</div>
           </div>
-          <div class="input_group mb-5">
-            <h4 class="mb-3">Mobile</h4>
-            <input type="text">
+          <div class="payment_form_row payment_form_row-noborder">
+            <div class="title">
+              Mobile
+            </div>
+            <div class="content">{{payInfo.ResponseData.mobile}}</div>
           </div>
+
         </div>
-        <div class="information_form_table mb-5" *ngIf="isMobileLayout">
+      </div>
+      <div class="information_form">
+
+        <div class="information_form_table mb-5" *ngIf="!isMobileLayout">
           <div class="title">
             <ul>
               <li>Application</li>
@@ -42,7 +54,7 @@
             </ul>
           </div>
         </div>
-        <div class="information_form_table_mobile mb-5" *ngIf="!isMobileLayout">
+        <div class="information_form_table_mobile mb-5" *ngIf="isMobileLayout">
           <div class="information_form_table_mobile_group">
             <div class="title">Application</div>
             <div class="content">KT20200918001</div>
@@ -62,15 +74,16 @@
         </div>
         <div class="information_payment mb-5">
           <h4 class="mb-3">Payment Channel</h4>
-          <select name="" id="">
-            <option value="">Credit Card</option>
-            <option value="">UnionPay</option>
+          <select name="" id="" *ngIf="payChannel$ | async as payChannel">
+            <option *ngFor="let payOption of payChannel.ResponseData" [value]="payOption.ChannelCode">
+              {{payOption.ChannelName}}
+            </option>
           </select>
         </div>
       </div>
       <div class="main_form_buttonGroup">
         <button class="button_outline">Cancel</button>
-        <button class="button_primary">Submit</button>
+        <button class="button_primary" (click)="sumbitCardChannel()">Submit</button>
       </div>
     </div>
   </div>

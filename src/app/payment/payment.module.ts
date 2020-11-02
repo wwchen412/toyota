@@ -7,7 +7,11 @@ import { SelectionComponent } from '../selection/selection.component';
 import { PaymentComponent } from '../payment/payment.component';
 import { ResultComponent } from '../result/result.component';
 import { LoadingPageComponent } from '../loading-page/loading-page.component';
+import { FooterComponent } from '../footer/footer.component';
 import { DataService } from '../data.service';
+import { FormsModule } from '@angular/forms';
+import { NgOtpInputModule } from 'ng-otp-input';
+import { PaymentInfoComponent } from '../payment-info/payment-info.component';
 
 @NgModule({
   declarations: [
@@ -16,17 +20,13 @@ import { DataService } from '../data.service';
     NricComponent,
     SelectionComponent,
     PaymentComponent,
+    PaymentInfoComponent,
     ResultComponent,
     LoadingPageComponent,
+    FooterComponent
   ],
-  providers: [
-    DataService,
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    PaymentComponent
-  ]
+  providers: [DataService],
+  imports: [CommonModule, FormsModule, NgOtpInputModule],
+  exports: [PaymentComponent]
 })
-export class PaymentModule { }
+export class PaymentModule {}
