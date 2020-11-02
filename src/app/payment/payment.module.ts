@@ -12,6 +12,7 @@ import { DataService } from '../data.service';
 import { FormsModule } from '@angular/forms';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { PaymentInfoComponent } from '../payment-info/payment-info.component';
+import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PaymentInfoComponent } from '../payment-info/payment-info.component';
     PaymentInfoComponent,
     ResultComponent,
     LoadingPageComponent,
-    FooterComponent
+    FooterComponent,
+    ProgressBarComponent
   ],
   providers: [DataService],
   imports: [CommonModule, FormsModule, NgOtpInputModule],
