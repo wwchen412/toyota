@@ -228,7 +228,10 @@ MIT
 @angular/platform-browser
 MIT
 
-@angular/router
+@angular/forms
+MIT
+
+ng-otp-input
 MIT
 
 zone.js
