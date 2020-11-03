@@ -21,9 +21,7 @@ export class DataService {
   otpMsg = this.otpMsgSource.asObservable();
   progress = this.progressSource.asObservable();
   detail = this.detailDataSource.asObservable();
-
   auth: string;
-
   constructor(private $http: HttpClient) {}
 
   pageIsLoad(status: boolean) {
@@ -36,6 +34,7 @@ export class DataService {
     this.progressSource.next(page);
   }
   setAuth(token: string) {
+    // console.log('token', token);
     this.authSource.next(token);
   }
 
@@ -46,6 +45,7 @@ export class DataService {
     this.detailDataSource.next(data);
   }
   createHeader() {
+    // console.log('HEADER', this.auth);
     const headers = new HttpHeaders()
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
@@ -84,7 +84,7 @@ export class DataService {
       }
     );
   }
-  paymentCodeValidation() {
+  paymentCodeValidation(paymentCode?: string) {
     const headers = new HttpHeaders()
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
@@ -93,7 +93,12 @@ export class DataService {
     return this.$http.post<any>(
       url,
       {
-        paymentCode: 'c38d60d3-ef86-46eb-8da9-d058c5b8d1ad',
+        paymentCode: paymentCode
+          ? paymentCode
+          : '2b75e57f-2d98-44f4-8774-89ea796ce63d',
+        // : 'b9229745-fec8-46d0-9987-fc3dbea3549c',
+        // 'c38d60d3-ef86-46eb-8da9-d058c5b8d1ad',
+
         ModuleName: 'PaymentInfo',
         OtpMode: 'Email'
       },
@@ -116,7 +121,7 @@ export class DataService {
     });
   }
   cardSubmission(req) {
-    console.log('cardSubmission', req);
+    // console.log('cardSubmission', req);
     return this.$http.post<any>(
       APIURL + 'payment/api/CardSubmission',
       { ...req },
@@ -126,6 +131,7 @@ export class DataService {
     );
   }
   getPaymentDetail(data) {
+    this.authToken.subscribe(auth => (this.auth = auth));
     return this.$http.post<any>(
       APIURL + 'payment/api/PaymentDetail ',
       {

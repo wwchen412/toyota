@@ -1,5 +1,4 @@
 <div id="progressBar" class="progressBar" *ngIf="progress$ | async as progress">
-  {{progress}}
   <div class="container">
     <ul class="">
       <li class="d-inline-block" [ngClass]="{'active': progress >= 1}">

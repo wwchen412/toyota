@@ -1,6 +1,3 @@
-<!-- <ng-container *ngIf="!loading">
-  <app-loading-page></app-loading-page>
-</ng-container> -->
 <ng-container *ngIf="loaded; else loading">
   <app-header></app-header>
   <app-nric *ngIf="page === 'nric'"></app-nric>

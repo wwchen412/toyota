@@ -1,24 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
-  constructor(private $data: DataService) {}
+  constructor(private $data: DataService, private route: ActivatedRoute) {}
 
   public isMobileLayout = false;
   public getPaymentDetail$: Observable<any>;
   private data;
+  public paymentCode;
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
+    this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
     this.data = this.$data.detail.subscribe(res => {
       this.data = res;
-      console.log(this.data);
-      this.getPaymentDetail$ = this.$data.getPaymentDetail(this.data);
+      this.$data.setProgress(3);
+      this.$data.paymentCodeValidation(this.paymentCode).subscribe(
+        res => {
+          console.log(res);
+          if (res.token) {
+            this.$data.setAuth(res.token);
+          } else {
+            const authSession = sessionStorage.getItem('auth');
+            this.$data.setAuth(authSession);
+          }
+
+          const detailData = JSON.parse(sessionStorage.getItem('detailData'));
+          this.getPaymentDetail$ = this.$data.getPaymentDetail({
+            ...detailData,
+            PaymentCode: this.paymentCode
+          });
+        },
+        err => {
+          console.log(err);
+        }
+      );
     });
   }
   public printPage = () => window.print();
