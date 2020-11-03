@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '_color.scss';
+@import '@adyen/adyen-web/dist/adyen.css';
 
 *,
 html,
@@ -97,6 +98,15 @@ select {
   &:active,
   &:focus {
     outline: 0;
+  }
+}
+
+.error {
+
+  input[type="text"],
+  input[type="date"],
+  input[type="email"] {
+    border-color: #f00;
   }
 }
 

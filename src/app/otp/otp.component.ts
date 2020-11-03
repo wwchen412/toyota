@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
@@ -9,12 +10,15 @@ export class OtpComponent implements OnInit {
   public pinLength: number;
   public resendInSeconds: number;
   public resendCount: number;
-  public otpMsg: string;
-  private pin: string;
+  public pin: string;
+  public err: boolean;
+  public otpMsg$: Observable<any>;
+  public errMsg: string;
+  @ViewChild('ngOtpInput', { static: false }) ngOtpInputRef: any;
   constructor(private $data: DataService) {}
 
   ngOnInit() {
-    this.$data.otpMsg.subscribe(msg => (this.otpMsg = msg));
+    this.otpMsg$ = this.$data.otpMsg;
     this.$data.getOtpSetting().subscribe(res => {
       this.pinLength = res.responseData.pinLength;
       this.resendInSeconds = res.responseData.resendInSeconds;
@@ -35,7 +39,6 @@ export class OtpComponent implements OnInit {
   reSendOtp() {
     this.$data.reSendOTP().subscribe(
       res => {
-        console.log('success', res);
         this.resendCount = this.resendInSeconds;
       },
       err => {
@@ -44,13 +47,25 @@ export class OtpComponent implements OnInit {
     );
   }
   sumbitOtp() {
-    this.$data.validateOTP(this.pin).subscribe(result => {
-      this.$data.setAuth(result['Token']);
-      // console.log(result['Token']);
-      this.$data.changePage('selection');
-    }),
+    this.$data.validateOTP(this.pin).subscribe(
+      result => {
+        console.log(result['isSuccess']);
+        if (result['IsSuccess'] === true) {
+          this.err = false;
+          this.$data.setAuth(result['Token']);
+          this.$data.changePage('selection');
+        } else {
+          this.err = true;
+          this.errMsg = result['errorMessage'];
+        }
+      },
       err => {
-        console.log(err);
-      };
+        this.err = true;
+        console.log('err', this.err);
+      }
+    );
+  }
+  clearOtp() {
+    this.ngOtpInputRef.setValue(null);
   }
 }

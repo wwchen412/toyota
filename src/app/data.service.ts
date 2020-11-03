@@ -6,22 +6,34 @@ const APIURL = 'https://api-uat.toyotafinancial.sg/';
   providedIn: 'root'
 })
 export class DataService {
-  private pageSource = new BehaviorSubject('nric');
+  private pageSource = new BehaviorSubject('otp');
   private authSource = new BehaviorSubject('');
-
+  public loadingSource = new BehaviorSubject(false);
+  public progressSource = new BehaviorSubject(1);
   // otp
   private otpMsgSource = new BehaviorSubject('');
+  // detail req
+  private detailDataSource = new BehaviorSubject({});
 
+  loading = this.loadingSource.asObservable();
   currentPage = this.pageSource.asObservable();
   authToken = this.authSource.asObservable();
   otpMsg = this.otpMsgSource.asObservable();
+  progress = this.progressSource.asObservable();
+  detail = this.detailDataSource.asObservable();
 
   auth: string;
 
   constructor(private $http: HttpClient) {}
 
+  pageIsLoad(status: boolean) {
+    this.loadingSource.next(status);
+  }
   changePage(page: string) {
     this.pageSource.next(page);
+  }
+  setProgress(page: number) {
+    this.progressSource.next(page);
   }
   setAuth(token: string) {
     this.authSource.next(token);
@@ -30,7 +42,9 @@ export class DataService {
   setOtpMsg(msg: string) {
     this.otpMsgSource.next(msg);
   }
-
+  setDetail(data: any) {
+    this.detailDataSource.next(data);
+  }
   createHeader() {
     const headers = new HttpHeaders()
       .set('content-type', 'application/json')
@@ -38,8 +52,15 @@ export class DataService {
       .set('Authorization', `Bearer ${this.auth}`);
     return headers;
   }
+
   getOtpSetting() {
     return this.$http.get<any>(APIURL + 'otp/api/OTPSettings');
+  }
+  statusValidate(nricCode) {
+    return this.$http.post(APIURL + 'status-uat/api/Validate', {
+      IdentityCode: 'S1234567G',
+      ModuleName: 'ApplicationStatus'
+    });
   }
   sendOTP() {
     this.authToken.subscribe(auth => (this.auth = auth));
@@ -63,7 +84,7 @@ export class DataService {
       }
     );
   }
-  statusValidate(paymentCode) {
+  paymentCodeValidation() {
     const headers = new HttpHeaders()
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
@@ -71,7 +92,11 @@ export class DataService {
     const url = APIURL + 'payment/api/PaymentCodeValidation';
     return this.$http.post<any>(
       url,
-      { paymentCode: paymentCode },
+      {
+        paymentCode: 'c38d60d3-ef86-46eb-8da9-d058c5b8d1ad',
+        ModuleName: 'PaymentInfo',
+        OtpMode: 'Email'
+      },
       { headers: headers }
     );
   }
@@ -89,5 +114,26 @@ export class DataService {
     return this.$http.get<any>(APIURL + 'payment/api/PaymentMethod', {
       headers: this.createHeader()
     });
+  }
+  cardSubmission(req) {
+    console.log('cardSubmission', req);
+    return this.$http.post<any>(
+      APIURL + 'payment/api/CardSubmission',
+      { ...req },
+      {
+        headers: this.createHeader()
+      }
+    );
+  }
+  getPaymentDetail(data) {
+    return this.$http.post<any>(
+      APIURL + 'payment/api/PaymentDetail ',
+      {
+        ...data
+      },
+      {
+        headers: this.createHeader()
+      }
+    );
   }
 }

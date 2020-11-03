@@ -1,80 +1,97 @@
 @import '../../color.scss';
 
-.payment_form{
+.payment_form {
   border: 1px solid $gray;
-  padding:10px 25px;
-  @media screen and (max-width: 475px){
+  padding: 10px 25px;
+
+  @media screen and (max-width: 475px) {
     border: 0;
     padding: 0;
   }
-  &_table{
+
+  &_table {
     display: flex;
     flex-wrap: wrap;
-    @media screen and (max-width: 475px){
+
+    @media screen and (max-width: 475px) {
       display: block;
       flex-wrap: nowrap;
       border: 1px solid $gray;
     }
   }
-  &_row{
+
+  &_row {
     flex: 0 0 calc(50% - 12px);
     border-bottom: 1px solid $gray;
-    &-noborder{
+
+    &-noborder {
       border-bottom: 0;
     }
-    @media screen and (min-width: 476px){
-      &:nth-child(2n){
+
+    @media screen and (min-width: 476px) {
+      &:nth-child(2n) {
         margin-left: 24px;
       }
     }
-    & > div{
+
+    &>div {
       display: inline-block;
       width: 50%;
       padding: 15px 0;
-      @media screen and (max-width: 475px){
+
+      @media screen and (max-width: 475px) {
         width: calc(55% - 20px);
         padding: 10px 10px;
         vertical-align: middle;
-        &.title{
+
+        &.title {
           // padding: 10px 10px;
           width: calc(45% - 20px);
         }
       }
-      &.content{
+
+      &.content {
         font-weight: bold;
       }
     }
   }
 }
-.credit_form{
+
+.credit_form {
   background: #f7f8fa;
   padding: 15px 25px;
-  &_inputs{
+
+  &_inputs {
     display: flex;
     flex-wrap: wrap;
-    @media screen and (max-width:475px){
+
+    @media screen and (max-width:475px) {
       display: block;
     }
   }
-  &_input{
+
+  &_input {
     flex: 0 0 calc(50% - 12px);
-    @media screen and (min-width:476px){
-      &:nth-child(2n){
+
+    @media screen and (min-width:476px) {
+      &:nth-child(2n) {
         margin-left: 24px;
       }
     }
 
-    input{
+    input {
       max-width: 100%;
     }
   }
-  &_cardNumber{
+
+  &_cardNumber {
     background-image: url('../../assets/images/credit-card-copy.png');
     background-position: calc(100% - 5px) center;
     background-size: 30px;
     background-repeat: no-repeat;
   }
-  &_cvc{
+
+  &_cvc {
     background-image: url('../../assets/images/cvc.png');
     background-position: calc(100% - 5px) center;
     background-size: 30px;

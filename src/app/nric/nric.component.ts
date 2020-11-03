@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { Component, OnInit } from "@angular/core";
+import { DataService } from "../data.service";
 @Component({
-  selector: 'app-nric',
-  templateUrl: './nric.component.html',
-  styleUrls: ['./nric.component.scss']
+  selector: "app-nric",
+  templateUrl: "./nric.component.html",
+  styleUrls: ["./nric.component.scss"]
 })
 export class NricComponent implements OnInit {
   public nricCode;
@@ -14,31 +14,20 @@ export class NricComponent implements OnInit {
     this.$data.currentPage.subscribe(page => (this.page = page));
     this.$data.authToken.subscribe(auth => (this.auth = auth));
   }
-  postStatusValidate($event) {
+  postpaymentCodeValidation($event) {
     ($event.target as HTMLButtonElement).disabled = true;
-    this.$data.statusValidate(this.nricCode).subscribe(
-      result => {
-        if (result.isSuccess) {
-          const { token } = result;
-          this.$data.setAuth(token);
-          this.sendOTP();
-        }
-      },
-      err => {
-        console.log(err);
-        ($event.target as HTMLButtonElement).disabled = false;
-      }
-    );
-  }
-  sendOTP() {
-    this.$data.sendOTP().subscribe(
-      result => {
-        this.$data.setOtpMsg(result.ResponseData.Message);
-        this.$data.changePage('otp');
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    // this.$data.paymentCodeValidation(this.nricCode).subscribe(
+    //   result => {
+    //     if (result.isSuccess) {
+    //       const { token } = result;
+    //       this.$data.setAuth(token);
+    //       this.sendOTP();
+    //     }
+    //   },
+    //   err => {
+    //     console.log(err);
+    //     ($event.target as HTMLButtonElement).disabled = false;
+    //   }
+    // );
   }
 }

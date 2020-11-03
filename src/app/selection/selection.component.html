@@ -1,90 +1,90 @@
-<!-- <app-progress-bar></app-progress-bar> -->
-<div id="form">
-  <div class="container">
-    <div class="main_form">
-      <h2 class="main_form_title mb-5">
-        Personal Information
-      </h2>
-      <div class="payment_form mb-3" *ngIf="payInfo$ | async as payInfo">
-        <div class="payment_form_table">
-          <div class="payment_form_row">
-            <div class="title">
-              Name
-            </div>
-            <div class="content">{{ payInfo.ResponseData.customerName}}</div>
-          </div>
-          <div class="payment_form_row">
-            <div class="title">
-              E-mail
-            </div>
-            <div class="content">{{payInfo.ResponseData.email}}</div>
-          </div>
-          <div class="payment_form_row payment_form_row-noborder">
-            <div class="title">
-              NRIC
-            </div>
-            <div class="content">{{payInfo.ResponseData.nric}}</div>
-          </div>
-          <div class="payment_form_row payment_form_row-noborder">
-            <div class="title">
-              Mobile
-            </div>
-            <div class="content">{{payInfo.ResponseData.mobile}}</div>
-          </div>
+ <app-progress-bar></app-progress-bar>
+ <div id="form">
+   <div class="container">
+     <div class="main_form" *ngIf="payInfo$ | async as payInfo">
+       <h2 class="main_form_title mb-5">
+         Personal Information
+       </h2>
+       <div class="payment_form mb-3">
+         <div class="payment_form_table">
+           <div class="payment_form_row">
+             <div class="title">
+               Name
+             </div>
+             <div class="content">{{ payInfo.ResponseData.customerName}}</div>
+           </div>
+           <div class="payment_form_row">
+             <div class="title">
+               E-mail
+             </div>
+             <div class="content">{{payInfo.ResponseData.email}}</div>
+           </div>
+           <div class="payment_form_row payment_form_row-noborder">
+             <div class="title">
+               NRIC
+             </div>
+             <div class="content">{{payInfo.ResponseData.nric}}</div>
+           </div>
+           <div class="payment_form_row payment_form_row-noborder">
+             <div class="title">
+               Mobile
+             </div>
+             <div class="content">{{payInfo.ResponseData.mobile}}</div>
+           </div>
 
-        </div>
-      </div>
-      <div class="information_form">
+         </div>
+       </div>
+       <div class="information_form">
 
-        <div class="information_form_table mb-5" *ngIf="!isMobileLayout">
-          <div class="title">
-            <ul>
-              <li>Application</li>
-              <li>Payable Amount</li>
-              <li>Payment Source</li>
-              <li>Payment Number</li>
-            </ul>
-          </div>
-          <div class="content">
-            <ul>
-              <li>KT20200918001</li>
-              <li>SGD$ 1307.68</li>
-              <li>Kinto</li>
-              <li>1d68c5de-3f53-4dc9-843b-3d12d52c8076</li>
-            </ul>
-          </div>
-        </div>
-        <div class="information_form_table_mobile mb-5" *ngIf="isMobileLayout">
-          <div class="information_form_table_mobile_group">
-            <div class="title">Application</div>
-            <div class="content">KT20200918001</div>
-          </div>
-          <div class="information_form_table_mobile_group">
-            <div class="title">Payable Amount</div>
-            <div class="content">SGD$ 1307.68</div>
-          </div>
-          <div class="information_form_table_mobile_group">
-            <div class="title">Payment Source</div>
-            <div class="content">Kinto</div>
-          </div>
-          <div class="information_form_table_mobile_group">
-            <div class="title">Payment Number</div>
-            <div class="content">1d68c5de-3f53-4dc9-843b-3d12d52c8076</div>
-          </div>
-        </div>
-        <div class="information_payment mb-5">
-          <h4 class="mb-3">Payment Channel</h4>
-          <select name="" id="" *ngIf="payChannel$ | async as payChannel">
-            <option *ngFor="let payOption of payChannel.ResponseData" [value]="payOption.ChannelCode">
-              {{payOption.ChannelName}}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div class="main_form_buttonGroup">
-        <button class="button_outline">Cancel</button>
-        <button class="button_primary" (click)="sumbitCardChannel()">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
+         <div class="information_form_table mb-5" *ngIf="!isMobileLayout">
+           <div class="title">
+             <ul>
+               <li>Application</li>
+               <li>Payable Amount</li>
+               <li>Payment Source</li>
+               <li>Payment Number</li>
+             </ul>
+           </div>
+           <div class="content">
+             <ul>
+               <li>{{payInfo.ResponseData.paymentNumber}}</li>
+               <li>{{payInfo.ResponseData.currency}}$ {{payInfo.ResponseData.payAmount}}</li>
+               <li>{{payInfo.ResponseData.system}}</li>
+               <li>{{payInfo.ResponseData.referenceCode}}</li>
+             </ul>
+           </div>
+         </div>
+         <div class="information_form_table_mobile mb-5" *ngIf="isMobileLayout">
+           <div class="information_form_table_mobile_group">
+             <div class="title">Application</div>
+             <div class="content">KT20200918001</div>
+           </div>
+           <div class="information_form_table_mobile_group">
+             <div class="title">Payable Amount</div>
+             <div class="content">SGD$ 1307.68</div>
+           </div>
+           <div class="information_form_table_mobile_group">
+             <div class="title">Payment Source</div>
+             <div class="content">Kinto</div>
+           </div>
+           <div class="information_form_table_mobile_group">
+             <div class="title">Payment Number</div>
+             <div class="content">1d68c5de-3f53-4dc9-843b-3d12d52c8076</div>
+           </div>
+         </div>
+         <div class="information_payment mb-5">
+           <h4 class="mb-3">Payment Channel</h4>
+           <select name="" id="" *ngIf="payChannel$ | async as payChannel" style="pointer-events:none">
+             <option *ngFor="let payOption of payChannel.ResponseData" [value]="payOption.ChannelCode">
+               {{payOption.ChannelName}}
+             </option>
+           </select>
+         </div>
+       </div>
+       <div class="main_form_buttonGroup">
+         <button class="button_outline">Cancel</button>
+         <button class="button_primary" (click)="sumbitCardChannel()">Submit</button>
+       </div>
+     </div>
+   </div>
+ </div>

@@ -1,6 +1,5 @@
-<app-header></app-header>
-<!-- <app-progress-bar></app-progress-bar> -->
-<div id="form">
+<app-progress-bar></app-progress-bar>
+<div id="form" *ngIf="getPaymentDetail$ | async as getPaymentDetail">
   <div class="container">
     <div class="main_form">
       <div class="text-center">
@@ -16,25 +15,27 @@
             <div class="title">
               Application Number
             </div>
-            <div class="content">KT20200918001</div>
+            <div class="content">{{getPaymentDetail.responseData.paymentInfo.paymentNumber}}</div>
           </div>
           <div class="payment_form_row">
             <div class="title">
               Payable Amount
             </div>
-            <div class="content">SGD$ <span style="color:red">1307.68</span></div>
+            <div class="content">{{getPaymentDetail.responseData.amount.currency}}$ <span
+                style="color:red">{{getPaymentDetail.responseData.amount.value}}</span>
+            </div>
           </div>
           <div class="payment_form_row payment_form_row-noborder">
             <div class="title">
               Payment Source
             </div>
-            <div class="content">Kinto</div>
+            <div class="content">{{getPaymentDetail.ResponseData.paymentInfo.system}}</div>
           </div>
           <div class="payment_form_row payment_form_row-noborder">
             <div class="title">
               Payment Status
             </div>
-            <div class="content">Approved</div>
+            <div class="content">{{getPaymentDetail.status}}</div>
           </div>
 
         </div>
@@ -46,4 +47,3 @@
     </div>
   </div>
 </div>
-<!-- <app-footer></app-footer> -->

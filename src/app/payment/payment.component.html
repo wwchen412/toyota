@@ -1,10 +1,16 @@
 <!-- <ng-container *ngIf="!loading">
   <app-loading-page></app-loading-page>
 </ng-container> -->
-<app-header></app-header>
-<app-nric *ngIf="page === 'nric'"></app-nric>
-<app-otp *ngIf="page === 'otp'"></app-otp>
-<app-selection *ngIf="page === 'selection'"></app-selection>
-<app-payment-info *ngIf="page === 'payInfo'"></app-payment-info>
-<app-result *ngIf="page === 'result'"></app-result>
-<app-footer></app-footer>
+<ng-container *ngIf="loaded; else loading">
+  <app-header></app-header>
+  <app-nric *ngIf="page === 'nric'"></app-nric>
+  <app-otp *ngIf="page === 'otp'"></app-otp>
+  <app-selection *ngIf="page === 'selection'"></app-selection>
+  <app-payment-info *ngIf="page === 'payInfo'"></app-payment-info>
+  <app-result *ngIf="page === 'result'"></app-result>
+  <app-footer></app-footer>
+</ng-container>
+
+<ng-template #loading>
+  <app-loading-page></app-loading-page>
+</ng-template>
