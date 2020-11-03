@@ -95,9 +95,9 @@ export class DataService {
       {
         paymentCode: paymentCode
           ? paymentCode
-          : '2b75e57f-2d98-44f4-8774-89ea796ce63d',
-        // : 'b9229745-fec8-46d0-9987-fc3dbea3549c',
-        // 'c38d60d3-ef86-46eb-8da9-d058c5b8d1ad',
+          : // : '2b75e57f-2d98-44f4-8774-89ea796ce63d', KWAN TEST
+            // : 'b9229745-fec8-46d0-9987-fc3dbea3549c',
+            'c38d60d3-ef86-46eb-8da9-d058c5b8d1ad',
 
         ModuleName: 'PaymentInfo',
         OtpMode: 'Email'

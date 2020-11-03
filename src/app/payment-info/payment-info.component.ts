@@ -56,7 +56,7 @@ export class PaymentInfoComponent implements OnInit {
       onSubmit: (state, dropin) => {
         const fnPayCreditCard = function(paymentInfo, browserInfo) {
           const oRequest = {
-            returnUrl: 'http://localhost:4200/paymentDetail',
+            // returnUrl: 'http://localhost:4200/paymentDetail',
             paymentMethod: paymentInfo,
             browserInfo: browserInfo,
             reference: oPamentInfo.referenceCode
