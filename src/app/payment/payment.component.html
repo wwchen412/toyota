@@ -1,7 +1,6 @@
 <ng-container *ngIf="loaded; else loading">
   <app-header></app-header>
-  <app-nric *ngIf="page === 'nric'"></app-nric>
-  <app-otp *ngIf="page === 'otp'"></app-otp>
+  <app-otp *ngIf="page === '0'"></app-otp>
   <app-selection *ngIf="page === 'selection'"></app-selection>
   <app-payment-info *ngIf="page === 'payInfo'"></app-payment-info>
   <app-result *ngIf="page === 'result'"></app-result>

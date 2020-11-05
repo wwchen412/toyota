@@ -1,0 +1,11 @@
+@import '../../_color.scss';
+
+.err {
+  input {
+    border: 1px solid $primary;
+  }
+
+  p {
+    color: $primary;
+  }
+}

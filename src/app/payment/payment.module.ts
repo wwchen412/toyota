@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { PaymentInfoComponent } from '../payment-info/payment-info.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
+import { PaymentStatusComponent } from '../payment-status/payment-status.component';
+import { StatusResultComponent } from '../status-result/status-result.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
     ResultComponent,
     LoadingPageComponent,
     FooterComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    PaymentStatusComponent,
+    StatusResultComponent
   ],
   providers: [DataService],
   imports: [CommonModule, FormsModule, NgOtpInputModule],

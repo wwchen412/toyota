@@ -39,7 +39,6 @@ export class PaymentComponent implements OnInit {
     this.$data.sendOTP().subscribe(
       result => {
         this.loaded = true;
-        console.log(result);
         this.$data.setOtpMsg(result.ResponseData.Message);
       },
       err => {

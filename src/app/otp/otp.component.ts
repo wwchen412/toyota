@@ -14,6 +14,8 @@ export class OtpComponent implements OnInit {
   public err: boolean;
   public otpMsg$: Observable<any>;
   public errMsg: string;
+  public contactEmail: string;
+  public contactNumber: string;
   @ViewChild('ngOtpInput', { static: false }) ngOtpInputRef: any;
   constructor(private $data: DataService) {}
 
@@ -24,6 +26,12 @@ export class OtpComponent implements OnInit {
       this.resendInSeconds = res.responseData.resendInSeconds;
       this.resendCount = res.responseData.resendInSeconds;
 
+      const headerContactData = {
+        contactEmail: res.responseData.contactEmail,
+        contactNumber: res.responseData.contactNumber,
+        homeUrl: res.responseData.homeUrl
+      };
+      this.$data.setContactData(headerContactData);
       setInterval(() => {
         if (this.resendCount > 0) {
           this.resendCount--;
@@ -61,7 +69,6 @@ export class OtpComponent implements OnInit {
       },
       err => {
         this.err = true;
-        console.log('err', this.err);
       }
     );
   }

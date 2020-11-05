@@ -6,7 +6,7 @@ const APIURL = 'https://api-uat.toyotafinancial.sg/';
   providedIn: 'root'
 })
 export class DataService {
-  private pageSource = new BehaviorSubject('otp');
+  private pageSource = new BehaviorSubject('0');
   private authSource = new BehaviorSubject('');
   public loadingSource = new BehaviorSubject(false);
   public progressSource = new BehaviorSubject(1);
@@ -14,6 +14,8 @@ export class DataService {
   private otpMsgSource = new BehaviorSubject('');
   // detail req
   private detailDataSource = new BehaviorSubject({});
+  // header
+  private contactDataSource = new BehaviorSubject({});
 
   loading = this.loadingSource.asObservable();
   currentPage = this.pageSource.asObservable();
@@ -21,6 +23,7 @@ export class DataService {
   otpMsg = this.otpMsgSource.asObservable();
   progress = this.progressSource.asObservable();
   detail = this.detailDataSource.asObservable();
+  contactData = this.contactDataSource.asObservable();
   auth: string;
   constructor(private $http: HttpClient) {}
 
@@ -36,6 +39,9 @@ export class DataService {
   setAuth(token: string) {
     // console.log('token', token);
     this.authSource.next(token);
+  }
+  setContactData(data: any) {
+    this.contactDataSource.next(data);
   }
 
   setOtpMsg(msg: string) {
@@ -56,12 +62,7 @@ export class DataService {
   getOtpSetting() {
     return this.$http.get<any>(APIURL + 'otp/api/OTPSettings');
   }
-  statusValidate(nricCode) {
-    return this.$http.post(APIURL + 'status-uat/api/Validate', {
-      IdentityCode: 'S1234567G',
-      ModuleName: 'ApplicationStatus'
-    });
-  }
+
   sendOTP() {
     this.authToken.subscribe(auth => (this.auth = auth));
     return this.$http.post<any>(APIURL + 'otp/api/SendOtp', '', {
@@ -141,5 +142,12 @@ export class DataService {
         headers: this.createHeader()
       }
     );
+  }
+  // TFSSG status API
+  statusValidate(nricCode) {
+    return this.$http.post(APIURL + 'status/api/IdentityValidation', {
+      IdentityCode: nricCode,
+      ModuleName: 'ApplicationStatus'
+    });
   }
 }
