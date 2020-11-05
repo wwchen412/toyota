@@ -4,6 +4,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { ResultComponent } from './result/result.component';
 import { NricComponent } from './nric/nric.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'paymentStatus',
     component: PaymentStatusComponent
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent
   }
 ];
 @NgModule({

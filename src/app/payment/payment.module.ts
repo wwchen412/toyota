@@ -15,7 +15,7 @@ import { PaymentInfoComponent } from '../payment-info/payment-info.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { PaymentStatusComponent } from '../payment-status/payment-status.component';
 import { StatusResultComponent } from '../status-result/status-result.component';
-
+import { ErrorPageComponent } from '../error-page/error-page.component';
 @NgModule({
   declarations: [
     OtpComponent,
@@ -29,7 +29,8 @@ import { StatusResultComponent } from '../status-result/status-result.component'
     FooterComponent,
     ProgressBarComponent,
     PaymentStatusComponent,
-    StatusResultComponent
+    StatusResultComponent,
+    ErrorPageComponent
   ],
   providers: [DataService],
   imports: [CommonModule, FormsModule, NgOtpInputModule],
