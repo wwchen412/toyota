@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-status-result',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./status-result.component.css']
 })
 export class StatusResultComponent implements OnInit {
-
-  constructor() { }
+  constructor(private $data: DataService) {}
 
   ngOnInit(): void {
+    this.$data.getApplication().subscribe(res => {
+      console.log('res', res);
+    });
   }
-
 }

@@ -30,11 +30,11 @@ export class PaymentInfoComponent implements OnInit {
     );
   }
   submitPay() {
-    this.$data.changePage('result');
+    this.$data.changePage('3');
     this.$data.setProgress(3);
   }
   back() {
-    this.$data.changePage('selection');
+    this.$data.changePage('1');
   }
   setPaymentInit(res) {
     const root = this;
@@ -61,7 +61,6 @@ export class PaymentInfoComponent implements OnInit {
             browserInfo: browserInfo,
             reference: oPamentInfo.referenceCode
           };
-          console.log('oRequest', oRequest);
           root.$data.cardSubmission(oRequest).subscribe(
             res => {
               if (res.ResponseData.action) {
@@ -83,7 +82,7 @@ export class PaymentInfoComponent implements OnInit {
                 };
                 root.$data.setDetail({ ...detailData });
                 root.$data.setProgress(3);
-                root.$data.changePage('result');
+                root.$data.changePage('3');
               }
             },
             err => {

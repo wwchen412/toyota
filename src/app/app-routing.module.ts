@@ -12,6 +12,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'payment',
+    component: PaymentComponent
+  },
+  {
     path: 'payment/:paymentCode',
     component: PaymentComponent
   },

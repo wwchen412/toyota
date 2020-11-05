@@ -150,4 +150,14 @@ export class DataService {
       ModuleName: 'ApplicationStatus'
     });
   }
+  getApplication() {
+    return this.$http.get(APIURL + 'status/api/GetApplications', {
+      headers: this.createHeader()
+    });
+  }
+  getPayments() {
+    return this.$http.get(APIURL + 'status/api/GetPayments', {
+      headers: this.createHeader()
+    });
+  }
 }

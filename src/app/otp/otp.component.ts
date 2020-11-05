@@ -16,11 +16,13 @@ export class OtpComponent implements OnInit {
   public errMsg: string;
   public contactEmail: string;
   public contactNumber: string;
+  private page;
   @ViewChild('ngOtpInput', { static: false }) ngOtpInputRef: any;
   constructor(private $data: DataService) {}
 
   ngOnInit() {
     this.otpMsg$ = this.$data.otpMsg;
+    this.$data.currentPage.subscribe(page => (this.page = page));
     this.$data.getOtpSetting().subscribe(res => {
       this.pinLength = res.responseData.pinLength;
       this.resendInSeconds = res.responseData.resendInSeconds;
@@ -57,11 +59,11 @@ export class OtpComponent implements OnInit {
   sumbitOtp() {
     this.$data.validateOTP(this.pin).subscribe(
       result => {
-        console.log(result['isSuccess']);
         if (result['IsSuccess'] === true) {
           this.err = false;
           this.$data.setAuth(result['Token']);
-          this.$data.changePage('selection');
+          const nextPage = parseInt(this.page, 10) + 1;
+          this.$data.changePage(nextPage.toString());
         } else {
           this.err = true;
           this.errMsg = result['errorMessage'];
