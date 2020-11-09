@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { DataService } from "../data.service";
+import { Observable } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss']
+  selector: "app-payment",
+  templateUrl: "./payment.component.html",
+  styleUrls: ["./payment.component.scss"]
 })
 export class PaymentComponent implements OnInit {
   constructor(private $data: DataService, private route: ActivatedRoute) {}
@@ -23,27 +23,18 @@ export class PaymentComponent implements OnInit {
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
 
     this.$data.currentPage.subscribe(page => (this.page = page));
-    this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
+    this.paymentCode = this.route.snapshot.paramMap.get("paymentCode");
     this.$data.paymentCodeValidation(this.paymentCode).subscribe(
       res => {
         this.$data.setAuth(res.token);
-        this.sendOTP();
+        sessionStorage.setItem("auth", res.token);
+        this.linkToOtp();
       },
-      err => {
-        console.log(this.loaded);
-        console.log(err);
-      }
+      err => {}
     );
   }
-  sendOTP() {
-    this.$data.sendOTP().subscribe(
-      result => {
-        this.loaded = true;
-        this.$data.setOtpMsg(result.ResponseData.Message);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+  linkToOtp() {
+    // window.location.href = "https://otp-uat.toyotafinancial.sg/";
+    window.location.href = "/otp";
   }
 }

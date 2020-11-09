@@ -14,15 +14,16 @@ export class OtpComponent implements OnInit {
   public err: boolean;
   public otpMsg$: Observable<any>;
   public errMsg: string;
-  public contactEmail: string;
-  public contactNumber: string;
+  public headerContactData;
   private page;
   @ViewChild('ngOtpInput', { static: false }) ngOtpInputRef: any;
   constructor(private $data: DataService) {}
-
+  public isMobileLayout = false;
   ngOnInit() {
+    this.isMobileLayout = window.innerWidth <= 475;
+    window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
+    this.sendOTP();
     this.otpMsg$ = this.$data.otpMsg;
-    this.$data.currentPage.subscribe(page => (this.page = page));
     this.$data.getOtpSetting().subscribe(res => {
       this.pinLength = res.responseData.pinLength;
       this.resendInSeconds = res.responseData.resendInSeconds;
@@ -33,7 +34,7 @@ export class OtpComponent implements OnInit {
         contactNumber: res.responseData.contactNumber,
         homeUrl: res.responseData.homeUrl
       };
-      this.$data.setContactData(headerContactData);
+      this.headerContactData = headerContactData;
       setInterval(() => {
         if (this.resendCount > 0) {
           this.resendCount--;
@@ -61,9 +62,9 @@ export class OtpComponent implements OnInit {
       result => {
         if (result['IsSuccess'] === true) {
           this.err = false;
-          this.$data.setAuth(result['Token']);
-          const nextPage = parseInt(this.page, 10) + 1;
-          this.$data.changePage(nextPage.toString());
+          sessionStorage.setItem('auth', result['Token']);
+          // window.location.href = result['ResponseData'].CallbackUrl;
+          window.location.href = '/paymentInfo';
         } else {
           this.err = true;
           this.errMsg = result['errorMessage'];
@@ -76,5 +77,15 @@ export class OtpComponent implements OnInit {
   }
   clearOtp() {
     this.ngOtpInputRef.setValue(null);
+  }
+  sendOTP() {
+    this.$data.sendOTP().subscribe(
+      result => {
+        this.$data.setOtpMsg(result.ResponseData.Message);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }

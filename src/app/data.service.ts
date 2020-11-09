@@ -23,7 +23,7 @@ export class DataService {
   otpMsg = this.otpMsgSource.asObservable();
   progress = this.progressSource.asObservable();
   detail = this.detailDataSource.asObservable();
-  contactData = this.contactDataSource.asObservable();
+  // contactData = this.contactDataSource.asObservable();
   auth: string;
   constructor(private $http: HttpClient) {}
 
@@ -40,9 +40,6 @@ export class DataService {
     // console.log('token', token);
     this.authSource.next(token);
   }
-  setContactData(data: any) {
-    this.contactDataSource.next(data);
-  }
 
   setOtpMsg(msg: string) {
     this.otpMsgSource.next(msg);
@@ -51,7 +48,7 @@ export class DataService {
     this.detailDataSource.next(data);
   }
   createHeader() {
-    // console.log('HEADER', this.auth);
+    this.auth = sessionStorage.getItem('auth');
     const headers = new HttpHeaders()
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
@@ -105,6 +102,11 @@ export class DataService {
       },
       { headers: headers }
     );
+  }
+  getPaymentSetting() {
+    return this.$http.get<any>(APIURL + 'payment/api/PaymentSettings', {
+      headers: this.createHeader()
+    });
   }
   getPayChannel() {
     return this.$http.get<any>(APIURL + 'payment/api/PaymentChannel', {

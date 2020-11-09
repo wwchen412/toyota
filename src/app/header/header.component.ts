@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,12 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  @Input() headerSetting: any;
+  constructor() {}
   public isMobileLayout = false;
-  ngOnInit() {
-    this.isMobileLayout = window.innerWidth <= 475;
-    window.onresize = () => this.isMobileLayout = window.innerWidth <= 475;
-  }
 
+  ngOnInit() {
+    console.log(this.headerSetting);
+    this.isMobileLayout = window.innerWidth <= 475;
+    window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
+  }
 }

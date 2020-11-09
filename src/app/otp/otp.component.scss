@@ -1,1 +1,72 @@
-.otp_form {}
+@import '../../color.scss';
+
+#header {
+  background: $dark;
+  color: #fff;
+  padding: .5rem 0;
+
+  p {
+    font-size: .7rem;
+  }
+}
+
+#navigation {
+  padding: .8rem 0;
+  background: #fff;
+
+  #logo {
+    max-width: 150px;
+  }
+
+  a {
+    color: $dark;
+  }
+}
+
+#bread {
+  border-top: 1px solid #eee;
+  background: #fff;
+  padding: 5px 0;
+}
+
+#hero {
+  font-size: 38px;
+  font-family: Helvetica;
+  font-weight: bold;
+  text-align: center;
+  background-image: url('../../assets/images/shutterstock-1676371762.png');
+  height: 100px;
+  color: #ffffff;
+  line-height: 100px;
+  background-size: cover;
+  background-position: 50% 50%;
+
+  h2 {
+    font-size: 38px;
+  }
+
+  @media screen and (max-width: 475px) {
+    h2 {
+      font-size: 20px;
+    }
+  }
+}
+
+
+#footer {
+  background: $dark;
+  color: #fff;
+  padding: .5rem 0;
+  font-size: .7rem;
+
+  // position: absolute;
+  // bottom: 0;left: 0;
+  // width: 100%;
+  .contact {
+    margin-bottom: 10px;
+
+    li {
+      margin: 0 .5rem;
+    }
+  }
+}

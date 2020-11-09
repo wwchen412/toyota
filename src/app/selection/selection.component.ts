@@ -13,15 +13,27 @@ export class SelectionComponent implements OnInit {
   public isMobileLayout = false;
   payChannel$: Observable<any>;
   payInfo$: Observable<any>;
+  public page: string;
 
+  public headerData$: Observable<any>;
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
+    this.headerData$ = this.$data.getPaymentSetting();
+    // .subscribe(res => {
+    //   this.headerData = {
+    //     aboutUsUrl: res.responseData.aboutUsUrl,
+    //     contactEmail: res.responseData.contactEmail,
+    //     contactNumber: res.responseData.contactNumber,
+    //     logoUrl: res.responseData.logoUrl
+    //   };
+    // });
+    this.$data.currentPage.subscribe(page => (this.page = page));
     this.payChannel$ = this.$data.getPayChannel();
     this.payInfo$ = this.$data.getPayInfo();
   }
   sumbitCardChannel() {
-    this.$data.changePage('2');
+    this.$data.changePage('1');
     this.$data.setProgress(2);
   }
 }
