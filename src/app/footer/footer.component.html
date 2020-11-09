@@ -1,13 +1,13 @@
 <div id="footer" class="text-center">
   <div class="contact">
     <ul>
-      <li class="d-inline-block vertical-center" *ngIf="contactSetting.responseData.contactEmail">
+      <li class="d-inline-block vertical-center" *ngIf="contactSetting?.responseData.contactEmail">
         <div class="icon d-inline-block vertical-center">
           <img src="assets/images/footer_mail.svg" alt="">
         </div>
         <div class="d-inline-block">{{contactSetting.responseData.contactEmail}}</div>
       </li>
-      <li class="d-inline-block vertical-center" *ngIf="contactSetting.responseData.contactNumber">
+      <li class="d-inline-block vertical-center" *ngIf="contactSetting?.responseData.contactNumber">
         <div class="icon d-inline-block vertical-center">
           <img src="assets/images/footer_phone.svg" alt="">
         </div>

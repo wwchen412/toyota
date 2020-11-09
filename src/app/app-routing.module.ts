@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'paymentStatus',
-    component: PaymentStatusComponent
+    component: NricComponent
   },
   {
     path: 'otp',

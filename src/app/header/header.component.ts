@@ -11,7 +11,6 @@ export class HeaderComponent implements OnInit {
   public isMobileLayout = false;
 
   ngOnInit() {
-    console.log(this.headerSetting);
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
   }

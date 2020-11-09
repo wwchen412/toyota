@@ -11,6 +11,6 @@ export class PaymentStatusComponent implements OnInit {
   constructor(private $data: DataService) {}
 
   ngOnInit(): void {
-    this.$data.currentPage.subscribe(page => (this.page = page));
+    // this.$data.currentPage.subscribe(page => (this.page = page));
   }
 }

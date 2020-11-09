@@ -146,10 +146,10 @@ export class DataService {
     );
   }
   // TFSSG status API
-  statusValidate(nricCode) {
+  statusValidate(nricCode, status) {
     return this.$http.post(APIURL + 'status/api/IdentityValidation', {
       IdentityCode: nricCode,
-      ModuleName: 'ApplicationStatus'
+      ModuleName: status
     });
   }
   getApplication() {
