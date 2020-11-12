@@ -54,6 +54,12 @@
         </div>
       </div>
       <div #payForm></div>
+      <div class="trems">
+        <input type="checkbox" name="" id="">
+        I accept the <a (click)="openUrl(paymentMethod.ResponseData.termsUrl)">Terms&Conditions</a> and
+        <a (click)="openUrl(paymentMethod.ResponseData.privacyUrl)">Privacy
+          Policy</a>
+      </div>
       <div class="main_form_buttonGroup">
         <button class="button_outline" (click)="back()">Back</button>
         <!-- <button class="button_primary" (click)="submitPay()">Pay</button> -->

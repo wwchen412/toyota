@@ -51,7 +51,7 @@ export class DataService {
     this.detailDataSource.next(data);
   }
   createHeader() {
-    // console.log('HEADER', this.auth);
+    console.log('HEADER', this.auth);
     const headers = new HttpHeaders()
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
@@ -97,8 +97,7 @@ export class DataService {
         paymentCode: paymentCode
           ? paymentCode
           : // : '2b75e57f-2d98-44f4-8774-89ea796ce63d', KWAN TEST
-            // : 'b9229745-fec8-46d0-9987-fc3dbea3549c',
-            'c38d60d3-ef86-46eb-8da9-d058c5b8d1ad',
+            '17bca26b-e9ad-4645-9586-9360e9467d2a', // 'c38d60d3-ef86-46eb-8da9-d058c5b8d1ad',
 
         ModuleName: 'PaymentInfo',
         OtpMode: 'Email'
@@ -117,6 +116,7 @@ export class DataService {
     });
   }
   getPaymentMethod() {
+    console.log('getPaymentMethod');
     return this.$http.get<any>(APIURL + 'payment/api/PaymentMethod', {
       headers: this.createHeader()
     });
@@ -131,17 +131,11 @@ export class DataService {
       }
     );
   }
-  getPaymentDetail(data) {
+  getPaymentInfo() {
     this.authToken.subscribe(auth => (this.auth = auth));
-    return this.$http.post<any>(
-      APIURL + 'payment/api/PaymentDetail ',
-      {
-        ...data
-      },
-      {
-        headers: this.createHeader()
-      }
-    );
+    return this.$http.get<any>(APIURL + 'payment/api/PaymentInfo ', {
+      headers: this.createHeader()
+    });
   }
   // TFSSG status API
   statusValidate(nricCode) {

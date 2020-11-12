@@ -5,17 +5,15 @@ import { ResultComponent } from './result/result.component';
 import { NricComponent } from './nric/nric.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { PaymentInfoComponent } from './payment-info/payment-info.component';
+import { TermsComponent } from './terms/terms.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: PaymentComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'payment',
-    component: PaymentComponent
-  },
+  // {
+  //   path: '',
+  //   component: PaymentComponent,
+  //   pathMatch: 'full'
+  // },
   {
     path: 'payment/:paymentCode',
     component: PaymentComponent
@@ -25,8 +23,16 @@ const routes: Routes = [
     component: ResultComponent
   },
   {
+    path: 'paymentInfo',
+    component: PaymentInfoComponent
+  },
+  {
     path: 'paymentStatus',
     component: PaymentStatusComponent
+  },
+  {
+    path: 'terms',
+    component: TermsComponent
   },
   {
     path: '**',

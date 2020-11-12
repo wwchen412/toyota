@@ -23,19 +23,12 @@ export class ResultComponent implements OnInit {
       this.$data.setProgress(3);
       this.$data.paymentCodeValidation(this.paymentCode).subscribe(
         res => {
-          console.log(res);
           if (res.token) {
             this.$data.setAuth(res.token);
-          } else {
-            const authSession = sessionStorage.getItem('auth');
-            this.$data.setAuth(authSession);
           }
 
-          const detailData = JSON.parse(sessionStorage.getItem('detailData'));
-          this.getPaymentDetail$ = this.$data.getPaymentDetail({
-            ...detailData,
-            PaymentCode: this.paymentCode
-          });
+          // const detailData = JSON.parse(sessionStorage.getItem('detailData'));
+          this.getPaymentDetail$ = this.$data.getPaymentInfo();
         },
         err => {
           console.log(err);

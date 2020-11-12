@@ -22,11 +22,14 @@ export class PaymentInfoComponent implements OnInit {
     this.$data.getPaymentMethod().subscribe(
       res => {
         this.paymentMethod = res;
+        console.log(this.paymentMethod);
         setTimeout(() => {
           this.setPaymentInit(res.ResponseData);
         }, 1000);
       },
-      err => {}
+      err => {
+        console.log(err);
+      }
     );
   }
   submitPay() {
@@ -108,7 +111,9 @@ export class PaymentInfoComponent implements OnInit {
     const checkout = new AdyenCheckout(configuration);
     const dropin = checkout.create('dropin').mount(payForm);
   }
-
+  openUrl(url) {
+    window.open(url, '_blank');
+  }
   // makePayment(data) {
   //   console.log('data', data);
   // }
