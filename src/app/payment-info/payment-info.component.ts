@@ -13,10 +13,12 @@ export class PaymentInfoComponent implements OnInit {
   constructor(private $data: DataService, private elementRef: ElementRef) {}
   public isMobileLayout = false;
   paymentMethod;
+  public headerData$: Observable<any>;
 
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
+    this.headerData$ = this.$data.getPaymentSetting();
   }
   ngAfterViewInit(): void {
     this.$data.getPaymentMethod().subscribe(

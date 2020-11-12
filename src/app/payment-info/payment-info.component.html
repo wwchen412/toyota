@@ -1,69 +1,71 @@
-<div id="form" *ngIf="paymentMethod">
-  <app-progress-bar></app-progress-bar>
-  <div class="container">
-    <div class="main_form">
-      <h2 class="main_form_title mb-5">
-        Payment Information
-      </h2>
-      <div class="payment_form mb-3">
-        <div class="payment_form_table">
-          <div class="payment_form_row">
-            <div class="title">
-              Name
-            </div>
-            <div class="content">{{ paymentMethod.ResponseData.paymentInfo.customerName}}</div>
-          </div>
-          <div class="payment_form_row">
-            <div class="title">
-              E-mail
-            </div>
-            <div class="content">{{paymentMethod.ResponseData.paymentInfo.email}}</div>
-          </div>
-          <div class="payment_form_row">
-            <div class="title">
-              NRIC
-            </div>
-            <div class="content">{{paymentMethod.ResponseData.paymentInfo.nric}}</div>
-          </div>
-          <div class="payment_form_row">
-            <div class="title">
-              Mobile
-            </div>
-            <div class="content">{{paymentMethod.ResponseData.paymentInfo.mobile}}</div>
-          </div>
-          <div class="payment_form_row">
-            <div class="title">
-              Application Number
-            </div>
-            <div class="content">{{paymentMethod.ResponseData.paymentInfo.paymentNumber}}</div>
-          </div>
+ <app-header *ngIf="headerData$ | async as contactData" [headerSetting]="contactData">
+ </app-header>
+ <div id="form" *ngIf="paymentMethod">
+   <app-progress-bar></app-progress-bar>
+   <div class="container">
+     <div class="main_form">
+       <h2 class="main_form_title mb-5">
+         Payment Information
+       </h2>
+       <div class="payment_form mb-3">
+         <div class="payment_form_table">
+           <div class="payment_form_row">
+             <div class="title">
+               Name
+             </div>
+             <div class="content">{{ paymentMethod.ResponseData.paymentInfo.customerName}}</div>
+           </div>
+           <div class="payment_form_row">
+             <div class="title">
+               E-mail
+             </div>
+             <div class="content">{{paymentMethod.ResponseData.paymentInfo.email}}</div>
+           </div>
+           <div class="payment_form_row">
+             <div class="title">
+               NRIC
+             </div>
+             <div class="content">{{paymentMethod.ResponseData.paymentInfo.nric}}</div>
+           </div>
+           <div class="payment_form_row">
+             <div class="title">
+               Mobile
+             </div>
+             <div class="content">{{paymentMethod.ResponseData.paymentInfo.mobile}}</div>
+           </div>
+           <div class="payment_form_row">
+             <div class="title">
+               Application Number
+             </div>
+             <div class="content">{{paymentMethod.ResponseData.paymentInfo.paymentNumber}}</div>
+           </div>
 
-          <div class="payment_form_row">
-            <div class="title">
-              Payable Amount
-            </div>
-            <div class="content">{{paymentMethod.ResponseData.paymentInfo.currency}}$ <span
-                style="color:#dc0016">{{paymentMethod.ResponseData.paymentInfo.payAmount}}</span></div>
-          </div>
-          <div class="payment_form_row payment_form_row-noborder">
-            <div class="title">
-              Payment Source
-            </div>
-            <div class="content">{{paymentMethod.ResponseData.paymentInfo.system}}</div>
-          </div>
-        </div>
-      </div>
-      <div #payForm></div>
-      <div class="trems">
-        <input type="checkbox" name="" id="">
-        I accept the <a (click)="openUrl(paymentMethod.ResponseData.termsUrl)">Terms&Conditions</a> and
-        <a (click)="openUrl(paymentMethod.ResponseData.privacyUrl)">Privacy
-          Policy</a>
-      </div>
-      <div class="main_form_buttonGroup">
-        <button class="button_outline" (click)="back()">Back</button>
-        <!-- <button class="button_primary" (click)="submitPay()">Pay</button> -->
-      </div>
-    </div>
-  </div>
-</div>
+           <div class="payment_form_row">
+             <div class="title">
+               Payable Amount
+             </div>
+             <div class="content">{{paymentMethod.ResponseData.paymentInfo.currency}}$ <span
+                 style="color:#dc0016">{{paymentMethod.ResponseData.paymentInfo.payAmount}}</span></div>
+           </div>
+           <div class="payment_form_row payment_form_row-noborder">
+             <div class="title">
+               Payment Source
+             </div>
+             <div class="content">{{paymentMethod.ResponseData.paymentInfo.system}}</div>
+           </div>
+         </div>
+       </div>
+       <div #payForm></div>
+       <div class="trems">
+         <input type="checkbox" name="" id="">
+         I accept the <a (click)="openUrl(paymentMethod.ResponseData.termsUrl)">Terms&Conditions</a> and
+         <a (click)="openUrl(paymentMethod.ResponseData.privacyUrl)">Privacy
+           Policy</a>
+       </div>
+       <div class="main_form_buttonGroup">
+         <button class="button_outline" (click)="back()">Back</button>
+         <!-- <button class="button_primary" (click)="submitPay()">Pay</button> -->
+       </div>
+     </div>
+   </div>
+ </div>

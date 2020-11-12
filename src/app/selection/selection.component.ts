@@ -13,10 +13,11 @@ export class SelectionComponent implements OnInit {
   public isMobileLayout = false;
   payChannel$: Observable<any>;
   payInfo$: Observable<any>;
-
+  public headerData$: Observable<any>;
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
+    this.headerData$ = this.$data.getPaymentSetting();
     this.payChannel$ = this.$data.getPayChannel();
     this.payInfo$ = this.$data.getPayInfo();
   }

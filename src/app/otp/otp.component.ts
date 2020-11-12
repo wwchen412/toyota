@@ -17,6 +17,7 @@ export class OtpComponent implements OnInit {
   public contactEmail: string;
   public contactNumber: string;
   private page;
+  public headerData$: Observable<any>;
   @ViewChild('ngOtpInput', { static: false }) ngOtpInputRef: any;
   constructor(private $data: DataService) {}
 
@@ -27,7 +28,8 @@ export class OtpComponent implements OnInit {
       this.pinLength = res.responseData.pinLength;
       this.resendInSeconds = res.responseData.resendInSeconds;
       this.resendCount = res.responseData.resendInSeconds;
-
+      this.headerData$ = res;
+      console.log(this.headerData$);
       const headerContactData = {
         contactEmail: res.responseData.contactEmail,
         contactNumber: res.responseData.contactNumber,

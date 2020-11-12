@@ -59,6 +59,12 @@ export class DataService {
     return headers;
   }
 
+  getPaymentSetting() {
+    this.authToken.subscribe(auth => (this.auth = auth));
+    return this.$http.get<any>(APIURL + 'payment/api/PaymentSettings', {
+      headers: this.createHeader()
+    });
+  }
   getOtpSetting() {
     return this.$http.get<any>(APIURL + 'otp/api/OTPSettings');
   }

@@ -14,9 +14,12 @@ export class ResultComponent implements OnInit {
   public getPaymentDetail$: Observable<any>;
   private data;
   public paymentCode;
+  public headerData$: Observable<any>;
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
+    this.headerData$ = this.$data.getPaymentSetting();
+
     this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
     this.data = this.$data.detail.subscribe(res => {
       this.data = res;

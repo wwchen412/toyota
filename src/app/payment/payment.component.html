@@ -1,10 +1,8 @@
 <ng-container *ngIf="loaded; else loading">
-  <app-header></app-header>
   <app-otp *ngIf="page === '0'"></app-otp>
   <app-selection *ngIf="page === '1'"></app-selection>
   <app-payment-info *ngIf="page === '2'"></app-payment-info>
   <app-result *ngIf="page === '3'"></app-result>
-  <app-footer></app-footer>
 </ng-container>
 
 <ng-template #loading>
