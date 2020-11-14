@@ -24,27 +24,27 @@
                 <div class="title">
                   Application Number
                 </div>
-                <div class="content">{{getPaymentDetail.responseData.paymentInfo.paymentNumber}}</div>
+                <div class="content">{{getPaymentDetail.ResponseData.paymentNumber}}</div>
               </div>
               <div class="payment_form_row">
                 <div class="title">
                   Payable Amount
                 </div>
-                <div class="content">{{getPaymentDetail.responseData.amount.currency}}$ <span
-                    style="color:red">{{getPaymentDetail.responseData.amount.value}}</span>
+                <div class="content">{{getPaymentDetail.ResponseData.amount}}$ <span
+                    style="color:red">{{getPaymentDetail.ResponseData.currency}}</span>
                 </div>
               </div>
               <div class="payment_form_row payment_form_row-noborder">
                 <div class="title">
                   Payment Source
                 </div>
-                <div class="content">{{getPaymentDetail.ResponseData.paymentInfo.system}}</div>
+                <div class="content">{{getPaymentDetail.ResponseData.system}}</div>
               </div>
               <div class="payment_form_row payment_form_row-noborder">
                 <div class="title">
                   Payment Status
                 </div>
-                <div class="content">{{getPaymentDetail.status}}</div>
+                <div class="content">{{getPaymentDetail.ResponseData.status}}</div>
               </div>
 
             </div>

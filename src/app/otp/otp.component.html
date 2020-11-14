@@ -1,29 +1,31 @@
-<app-header *ngIf="headerData$" [headerSetting]="headerData$"></app-header>
-<div id="form" *ngIf="otpMsg$ | async as otpMsg">
-  <div class="container">
-    <div class="main_form">
-      <h2 class="main_form_title mb-5">
-        Enter OTP
-      </h2>
-      <p class="mb-5">
-        {{otpMsg}}
-      </p>
-      <div class="otp_form" [ngClass]="{'error': !!err}">
-        <p class=" mb-3">OTP</p>
-        <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)"
-          [config]="{length:6,inputClass:'input_otp mb-3'}">
-        </ng-otp-input>
+<ng-container *ngIf="headerData$">
+  <app-header [headerSetting]="headerData$"></app-header>
+  <div id="form" *ngIf="otpMsg$ | async as otpMsg">
+    <div class="container">
+      <div class="main_form">
+        <h2 class="main_form_title mb-5">
+          Enter OTP
+        </h2>
+        <p class="mb-5">
+          {{otpMsg}}
+        </p>
+        <div class="otp_form" [ngClass]="{'error': !!err}">
+          <p class=" mb-3">OTP</p>
+          <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)"
+            [config]="{length:6,inputClass:'input_otp mb-3'}">
+          </ng-otp-input>
 
-        <span *ngIf="err" style="color: #ff0000">{{errMsg}}</span>
-      </div>
-      <div class="main_form_buttonGroup">
-        <button class="button_outline" (click)="clearOtp()">Clear</button>
-        <button class="button_outline" (click)="reSendOtp()" [disabled]="resendCount>0">
-          ReSend<ng-container *ngIf="resendCount>0">({{resendCount}})</ng-container>
-        </button>
-        <button class="button_primary" (click)="sumbitOtp()">Submit</button>
+          <span *ngIf="err" style="color: #ff0000">{{errMsg}}</span>
+        </div>
+        <div class="main_form_buttonGroup">
+          <button class="button_outline" (click)="clearOtp()">Clear</button>
+          <button class="button_outline" (click)="reSendOtp()" [disabled]="resendCount>0">
+            ReSend<ng-container *ngIf="resendCount>0">({{resendCount}})</ng-container>
+          </button>
+          <button class="button_primary" (click)="sumbitOtp()">Submit</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<app-footer></app-footer>
+  <app-footer [footerSetting]="headerData$"></app-footer>
+</ng-container>

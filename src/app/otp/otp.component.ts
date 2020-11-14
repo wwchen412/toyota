@@ -29,7 +29,7 @@ export class OtpComponent implements OnInit {
       this.resendInSeconds = res.responseData.resendInSeconds;
       this.resendCount = res.responseData.resendInSeconds;
       this.headerData$ = res;
-      console.log(this.headerData$);
+      // console.log(this.headerData$);
       const headerContactData = {
         contactEmail: res.responseData.contactEmail,
         contactNumber: res.responseData.contactNumber,
@@ -52,9 +52,11 @@ export class OtpComponent implements OnInit {
     this.$data.reSendOTP().subscribe(
       res => {
         this.resendCount = this.resendInSeconds;
+        this.err = false;
+        this.errMsg = '';
       },
       err => {
-        console.log('err');
+        // console.log("err");
       }
     );
   }
@@ -68,7 +70,7 @@ export class OtpComponent implements OnInit {
           this.$data.changePage(nextPage.toString());
         } else {
           this.err = true;
-          this.errMsg = result['errorMessage'];
+          this.errMsg = 'Pin is required';
         }
       },
       err => {

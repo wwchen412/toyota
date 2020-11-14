@@ -1,12 +1,15 @@
 @import '../../color.scss';
-.progressBar{
+
+.progressBar {
   padding: 1rem 0;
   color: $dark-gray;
   font-weight: bold;
-  @media screen and (max-width: 475px){
+
+  @media screen and (max-width: 475px) {
     padding: .5rem 0;
   }
-  &_icon{
+
+  &_icon {
     width: 38px;
     height: 38px;
     border-radius: 38px;
@@ -16,15 +19,18 @@
     line-height: 38px;
     text-align: center;
     vertical-align: middle;
-    margin-right:12px;
+    margin-right: 12px;
   }
-  ul{
+
+  ul {
     position: relative;
 
   }
-  li{
+
+  li {
     position: relative;
-    &:after{
+
+    &:after {
       content: '';
       width: 40px;
       display: inline-block;
@@ -32,44 +38,66 @@
       background: $dark-gray;
       margin-left: 1rem;
       vertical-align: middle;
+
       @media screen and (max-width:475px) {
         width: 20px;
         margin-left: .5rem;
       }
     }
+
     background: $light;
     padding-right:1rem;
+
     @media screen and (max-width:475px) {
-      padding-right:.5rem;
+      padding-right: .5rem;
     }
-    &:last-child{
+
+    &:last-child {
       padding: 0;
-      &:after{
+
+      &:after {
         display: none;
         width: 0;
       }
+
     }
-    &:first-child{
-      .progressBar_icon{
+
+    &:first-child {
+      .progressBar_icon {
         margin-left: 0;
       }
     }
 
-    &.active{
+    &.active {
       color: $dark;
-      .progressBar_icon{
+
+      .progressBar_icon {
         background: #dc0016;
         color: #fff;
       }
 
+
+
     }
+
     @media screen and (max-width: 475px) {
-      p{
+      p {
         display: none;
-        font-size: 1rem;
+        font-size: .8rem;
       }
-      &.active p{
-        display: inline-block;
+
+      &.active {
+        p {
+          display: none;
+        }
+
+        &.mobile_active p {
+          display: inline-block;
+        }
+      }
+
+      .progressBar_icon {
+        margin-right: 5px !important;
       }
     }
   }

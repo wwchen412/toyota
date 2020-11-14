@@ -18,19 +18,17 @@ export class ResultComponent implements OnInit {
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
-    this.headerData$ = this.$data.getPaymentSetting();
 
     this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
     this.data = this.$data.detail.subscribe(res => {
       this.data = res;
       this.$data.setProgress(3);
-      this.$data.paymentCodeValidation(this.paymentCode).subscribe(
+      this.$data.PaymentCodeResultValidation(this.paymentCode).subscribe(
         res => {
           if (res.token) {
             this.$data.setAuth(res.token);
           }
-
-          // const detailData = JSON.parse(sessionStorage.getItem('detailData'));
+          this.headerData$ = this.$data.getPaymentSetting();
           this.getPaymentDetail$ = this.$data.getPaymentInfo();
         },
         err => {

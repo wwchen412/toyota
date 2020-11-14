@@ -18,22 +18,27 @@ export class NricComponent implements OnInit {
   }
   postpaymentCodeValidation($event) {
     ($event.target as HTMLButtonElement).disabled = true;
-    this.$data.statusValidate(this.nricCode).subscribe(
-      res => {
-        ($event.target as HTMLButtonElement).disabled = false;
-        if (res['isSuccess']) {
-          this.$data.setAuth(res['token']);
-          this.sendOTP();
-          this.$data.changePage('1');
-        } else {
-          this.errorMsg = res['errorMessage'];
-          this.error = true;
+    if (!!this.nricCode) {
+      this.$data.statusValidate(this.nricCode).subscribe(
+        res => {
+          ($event.target as HTMLButtonElement).disabled = false;
+          if (res['isSuccess']) {
+            this.$data.setAuth(res['token']);
+            this.sendOTP();
+            this.$data.changePage('1');
+          } else {
+            this.errorMsg = res['errorMessage'];
+            this.error = true;
+          }
+        },
+        err => {
+          ($event.target as HTMLButtonElement).disabled = false;
         }
-      },
-      err => {
-        ($event.target as HTMLButtonElement).disabled = false;
-      }
-    );
+      );
+    } else {
+      this.errorMsg = 'NRIC is required';
+      this.error = true;
+    }
   }
   sendOTP() {
     this.$data.sendOTP().subscribe(

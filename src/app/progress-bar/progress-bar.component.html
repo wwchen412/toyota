@@ -1,19 +1,19 @@
 <div id="progressBar" class="progressBar" *ngIf="progress$ | async as progress">
   <div class="container">
     <ul class="">
-      <li class="d-inline-block" [ngClass]="{'active': progress >= 1}">
+      <li class="d-inline-block" [ngClass]="{'active': progress >= 1,'mobile_active':progress === 1}">
         <div class="progressBar_icon d-inline-block">
           1
         </div>
         <p class="d-inline-block">Review</p>
       </li>
-      <li class="d-inline-block" [ngClass]="{'active': progress >= 2}">
+      <li class="d-inline-block" [ngClass]="{'active': progress >= 2,'mobile_active':progress === 2 }">
         <div class="progressBar_icon d-inline-block">
           2
         </div>
         <p class="d-inline-block">Make a payment</p>
       </li>
-      <li class="d-inline-block" [ngClass]="{'active': progress == 3}">
+      <li class="d-inline-block" [ngClass]="{'active': progress == 3,'mobile_active':progress === 3}">
         <div class="progressBar_icon d-inline-block">
           3
         </div>

@@ -1,17 +1,17 @@
 <div id="footer" class="text-center">
-  <div class="contact">
+  <div class="contact" *ngIf="footerSetting">
     <ul>
-      <li class="d-inline-block vertical-center">
+      <li class="d-inline-block vertical-center" *ngIf="footerSetting.responseData.contactEmail">
         <div class="icon d-inline-block vertical-center">
           <img src="assets/images/footer_mail.svg" alt="">
         </div>
-        <div class="d-inline-block">cr@tfssg.sg</div>
+        <div class="d-inline-block">{{footerSetting.responseData.contactEmail}}</div>
       </li>
-      <li class="d-inline-block vertical-center">
+      <li class="d-inline-block vertical-center" *ngIf="footerSetting.responseData.contactNumber">
         <div class="icon d-inline-block vertical-center">
           <img src="assets/images/footer_phone.svg" alt="">
         </div>
-        <div class="d-inline-block">+65 6978 2388</div>
+        <div class="d-inline-block">{{footerSetting.responseData.contactNumber}}</div>
       </li>
     </ul>
   </div>

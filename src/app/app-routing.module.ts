@@ -2,11 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PaymentComponent } from './payment/payment.component';
 import { ResultComponent } from './result/result.component';
-import { NricComponent } from './nric/nric.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import { PaymentInfoComponent } from './payment-info/payment-info.component';
-import { TermsComponent } from './terms/terms.component';
+import { SelectionComponent } from './selection/selection.component';
 
 const routes: Routes = [
   // {
@@ -24,15 +22,11 @@ const routes: Routes = [
   },
   {
     path: 'paymentInfo',
-    component: PaymentInfoComponent
+    component: SelectionComponent
   },
   {
     path: 'paymentStatus',
     component: PaymentStatusComponent
-  },
-  {
-    path: 'terms',
-    component: TermsComponent
   },
   {
     path: '**',

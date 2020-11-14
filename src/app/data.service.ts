@@ -51,7 +51,7 @@ export class DataService {
     this.detailDataSource.next(data);
   }
   createHeader() {
-    console.log('HEADER', this.auth);
+    // console.log('HEADER', this.auth);
     const headers = new HttpHeaders()
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
@@ -68,7 +68,9 @@ export class DataService {
   getOtpSetting() {
     return this.$http.get<any>(APIURL + 'otp/api/OTPSettings');
   }
-
+  getStatusSettings() {
+    return this.$http.get<any>(APIURL + 'status/api/StatusSettings');
+  }
   sendOTP() {
     this.authToken.subscribe(auth => (this.auth = auth));
     return this.$http.post<any>(APIURL + 'otp/api/SendOtp', '', {
@@ -101,12 +103,21 @@ export class DataService {
       url,
       {
         paymentCode: paymentCode
-          ? paymentCode
-          : // : '2b75e57f-2d98-44f4-8774-89ea796ce63d', KWAN TEST
-            '17bca26b-e9ad-4645-9586-9360e9467d2a', // 'c38d60d3-ef86-46eb-8da9-d058c5b8d1ad',
+      },
+      { headers: headers }
+    );
+  }
 
-        ModuleName: 'PaymentInfo',
-        OtpMode: 'Email'
+  PaymentCodeResultValidation(paymentCode: string) {
+    const headers = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
+
+    const url = APIURL + 'payment/api/PaymentCodeResultValidation';
+    return this.$http.post<any>(
+      url,
+      {
+        paymentCode: paymentCode
       },
       { headers: headers }
     );
@@ -122,7 +133,7 @@ export class DataService {
     });
   }
   getPaymentMethod() {
-    console.log('getPaymentMethod');
+    // console.log('getPaymentMethod');
     return this.$http.get<any>(APIURL + 'payment/api/PaymentMethod', {
       headers: this.createHeader()
     });

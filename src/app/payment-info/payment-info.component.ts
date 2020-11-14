@@ -14,17 +14,25 @@ export class PaymentInfoComponent implements OnInit {
   public isMobileLayout = false;
   paymentMethod;
   public headerData$: Observable<any>;
-
+  public tremsConfirm: boolean;
+  public err: boolean;
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
     this.headerData$ = this.$data.getPaymentSetting();
   }
+  toggleTrems(evt) {
+    if (evt.target.checked) {
+      this.tremsConfirm = true;
+    } else {
+      this.tremsConfirm = false;
+    }
+  }
   ngAfterViewInit(): void {
     this.$data.getPaymentMethod().subscribe(
       res => {
         this.paymentMethod = res;
-        console.log(this.paymentMethod);
+        // console.log(this.paymentMethod);
         setTimeout(() => {
           this.setPaymentInit(res.ResponseData);
         }, 1000);
@@ -34,10 +42,6 @@ export class PaymentInfoComponent implements OnInit {
       }
     );
   }
-  submitPay() {
-    this.$data.changePage('3');
-    this.$data.setProgress(3);
-  }
   back() {
     this.$data.changePage('1');
   }
@@ -45,9 +49,10 @@ export class PaymentInfoComponent implements OnInit {
     const root = this;
     const payForm = this.payFormRef.nativeElement;
     const txtClientKey = res.clientKey;
-    const paymentMethod = res.paymentMethods.filter(
-      method => method.name === 'Credit Card'
-    );
+    const paymentMethod = res.paymentMethods;
+    // const paymentMethod = res.paymentMethods.filter(
+    //   method => method.name === 'Credit Card'
+    // );
     const oPaymentMethod = {
       groups: res.groups,
       paymentMethods: paymentMethod
@@ -74,10 +79,6 @@ export class PaymentInfoComponent implements OnInit {
                   PaRes: res.ResponseData.action.data.PaReq,
                   PaymentCode: oRequest.reference
                 };
-                sessionStorage.setItem(
-                  'detailData',
-                  JSON.stringify(detailData)
-                );
                 dropin.handleAction(res.ResponseData.action);
               } else {
                 const detailData = {
@@ -95,8 +96,12 @@ export class PaymentInfoComponent implements OnInit {
             }
           );
         };
+        if (this.tremsConfirm) {
+          fnPayCreditCard(state.data.paymentMethod, state.data.browserInfo);
+        } else {
+          this.err = true;
+        }
 
-        fnPayCreditCard(state.data.paymentMethod, state.data.browserInfo);
         // root.makePayment(state.data);
       },
       paymentMethodsConfiguration: {

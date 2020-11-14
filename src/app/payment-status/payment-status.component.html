@@ -1,6 +1,8 @@
- <app-header *ngIf="headerData$ | async as contactData" [headerSetting]="contactData">
- </app-header>
- <app-nric *ngIf="page === '0'"></app-nric>
- <app-otp *ngIf="page === '1'"></app-otp>
- <app-status-result *ngIf="page === '2'"></app-status-result>
- <app-footer></app-footer>
+ <ng-container *ngIf="headerData$ | async as contactData">
+   <app-header [headerSetting]="contactData">
+   </app-header>
+   <app-nric *ngIf="page === '0'"></app-nric>
+   <app-otp *ngIf="page === '1'"></app-otp>
+   <app-status-result *ngIf="page === '2'"></app-status-result>
+   <app-footer [footerSetting]="contactData"></app-footer>
+ </ng-container>
