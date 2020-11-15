@@ -13,7 +13,6 @@ export class PaymentStatusComponent implements OnInit {
   constructor(private $data: DataService) {}
 
   ngOnInit(): void {
-    this.headerData$ = this.$data.getStatusSettings();
     this.$data.currentPage.subscribe(page => (this.page = page));
   }
 }

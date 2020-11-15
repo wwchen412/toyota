@@ -1,1 +1,47 @@
-Result Page
+    <ng-container *ngIf="headerData$ | async as contactData">
+      <app-header [headerSetting]="contactData"></app-header>
+      <ng-container *ngIf="result$ | async as result">
+        <div id="form">
+          <div class="container">
+            <div class="main_form">
+              <h2 class="main_form_title mb-5">
+                Payment Result Information
+              </h2>
+              <div class="payment_form mb-3">
+                <div class="payment_form_table">
+                  <div class="payment_form_row">
+                    <div class="title">
+                      Application Number
+                    </div>
+                    <div class="content">{{result.ResponseData[0].PaymentNumber}}</div>
+                  </div>
+                  <div class="payment_form_row">
+                    <div class="title">
+                      Payable Amount
+                    </div>
+                    <div class="content">{{result.ResponseData[0].PayAmount}}$ <span
+                        style="color:red">{{result.ResponseData[0].Currency}}</span>
+                    </div>
+                  </div>
+                  <div class="payment_form_row payment_form_row-noborder">
+                    <div class="title">
+                      Payment Source
+                    </div>
+                    <div class="content">{{result.ResponseData[0].System}}</div>
+                  </div>
+                  <div class="payment_form_row payment_form_row-noborder">
+                    <div class="title">
+                      Payment Status
+                    </div>
+                    <div class="content">{{result.ResponseData[0].Status}}</div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <app-footer></app-footer>
+        </div>
+      </ng-container>
+      <app-footer [footerSetting]="contactData"></app-footer>
+    </ng-container>

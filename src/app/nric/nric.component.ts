@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-nric',
   templateUrl: './nric.component.html',
@@ -11,16 +13,24 @@ export class NricComponent implements OnInit {
   private auth: string;
   public error;
   public errorMsg;
-  constructor(private $data: DataService) {}
+  private statusModule: string;
+  public headerData$: Observable<any>;
+  constructor(private $data: DataService, private $route: ActivatedRoute) {}
   ngOnInit() {
     this.$data.currentPage.subscribe(page => (this.page = page));
     this.$data.authToken.subscribe(auth => (this.auth = auth));
+    this.headerData$ = this.$data.getStatusSettings();
+    this.$route.queryParams.subscribe(params => {
+      this.statusModule = params['module'];
+    });
   }
   postpaymentCodeValidation($event) {
     ($event.target as HTMLButtonElement).disabled = true;
+    console.log(this.nricCode);
     if (!!this.nricCode) {
-      this.$data.statusValidate(this.nricCode).subscribe(
-        res => {
+      this.$data
+        .statusValidate(this.nricCode, this.statusModule)
+        .subscribe(res => {
           ($event.target as HTMLButtonElement).disabled = false;
           if (res['isSuccess']) {
             this.$data.setAuth(res['token']);
@@ -29,15 +39,13 @@ export class NricComponent implements OnInit {
           } else {
             this.errorMsg = res['errorMessage'];
             this.error = true;
+            ($event.target as HTMLButtonElement).disabled = false;
           }
-        },
-        err => {
-          ($event.target as HTMLButtonElement).disabled = false;
-        }
-      );
+        });
     } else {
-      this.errorMsg = 'NRIC is required';
       this.error = true;
+      this.errorMsg = 'NRIC is required';
+      ($event.target as HTMLButtonElement).disabled = false;
     }
   }
   sendOTP() {

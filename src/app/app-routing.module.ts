@@ -21,8 +21,8 @@ const routes: Routes = [
     component: ResultComponent
   },
   {
-    path: 'paymentInfo',
-    component: SelectionComponent
+    path: 'paymentStatus',
+    component: PaymentStatusComponent
   },
   {
     path: 'paymentStatus',

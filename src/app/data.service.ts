@@ -155,19 +155,20 @@ export class DataService {
     });
   }
   // TFSSG status API
-  statusValidate(nricCode) {
+  statusValidate(nricCode, status) {
+    console.log('status', status);
     return this.$http.post(APIURL + 'status/api/IdentityValidation', {
       IdentityCode: nricCode,
-      ModuleName: 'ApplicationStatus'
+      ModuleName: status
     });
   }
   getApplication() {
-    return this.$http.get(APIURL + 'status/api/GetApplications', {
+    return this.$http.post(APIURL + 'status/api/GetApplications', '', {
       headers: this.createHeader()
     });
   }
   getPayments() {
-    return this.$http.get(APIURL + 'status/api/GetPayments', {
+    return this.$http.post(APIURL + 'status/api/GetPayments', '', {
       headers: this.createHeader()
     });
   }
