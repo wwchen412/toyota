@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from "@angular/core";
+import { DataService } from "../data.service";
+import { ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs";
 @Component({
-  selector: 'app-status-result',
-  templateUrl: './status-result.component.html',
-  styleUrls: ['./status-result.component.scss']
+  selector: "app-status-result",
+  templateUrl: "./status-result.component.html",
+  styleUrls: ["./status-result.component.scss"]
 })
 export class StatusResultComponent implements OnInit {
-  private statusModule: string;
+  public statusModule: string;
   public result$: Observable<any>;
   public headerData$: Observable<any>;
   constructor(private $data: DataService, private $route: ActivatedRoute) {}
@@ -16,11 +16,11 @@ export class StatusResultComponent implements OnInit {
   ngOnInit(): void {
     this.headerData$ = this.$data.getStatusSettings();
     this.$route.queryParams.subscribe(params => {
-      this.statusModule = params['module'];
+      this.statusModule = params["module"].toLowerCase();
     });
-    if (this.statusModule === 'paymentStatus') {
+    if (this.statusModule === "paymentstatus") {
       this.result$ = this.$data.getPayments();
-    } else if (this.statusModule === 'applicationStatus') {
+    } else if (this.statusModule === "applicationstatus") {
       this.result$ = this.$data.getApplication();
     }
   }

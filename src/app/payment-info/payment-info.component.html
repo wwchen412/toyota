@@ -57,13 +57,13 @@
           </div>
         </div>
         <div #payForm class="mb-3"></div>
-        <div class="trems">
+        <div class="trems mb-3">
           <input type="checkbox" name="" id="trems" (change)="toggleTrems($event)">
           I accept the <a (click)="openUrl(paymentMethod.ResponseData.termsUrl)">Terms & Conditions</a> and
           <a (click)="openUrl(paymentMethod.ResponseData.privacyUrl)">Privacy
             Policy</a>
         </div>
-        <ng-container *ngIf="err">
+        <ng-container *ngIf="err && !tremsConfirm">
           <p class="error_msg">Please check to proceed</p>
         </ng-container>
         <div class="main_form_buttonGroup">

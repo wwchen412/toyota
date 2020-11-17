@@ -54,6 +54,7 @@ export class OtpComponent implements OnInit {
         this.resendCount = this.resendInSeconds;
         this.err = false;
         this.errMsg = '';
+        this.ngOtpInputRef.setValue(null);
       },
       err => {
         // console.log("err");
@@ -61,22 +62,28 @@ export class OtpComponent implements OnInit {
     );
   }
   sumbitOtp() {
-    this.$data.validateOTP(this.pin).subscribe(
-      result => {
-        if (result['IsSuccess'] === true) {
-          this.err = false;
-          this.$data.setAuth(result['Token']);
-          const nextPage = parseInt(this.page, 10) + 1;
-          this.$data.changePage(nextPage.toString());
-        } else {
-          this.err = true;
-          this.errMsg = 'Pin is required';
+    if (!!this.pin) {
+      this.$data.validateOTP(this.pin).subscribe(
+        result => {
+          if (result['IsSuccess'] === true) {
+            this.err = false;
+            this.$data.setAuth(result['Token']);
+            const nextPage = parseInt(this.page, 10) + 1;
+            this.$data.changePage(nextPage.toString());
+          } else {
+            this.err = true;
+            this.errMsg = result['errorMessage'];
+          }
+        },
+        err => {
+          // this.err = true;
+          // this.errMsg = err["errorMessage"];
         }
-      },
-      err => {
-        this.err = true;
-      }
-    );
+      );
+    } else {
+      this.err = true;
+      this.errMsg = 'Pin is required';
+    }
   }
   clearOtp() {
     this.ngOtpInputRef.setValue(null);

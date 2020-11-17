@@ -20,7 +20,7 @@
         <div class="main_form_buttonGroup">
           <button class="button_outline" (click)="clearOtp()">Clear</button>
           <button class="button_outline" (click)="reSendOtp()" [disabled]="resendCount>0">
-            ReSend<ng-container *ngIf="resendCount>0">({{resendCount}})</ng-container>
+            Resend<ng-container *ngIf="resendCount>0">({{resendCount}})</ng-container>
           </button>
           <button class="button_primary" (click)="sumbitOtp()">Submit</button>
         </div>

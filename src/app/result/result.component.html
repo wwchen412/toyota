@@ -6,75 +6,81 @@
 
 
   <ng-template #success>
-    <app-header *ngIf="headerData$ | async as contactData" [headerSetting]="contactData"></app-header>
-    <app-progress-bar></app-progress-bar>
-    <div id="form">
-      <div class="container">
-        <div class="main_form">
-          <div class="text-center">
-            <img class="success" src="assets/images/success.svg" alt="">
-            <h2>Success!</h2>
-          </div>
-          <h2 class="main_form_title mb-5">
-            Payment Result Information
-          </h2>
-          <div class="payment_form mb-3">
-            <div class="payment_form_table">
-              <div class="payment_form_row">
-                <div class="title">
-                  Application Number
+    <ng-container *ngIf="headerData$ | async as contactData">
+      <app-header [headerSetting]="contactData"></app-header>
+      <app-progress-bar class="no-print"></app-progress-bar>
+      <div id="form">
+        <div class="container">
+          <div class="main_form">
+            <div class="text-center">
+              <img class="success" src="assets/images/success.svg" alt="">
+              <h2>Success!</h2>
+            </div>
+            <h2 class="main_form_title mb-5">
+              Payment Result Information
+            </h2>
+            <div class="payment_form mb-3">
+              <div class="payment_form_table">
+                <div class="payment_form_row">
+                  <div class="title">
+                    Application Number
+                  </div>
+                  <div class="content">{{getPaymentDetail.ResponseData.paymentNumber}}</div>
                 </div>
-                <div class="content">{{getPaymentDetail.ResponseData.paymentNumber}}</div>
-              </div>
-              <div class="payment_form_row">
-                <div class="title">
-                  Payable Amount
+                <div class="payment_form_row">
+                  <div class="title">
+                    Payable Amount
+                  </div>
+                  <div class="content">{{getPaymentDetail.ResponseData.amount}}$ <span
+                      style="color:red">{{getPaymentDetail.ResponseData.currency}}</span>
+                  </div>
                 </div>
-                <div class="content">{{getPaymentDetail.ResponseData.amount}}$ <span
-                    style="color:red">{{getPaymentDetail.ResponseData.currency}}</span>
+                <div class="payment_form_row payment_form_row-noborder">
+                  <div class="title">
+                    Payment Source
+                  </div>
+                  <div class="content">{{getPaymentDetail.ResponseData.system}}</div>
                 </div>
-              </div>
-              <div class="payment_form_row payment_form_row-noborder">
-                <div class="title">
-                  Payment Source
+                <div class="payment_form_row payment_form_row-noborder">
+                  <div class="title">
+                    Payment Status
+                  </div>
+                  <div class="content">{{getPaymentDetail.ResponseData.status.statusName}}</div>
                 </div>
-                <div class="content">{{getPaymentDetail.ResponseData.system}}</div>
-              </div>
-              <div class="payment_form_row payment_form_row-noborder">
-                <div class="title">
-                  Payment Status
-                </div>
-                <div class="content">{{getPaymentDetail.ResponseData.status}}</div>
-              </div>
 
+              </div>
+            </div>
+            <div class="main_form_buttonGroup no-print">
+              <button class="button_outline" (click)="printPage()">Print</button>
+              <button class="button_outline" (click)="closewin()">Leave</button>
             </div>
           </div>
-          <div class="main_form_buttonGroup">
-            <button class="button_outline" (click)="printPage()">Print</button>
-            <button class="button_outline" (click)="closewin()">Leave</button>
-          </div>
         </div>
       </div>
-    </div>
-    <app-footer></app-footer>
+      <app-footer [footerSetting]="contactData"></app-footer>
+    </ng-container>
   </ng-template>
   <ng-template #fail>
-    <app-header *ngIf="headerData$ | async as contactData" [headerSetting]="contactData"></app-header>
-    <div id="form">
-      <div class="container">
-        <div class="main_form">
-          <div class="text-center">
-            <img class="fail" src="assets/images/fail.svg" alt="" style="margin: auto">
-            <h2>Fail!</h2>
-            <p>{{getPaymentDetail.ErrorMessage}}</p>
+    <ng-container *ngIf="headerData$ | async as contactData">
+      <app-header [headerSetting]="contactData"></app-header>
+      <div id="form">
+        <div class="container">
+          <div class="main_form">
+            <div class="text-center">
+              <img class="fail" src="assets/images/fail.svg" alt="" style="margin: auto">
+              <h2>Fail!</h2>
+              <p>{{getPaymentDetail.ErrorMessage}}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <app-footer></app-footer>
+      <app-footer [footerSetting]="contactData"></app-footer>
+    </ng-container>
   </ng-template>
 
 </ng-container>
 <ng-template #error>
-  <app-error-page></app-error-page>
+
+  {{backToPayment()}}
+  <!-- <app-error-page></app-error-page> -->
 </ng-template>

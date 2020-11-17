@@ -4,7 +4,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { ResultComponent } from './result/result.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import { SelectionComponent } from './selection/selection.component';
+import { NotAvailableComponent } from './not-available/not-available.component';
 
 const routes: Routes = [
   // {
@@ -25,8 +25,8 @@ const routes: Routes = [
     component: PaymentStatusComponent
   },
   {
-    path: 'paymentStatus',
-    component: PaymentStatusComponent
+    path: 'notAvailable',
+    component: NotAvailableComponent
   },
   {
     path: '**',

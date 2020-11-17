@@ -115,9 +115,10 @@
       padding: 15px 0;
 
       @media screen and (max-width: 475px) {
-        width: calc(55% - 20px);
+        width: calc(55% + 20px);
         padding: 10px 10px;
         vertical-align: middle;
+        word-wrap: break-word;
 
         &.title {
           // padding: 10px 10px;

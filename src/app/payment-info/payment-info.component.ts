@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import AdyenCheckout from '@adyen/adyen-web';
+import { HttpClient } from '@angular/common/http';
 // import '@adyen/adyen-web/dist/adyen.css';
 @Component({
   selector: 'app-payment-info',
@@ -10,7 +11,11 @@ import AdyenCheckout from '@adyen/adyen-web';
 })
 export class PaymentInfoComponent implements OnInit {
   @ViewChild('payForm', { static: false }) private payFormRef: ElementRef;
-  constructor(private $data: DataService, private elementRef: ElementRef) {}
+  constructor(
+    private $data: DataService,
+    private elementRef: ElementRef,
+    private $http: HttpClient
+  ) {}
   public isMobileLayout = false;
   paymentMethod;
   public headerData$: Observable<any>;
@@ -50,9 +55,6 @@ export class PaymentInfoComponent implements OnInit {
     const payForm = this.payFormRef.nativeElement;
     const txtClientKey = res.clientKey;
     const paymentMethod = res.paymentMethods;
-    // const paymentMethod = res.paymentMethods.filter(
-    //   method => method.name === 'Credit Card'
-    // );
     const oPaymentMethod = {
       groups: res.groups,
       paymentMethods: paymentMethod
@@ -66,14 +68,16 @@ export class PaymentInfoComponent implements OnInit {
       onSubmit: (state, dropin) => {
         const fnPayCreditCard = function(paymentInfo, browserInfo) {
           const oRequest = {
-            // returnUrl: 'http://localhost:4200/paymentDetail',
             paymentMethod: paymentInfo,
             browserInfo: browserInfo,
             reference: oPamentInfo.referenceCode
           };
           root.$data.cardSubmission(oRequest).subscribe(
             res => {
-              if (res.ResponseData.action) {
+              if (
+                res.ResponseData.action &&
+                oRequest.paymentMethod === 'scheme'
+              ) {
                 const detailData = {
                   MD: res.ResponseData.action.data.MD,
                   PaRes: res.ResponseData.action.data.PaReq,
@@ -81,12 +85,10 @@ export class PaymentInfoComponent implements OnInit {
                 };
                 dropin.handleAction(res.ResponseData.action);
               } else {
-                const detailData = {
-                  MD: res.ResponseData.action.data.MD,
-                  PaRes: res.ResponseData.action.data.PaReq,
-                  PaymentCode: oRequest.reference
-                };
-                root.$data.setDetail({ ...detailData });
+                // const method = res.ResponseData.redirect.method;
+                root.$http.get(res.ResponseData.redirect.url).subscribe(res => {
+                  console.log(res);
+                });
                 root.$data.setProgress(3);
                 root.$data.changePage('3');
               }
@@ -121,7 +123,4 @@ export class PaymentInfoComponent implements OnInit {
   openUrl(url) {
     window.open(url, '_blank');
   }
-  // makePayment(data) {
-  //   console.log('data', data);
-  // }
 }

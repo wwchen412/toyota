@@ -1,45 +1,64 @@
 @import '../../color.scss';
-.success{
+
+.success {
   max-width: 80px;
   width: 100%;
   display: inline-block;
 }
-.payment_form{
+
+.payment_form {
   border: 1px solid $gray;
-  padding:10px 25px;
-  @media screen and (max-width: 475px){
+  padding: 10px 25px;
+
+  @media screen and (max-width: 475px) {
     padding: 0;
   }
-  &_table{
+
+  &_table {
     display: flex;
     flex-wrap: wrap;
-    @media screen and (max-width: 475px){
+
+    @media screen and (max-width: 475px) {
       flex-direction: column;
     }
   }
-  &_row{
+
+  &_row {
     flex: 0 0 calc(50% - 12px);
     border-bottom: 1px solid $gray;
-    &-noborder{
+
+    &-noborder {
       border-bottom: 0;
     }
-    .content{
+
+    .content {
       font-weight: bold;
     }
-    @media screen and (min-width: 475px){
-      &:nth-child(2n){
+
+    @media screen and (min-width: 475px) {
+      &:nth-child(2n) {
         margin-left: 24px;
       }
     }
-    & > div{
+
+    &>div {
       display: inline-block;
       width: 50%;
       padding: 10px 0;
     }
-    @media screen and (max-width: 475px){
-      .title{
+
+    @media screen and (max-width: 475px) {
+      .title {
         padding-left: 10px;
       }
     }
+  }
+}
+
+@media print {
+
+  .no-print,
+  .no-print * {
+    display: none !important;
   }
 }

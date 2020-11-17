@@ -60,24 +60,24 @@
            <div class="information_form_table_mobile mb-5" *ngIf="isMobileLayout">
              <div class="information_form_table_mobile_group">
                <div class="title">Application</div>
-               <div class="content">KT20200918001</div>
+               <div class="content">{{payInfo.ResponseData.paymentNumber}}</div>
              </div>
              <div class="information_form_table_mobile_group">
                <div class="title">Payable Amount</div>
-               <div class="content">SGD$ 1307.68</div>
+               <div class="content">{{payInfo.ResponseData.currency}}$ {{payInfo.ResponseData.payAmount}}</div>
              </div>
              <div class="information_form_table_mobile_group">
                <div class="title">Payment Source</div>
-               <div class="content">Kinto</div>
+               <div class="content">{{payInfo.ResponseData.system}}</div>
              </div>
              <div class="information_form_table_mobile_group">
                <div class="title">Payment Number</div>
-               <div class="content">1d68c5de-3f53-4dc9-843b-3d12d52c8076</div>
+               <div class="content">{{payInfo.ResponseData.referenceCode}}</div>
              </div>
            </div>
            <div class="information_payment mb-5">
              <h4 class="mb-3">Payment Channel</h4>
-             <select name="" id="" *ngIf="payChannel$ | async as payChannel">
+             <select name="" id="" *ngIf="payChannel$ | async as payChannel" (change)="changeMethod($event)">
                <option *ngFor="let payOption of payChannel.ResponseData" [value]="payOption.ChannelCode">
                  {{payOption.ChannelName}}
                </option>
@@ -91,5 +91,5 @@
        </div>
      </div>
    </div>
-   <app-footer [footerSetting]="headerData$"></app-footer>
+   <app-footer [footerSetting]="contactData"></app-footer>
  </ng-container>

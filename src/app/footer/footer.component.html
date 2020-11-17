@@ -1,6 +1,6 @@
 <div id="footer" class="text-center">
   <div class="contact" *ngIf="footerSetting">
-    <ul>
+    <ul *ngIf="isMobileLayout">
       <li class="d-inline-block vertical-center" *ngIf="footerSetting.responseData.contactEmail">
         <div class="icon d-inline-block vertical-center">
           <img src="assets/images/footer_mail.svg" alt="">
