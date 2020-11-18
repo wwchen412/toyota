@@ -29,15 +29,18 @@ export class PaymentComponent implements OnInit {
 
     this.$data.paymentCodeValidation(this.paymentCode).subscribe(
       res => {
+        console.log(res);
         if (res.isSuccess) {
           this.$data.setAuth(res.token);
           this.sendOTP();
+        } else if (res.isEndPayment) {
+          window.location.href = 'result/' + this.paymentCode;
         } else {
-          window.location.href = '';
+          // window.location.href = '';
         }
       },
       err => {
-        window.location.href = '';
+        // window.location.href = '';
       }
     );
   }

@@ -9,35 +9,24 @@
                   Payment Result Information
                 </h2>
                 <div class="payment_form mb-3">
-                  <div class="payment_form_table">
-                    <div class="payment_form_row">
-                      <div class="title">
-                        Application Number
-                      </div>
-                      <div class="content">{{result.ResponseData[0].PaymentNumber}}</div>
-                    </div>
-                    <div class="payment_form_row">
-                      <div class="title">
-                        Payable Amount
-                      </div>
-                      <div class="content">{{result.ResponseData[0].PayAmount}}$ <span
-                          style="color:red">{{result.ResponseData[0].Currency}}</span>
-                      </div>
-                    </div>
-                    <div class="payment_form_row payment_form_row-noborder">
-                      <div class="title">
-                        Payment Source
-                      </div>
-                      <div class="content">{{result.ResponseData[0].System}}</div>
-                    </div>
-                    <div class="payment_form_row payment_form_row-noborder">
-                      <div class="title">
-                        Payment Status
-                      </div>
-                      <div class="content">{{result.ResponseData[0].Status}}</div>
-                    </div>
-
-                  </div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Application Number</th>
+                        <th>Payable Amount </th>
+                        <th>Payment Source</th>
+                        <th>Payment Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let res of result.ResponseData">
+                        <td data-head='Number'>{{res.PaymentNumber}}</td>
+                        <td data-head='Amount'>{{res.PayAmount}}$ {{res.Currency}}</td>
+                        <td data-head='Source'>{{res.System}}</td>
+                        <td data-head='Status'>{{res.Status}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

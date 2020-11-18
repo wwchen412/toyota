@@ -9,7 +9,7 @@ import { NotAvailableComponent } from './not-available/not-available.component';
 const routes: Routes = [
   // {
   //   path: '',
-  //   component: PaymentComponent,
+  //   component: StatusResultComponent,
   //   pathMatch: 'full'
   // },
   {

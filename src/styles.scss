@@ -167,8 +167,6 @@ input[type="checkbox"] {
   vertical-align: middle;
   outline: 0;
 
-  &:active,
-  &:focus,
   &:checked {
     background-image: url('../src/assets/images/check.png');
     background-size: contain;

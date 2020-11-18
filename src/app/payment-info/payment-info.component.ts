@@ -27,11 +27,7 @@ export class PaymentInfoComponent implements OnInit {
     this.headerData$ = this.$data.getPaymentSetting();
   }
   toggleTrems(evt) {
-    if (evt.target.checked) {
-      this.tremsConfirm = true;
-    } else {
-      this.tremsConfirm = false;
-    }
+    this.tremsConfirm = evt.target.checked;
   }
   ngAfterViewInit(): void {
     this.$data.getPaymentMethod().subscribe(
@@ -74,21 +70,10 @@ export class PaymentInfoComponent implements OnInit {
           };
           root.$data.cardSubmission(oRequest).subscribe(
             res => {
-              if (
-                res.ResponseData.action &&
-                oRequest.paymentMethod === 'scheme'
-              ) {
-                const detailData = {
-                  MD: res.ResponseData.action.data.MD,
-                  PaRes: res.ResponseData.action.data.PaReq,
-                  PaymentCode: oRequest.reference
-                };
+              console.log(res);
+              if (res.ResponseData.action) {
                 dropin.handleAction(res.ResponseData.action);
               } else {
-                // const method = res.ResponseData.redirect.method;
-                root.$http.get(res.ResponseData.redirect.url).subscribe(res => {
-                  console.log(res);
-                });
                 root.$data.setProgress(3);
                 root.$data.changePage('3');
               }

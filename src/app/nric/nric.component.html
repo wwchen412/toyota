@@ -8,7 +8,7 @@
           Enter Your NRIC
         </h2>
         <h3 class="mb-3">NRIC</h3>
-        <input type="text" class="mb-5" [(ngModel)]="nricCode">
+        <input type="text" class="mb-5" [(ngModel)]="nricCode" maxlength="20">
         <ng-container *ngIf="error">
           <p>{{ errorMsg }}</p>
         </ng-container>
