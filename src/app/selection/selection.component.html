@@ -42,37 +42,37 @@
            <div class="information_form_table mb-5" *ngIf="!isMobileLayout">
              <div class="title">
                <ul>
-                 <li>Application</li>
-                 <li>Payable Amount</li>
+                 <li>Application Number</li>
                  <li>Payment Source</li>
-                 <li>Payment Number</li>
+                 <li>Description</li>
+                 <li>Payable Amount</li>
                </ul>
              </div>
              <div class="content">
                <ul>
                  <li>{{payInfo.ResponseData.paymentNumber}}</li>
-                 <li>{{payInfo.ResponseData.currency}}$ {{payInfo.ResponseData.payAmount}}</li>
                  <li>{{payInfo.ResponseData.system}}</li>
-                 <li>{{payInfo.ResponseData.referenceCode}}</li>
+                 <li>{{payInfo.ResponseData.paymentDescription}}</li>
+                 <li>{{payInfo.ResponseData.currency}}{{payInfo.ResponseData.payAmount}}</li>
                </ul>
              </div>
            </div>
            <div class="information_form_table_mobile mb-5" *ngIf="isMobileLayout">
              <div class="information_form_table_mobile_group">
-               <div class="title">Application</div>
+               <div class="title">Application Number</div>
                <div class="content">{{payInfo.ResponseData.paymentNumber}}</div>
-             </div>
-             <div class="information_form_table_mobile_group">
-               <div class="title">Payable Amount</div>
-               <div class="content">{{payInfo.ResponseData.currency}}$ {{payInfo.ResponseData.payAmount}}</div>
              </div>
              <div class="information_form_table_mobile_group">
                <div class="title">Payment Source</div>
                <div class="content">{{payInfo.ResponseData.system}}</div>
              </div>
              <div class="information_form_table_mobile_group">
-               <div class="title">Payment Number</div>
-               <div class="content">{{payInfo.ResponseData.referenceCode}}</div>
+               <div class="title">Description</div>
+               <div class="content">{{payInfo.ResponseData.paymentDescription}}</div>
+             </div>
+             <div class="information_form_table_mobile_group">
+               <div class="title">Payable Amount</div>
+               <div class="content">{{payInfo.ResponseData.currency}}{{payInfo.ResponseData.payAmount}}</div>
              </div>
            </div>
            <div class="information_payment mb-5">

@@ -41,37 +41,37 @@
                 <h2 class="main_form_title mb-5">
                   Payment Result Information
                 </h2>
-                <div class="payment_form mb-3">
-                  <div class="payment_form_table">
-                    <div class="payment_form_row">
-                      <!-- <div class="title">
-                        Application Number
-                      </div> -->
-                      <div class="content">{{result.ResponseData[0].PaymentNumber}}</div>
-                    </div>
-                    <div class="payment_form_row">
-                      <!-- <div class="title">
-                        Payable Amount
-                      </div> -->
-                      <div class="content">{{result.responseData[0].id}}$
-                        <!-- <span
-                          style="color:red">{{result.ResponseData[0].vehicleMake}}</span> -->
-                      </div>
-                    </div>
-                    <div class="payment_form_row payment_form_row-noborder">
-                      <!-- <div class="title">
-                        Payment Source
-                      </div> -->
-                      <div class="content">{{result.responseData[0].vehicleVariant}}</div>
-                    </div>
-                    <div class="payment_form_row payment_form_row-noborder">
-                      <!-- <div class="title">
-                        Payment Status
-                      </div> -->
-                      <div class="content">{{result.responseData[0].status}}</div>
-                    </div>
-
+                <ng-container *ngIf="result.IsSuccess">
+                  <div class="text-center mb-3">
+                    <img class="success" src="assets/images/success.svg" alt="">
+                    <h2>Success!</h2>
                   </div>
+                </ng-container>
+                <ng-container *ngIf="!result.IsSuccess">
+                  <div class="text-center mb-3">
+                    <img class="success" src="assets/images/fail.svg" alt="">
+                    <h2>{{result.ErrorMessage}}</h2>
+                  </div>
+                </ng-container>
+                <div class="payment_form mb-3">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Application</th>
+                        <th>Model</th>
+                        <th>Submitted Date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let res of result.ResponseData">
+                        <td data-head='Application'>{{res.RcoNo}}</td>
+                        <td data-head='Model'>{{res.VehicleModel}}</td>
+                        <td data-head='Submitted Date'>{{res.CreatedDate | date}}</td>
+                        <td data-head='Status'>{{res.Status}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

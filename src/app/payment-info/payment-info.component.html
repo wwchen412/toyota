@@ -40,12 +40,17 @@
               </div>
               <div class="content">{{paymentMethod.ResponseData.paymentInfo.paymentNumber}}</div>
             </div>
-
+            <div class="payment_form_row">
+              <div class="title">
+                Description
+              </div>
+              <div class="content">{{paymentMethod.ResponseData.paymentInfo.paymentDescription}}</div>
+            </div>
             <div class="payment_form_row">
               <div class="title">
                 Payable Amount
               </div>
-              <div class="content">{{paymentMethod.ResponseData.paymentInfo.currency}}$ <span
+              <div class="content">{{paymentMethod.ResponseData.paymentInfo.currency}}<span
                   style="color:#dc0016">{{paymentMethod.ResponseData.paymentInfo.payAmount}}</span></div>
             </div>
             <div class="payment_form_row payment_form_row-noborder">

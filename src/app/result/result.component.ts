@@ -49,10 +49,15 @@ export class ResultComponent implements OnInit {
         navigator.userAgent.indexOf('Firefox') !== -1 ||
         navigator.userAgent.indexOf('Chrome') !== -1
       ) {
-        window.location.href = 'about:blank';
+        const backlen = history.length;
+        history.go(-backlen);
+        window.location.replace('about:blank');
         window.close();
       } else {
+        const backlen = history.length;
+        history.go(-backlen);
         window.opener = null;
+        window.location.replace('about:blank');
         window.open('', '_self');
         window.close();
         confirmLeave = false;

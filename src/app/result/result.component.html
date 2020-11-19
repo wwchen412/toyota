@@ -31,8 +31,9 @@
                   <div class="title">
                     Payable Amount
                   </div>
-                  <div class="content">{{getPaymentDetail.ResponseData.amount}}$ <span
-                      style="color:red">{{getPaymentDetail.ResponseData.currency}}</span>
+                  <div class="content">
+                    <span style="color:red">{{getPaymentDetail.ResponseData.currency}}</span>
+                    {{getPaymentDetail.ResponseData.payAmount}}
                   </div>
                 </div>
                 <div class="payment_form_row payment_form_row-noborder">
