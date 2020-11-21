@@ -10,6 +10,7 @@ export class DataService {
   private authSource = new BehaviorSubject('');
   public loadingSource = new BehaviorSubject(false);
   public progressSource = new BehaviorSubject(1);
+  public errorMsgSource = new BehaviorSubject('404 not found');
   // otp
   private otpMsgSource = new BehaviorSubject('');
   // detail req
@@ -24,6 +25,7 @@ export class DataService {
   progress = this.progressSource.asObservable();
   detail = this.detailDataSource.asObservable();
   contactData = this.contactDataSource.asObservable();
+  errMsg = this.errorMsgSource.asObservable();
   auth: string;
   constructor(private $http: HttpClient) {}
 
@@ -49,6 +51,9 @@ export class DataService {
   }
   setDetail(data: any) {
     this.detailDataSource.next(data);
+  }
+  setErrorMsg(msg: string) {
+    this.errorMsgSource.next(msg);
   }
   createHeader() {
     // console.log('HEADER', this.auth);

@@ -23,6 +23,8 @@
   &_row {
     flex: 0 0 calc(50% - 12px);
     border-bottom: 1px solid $gray;
+    display: flex;
+    align-items: center;
 
     &-noborder {
       border-bottom: 0;

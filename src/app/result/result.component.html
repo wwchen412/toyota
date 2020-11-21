@@ -32,8 +32,8 @@
                     Payable Amount
                   </div>
                   <div class="content">
-                    <span style="color:red">{{getPaymentDetail.ResponseData.currency}}</span>
-                    {{getPaymentDetail.ResponseData.payAmount}}
+                    {{getPaymentDetail.ResponseData.currency}}
+                    <span style="color:red"> {{getPaymentDetail.ResponseData.payAmount | amountConverter}}</span>
                   </div>
                 </div>
                 <div class="payment_form_row payment_form_row-noborder">
@@ -69,7 +69,6 @@
           <div class="main_form">
             <div class="text-center">
               <img class="fail" src="assets/images/fail.svg" alt="" style="margin: auto">
-              <h2>Fail!</h2>
               <p>{{getPaymentDetail.ErrorMessage}}</p>
             </div>
           </div>
@@ -81,7 +80,17 @@
 
 </ng-container>
 <ng-template #error>
+  <div id="form">
+    <div class="container">
+      <div class="main_form">
+        <div class="text-center">
+          <img class="fail" src="assets/images/fail.svg" alt="" style="margin: auto">
+          <p class="mb-3">To complete your payment, please click the button below.</p>
+          <button sytle="background: #17618f;color: #fff;" (click)="backToPayment()">Make Payment</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  {{backToPayment()}}
   <!-- <app-error-page></app-error-page> -->
 </ng-template>

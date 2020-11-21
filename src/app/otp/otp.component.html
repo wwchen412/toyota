@@ -12,7 +12,7 @@
         <div class="otp_form" [ngClass]="{'error': !!err}">
           <p class=" mb-3">OTP</p>
           <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)"
-            [config]="{length:6,inputClass:'input_otp mb-3'}">
+            [config]="{length:6,inputClass:'input_otp mb-3',allowNumbersOnly:true}">
           </ng-otp-input>
 
           <span *ngIf="err" style="color: #ff0000">{{errMsg}}</span>

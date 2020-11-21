@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-  constructor(private $data: DataService, private route: ActivatedRoute) {}
+  constructor(
+    private $data: DataService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   public isMobileLayout = false;
   public page: string;
@@ -29,18 +33,18 @@ export class PaymentComponent implements OnInit {
 
     this.$data.paymentCodeValidation(this.paymentCode).subscribe(
       res => {
-        console.log(res);
         if (res.isSuccess) {
           this.$data.setAuth(res.token);
           this.sendOTP();
         } else if (res.isEndPayment) {
           window.location.href = 'result/' + this.paymentCode;
         } else {
-          // window.location.href = '';
+          this.$data.setErrorMsg(res.errorMessage);
+          this.router.navigate(['']);
         }
       },
       err => {
-        // window.location.href = '';
+        this.router.navigate(['']);
       }
     );
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-error-page',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./error-page.component.css']
 })
 export class ErrorPageComponent implements OnInit {
-
-  constructor() { }
+  public errorMsg$;
+  constructor(private $data: DataService) {}
 
   ngOnInit(): void {
+    this.errorMsg$ = this.$data.errMsg;
   }
-
 }

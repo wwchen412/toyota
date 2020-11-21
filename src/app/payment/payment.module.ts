@@ -17,6 +17,7 @@ import { PaymentStatusComponent } from '../payment-status/payment-status.compone
 import { StatusResultComponent } from '../status-result/status-result.component';
 import { ErrorPageComponent } from '../error-page/error-page.component';
 import { TermsComponent } from '../terms/terms.component';
+import { AmountConverterPipe } from '../amount-converter.pipe';
 @NgModule({
   declarations: [
     OtpComponent,
@@ -32,7 +33,8 @@ import { TermsComponent } from '../terms/terms.component';
     PaymentStatusComponent,
     StatusResultComponent,
     ErrorPageComponent,
-    TermsComponent
+    TermsComponent,
+    AmountConverterPipe
   ],
   providers: [DataService],
   imports: [CommonModule, FormsModule, NgOtpInputModule],

@@ -46,9 +46,10 @@
 
       li {
         flex: 1;
+        padding: 0 5px;
 
         &:last-child {
-          flex: 1.5;
+          flex: 0.5;
         }
       }
 

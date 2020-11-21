@@ -21,7 +21,7 @@
                     <tbody>
                       <tr *ngFor="let res of result.ResponseData">
                         <td data-head='Number'>{{res.PaymentNumber}}</td>
-                        <td data-head='Amount'>{{res.PayAmount}}$ {{res.Currency}}</td>
+                        <td data-head='Amount'>{{res.Currency}} {{res.PayAmount |amountConverter}}$ </td>
                         <td data-head='Source'>{{res.System}}</td>
                         <td data-head='Status'>{{res.Status}}</td>
                       </tr>
