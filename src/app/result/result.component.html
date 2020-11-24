@@ -23,11 +23,29 @@
               <div class="payment_form_table">
                 <div class="payment_form_row">
                   <div class="title">
+                    Payment Status
+                  </div>
+                  <div class="content">{{getPaymentDetail.ResponseData.status.statusName}}</div>
+                </div>
+                <div class="payment_form_row">
+                  <div class="title">
                     Application Number
                   </div>
                   <div class="content">{{getPaymentDetail.ResponseData.paymentNumber}}</div>
                 </div>
                 <div class="payment_form_row">
+                  <div class="title">
+                    Description
+                  </div>
+                  <div class="content">{{getPaymentDetail.ResponseData.paymentDescription}}</div>
+                </div>
+                <div class="payment_form_row">
+                  <div class="title">
+                    Payment Source
+                  </div>
+                  <div class="content">{{getPaymentDetail.ResponseData.system}}</div>
+                </div>
+                <div class="payment_form_row  payment_form_row-noborder">
                   <div class="title">
                     Payable Amount
                   </div>
@@ -36,18 +54,7 @@
                     <span style="color:red"> {{getPaymentDetail.ResponseData.payAmount | amountConverter}}</span>
                   </div>
                 </div>
-                <div class="payment_form_row payment_form_row-noborder">
-                  <div class="title">
-                    Payment Source
-                  </div>
-                  <div class="content">{{getPaymentDetail.ResponseData.system}}</div>
-                </div>
-                <div class="payment_form_row payment_form_row-noborder">
-                  <div class="title">
-                    Payment Status
-                  </div>
-                  <div class="content">{{getPaymentDetail.ResponseData.status.statusName}}</div>
-                </div>
+
 
               </div>
             </div>

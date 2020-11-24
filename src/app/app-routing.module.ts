@@ -5,6 +5,7 @@ import { ResultComponent } from './result/result.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { NotAvailableComponent } from './not-available/not-available.component';
+import { PaymentInfoComponent } from './payment-info/payment-info.component';
 
 const routes: Routes = [
   // {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'payment/:paymentCode',
     component: PaymentComponent
+  },
+  {
+    path: 'paymentInfo',
+    component: PaymentInfoComponent
   },
   {
     path: 'result/:paymentCode',

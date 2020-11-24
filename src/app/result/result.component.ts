@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
-  constructor(private $data: DataService, private route: ActivatedRoute) {}
+  constructor(
+    private $data: DataService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   public isMobileLayout = false;
   public getPaymentDetail$: Observable<any>;
@@ -25,23 +29,25 @@ export class ResultComponent implements OnInit {
       this.$data.setProgress(3);
       this.$data.PaymentCodeResultValidation(this.paymentCode).subscribe(
         res => {
-          if (res.token) {
+          if (!res.isSuccess) {
+            this.router.navigate(['']);
+          } else if (!res.isEndPayment) {
+            this.backToPayment();
+          } else if (res.token) {
             this.$data.setAuth(res.token);
             this.headerData$ = this.$data.getPaymentSetting();
             this.getPaymentDetail$ = this.$data.getPaymentInfo();
           } else {
-            this.backToPayment();
+            this.router.navigate(['']);
           }
         },
         err => {
           this.backToPayment();
-          console.log(err);
         }
       );
     });
   }
   public printPage = () => window.print();
-  // public windowClose = () => (open(location, '_self').close());
   public closewin() {
     let confirmLeave = confirm('Are you sure you want to leave this page?');
     if (confirmLeave === true) {
@@ -65,6 +71,7 @@ export class ResultComponent implements OnInit {
     }
   }
   public backToPayment() {
-    window.location.href = 'payment/' + this.paymentCode;
+    this.router.navigate(['payment/' + this.paymentCode]);
+    // window.location.href = 'payment/';
   }
 }

@@ -45,11 +45,15 @@
       outline: 1px solid #efefef;
 
       li {
-        flex: 1;
+        flex: .5;
         padding: 0 5px;
 
+        &:nth-child(3) {
+          flex: 1.25;
+        }
+
         &:last-child {
-          flex: 0.5;
+          flex: 0.35;
         }
       }
 
@@ -99,6 +103,7 @@
   &_row {
     flex: 0 0 calc(50% - 12px);
     border-bottom: 1px solid $gray;
+    display: flex;
 
     &-noborder {
       border-bottom: 0;
@@ -111,9 +116,10 @@
     }
 
     &>div {
-      display: inline-block;
+      display: inline-flex;
       width: 50%;
       padding: 15px 0;
+      align-items: center;
 
       @media screen and (max-width: 475px) {
         width: calc(55% + 20px);
@@ -129,6 +135,7 @@
 
       &.content {
         font-weight: bold;
+        word-break: break-all
       }
     }
   }

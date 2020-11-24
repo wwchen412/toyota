@@ -53,14 +53,16 @@
                  <li>{{payInfo.ResponseData.paymentNumber}}</li>
                  <li>{{payInfo.ResponseData.system}}</li>
                  <li>{{payInfo.ResponseData.paymentDescription}}</li>
-                 <li>{{payInfo.ResponseData.currency}}{{payInfo.ResponseData.payAmount}}</li>
+                 <li>{{payInfo.ResponseData.currency}} <span
+                     style="color:#dc0016">{{payInfo.ResponseData.payAmount | amountConverter}}</span></li>
                </ul>
              </div>
            </div>
            <div class="information_form_table_mobile mb-5" *ngIf="isMobileLayout">
              <div class="information_form_table_mobile_group">
                <div class="title">Application Number</div>
-               <div class="content">{{payInfo.ResponseData.paymentNumber}}</div>
+               <div class="content">{{payInfo.ResponseData.paymentNumber}}
+               </div>
              </div>
              <div class="information_form_table_mobile_group">
                <div class="title">Payment Source</div>

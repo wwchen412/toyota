@@ -62,7 +62,7 @@ export class OtpComponent implements OnInit {
     );
   }
   sumbitOtp() {
-    if (!!this.pin) {
+    if (this.pin.length >= 6) {
       this.$data.validateOTP(this.pin).subscribe(
         result => {
           if (result['IsSuccess'] === true) {

@@ -48,18 +48,19 @@
             </div>
             <div class="payment_form_row payment_form_row-noborder">
               <div class="title">
+                Payment Source
+              </div>
+              <div class="content">{{paymentMethod.ResponseData.paymentInfo.system}}</div>
+            </div>
+            <div class="payment_form_row payment_form_row-noborder">
+              <div class="title">
                 Payable Amount
               </div>
               <div class="content">{{paymentMethod.ResponseData.paymentInfo.currency}} <span
                   style="color:#dc0016">{{paymentMethod.ResponseData.paymentInfo.payAmount | amountConverter }}</span>
               </div>
             </div>
-            <div class="payment_form_row payment_form_row-noborder">
-              <div class="title">
-                Payment Source
-              </div>
-              <div class="content">{{paymentMethod.ResponseData.paymentInfo.system}}</div>
-            </div>
+
           </div>
         </div>
         <div #payForm class="mb-3"></div>
