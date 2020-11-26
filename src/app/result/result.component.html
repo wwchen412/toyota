@@ -27,6 +27,12 @@
                   </div>
                   <div class="content">{{getPaymentDetail.ResponseData.status.statusName}}</div>
                 </div>
+                <div class="payment_form_row" *ngIf="!isMobileLayout">
+                  <div class="title">
+
+                  </div>
+                  <div class="content"></div>
+                </div>
                 <div class="payment_form_row">
                   <div class="title">
                     Application Number
@@ -50,8 +56,8 @@
                     Payable Amount
                   </div>
                   <div class="content">
-                    {{getPaymentDetail.ResponseData.currency}}
-                    <span style="color:red"> {{getPaymentDetail.ResponseData.payAmount | amountConverter}}</span>
+                    {{getPaymentDetail.ResponseData.currency}} <span style="color:red;margin-left:5px">
+                      {{getPaymentDetail.ResponseData.payAmount | amountConverter}}</span>
                   </div>
                 </div>
 

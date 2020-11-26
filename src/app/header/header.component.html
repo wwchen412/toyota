@@ -1,31 +1,38 @@
 <div id="header" class="display-none-sm">
   <div class="container d-flex justify-between align-center">
     <h3></h3>
-    <p>www.toyotafinancial.sg</p>
+    <!-- <p>www.toyotafinancial.sg</p> -->
   </div>
 </div>
-<div id="navigation" *ngIf="headerSetting.responseData.contactNumber || headerSetting.responseData.contactEmail">
-  <div class="container d-flex" [ngClass]="isMobileLayout?'justify-center':'justify-between'">
+<div id="navigation" *ngIf="
+    headerSetting?.responseData.contactNumber ||
+    headerSetting?.responseData.contactEmail
+  ">
+  <div class="container d-flex" [ngClass]="isMobileLayout ? 'justify-center' : 'justify-between'">
     <div id="logo">
-      <img [src]="headerSetting.responseData.logoUrl" alt="">
+      <img [src]="headerSetting?.responseData.logoUrl" alt="" />
     </div>
     <div *ngIf="!isMobileLayout">
       <div class="contact_block d-inline-block">
         <div class="icon d-inline-block m-1">
-          <img src="assets/images/mail.svg" alt="">
+          <img src="assets/images/mail.svg" alt="" />
         </div>
-        <div class="contact_content d-inline-block m-1" *ngIf="headerSetting.responseData.contactEmail">
+        <div class="contact_content d-inline-block m-1" *ngIf="headerSetting?.responseData.contactEmail">
           <h3>Email</h3>
-          <a href="mailto:cr@tfssg.sg">{{headerSetting.responseData.contactEmail}}</a>
+          <a href="mailto:cr@tfssg.sg">{{
+            headerSetting.responseData.contactEmail
+          }}</a>
         </div>
       </div>
       <div class="contact_block d-inline-block">
         <div class="icon d-inline-block m-1">
-          <img src="assets/images/phone.svg" alt="">
+          <img src="assets/images/phone.svg" alt="" />
         </div>
-        <div class="contact_content d-inline-block m-1" *ngIf="headerSetting.responseData.contactNumber">
+        <div class="contact_content d-inline-block m-1" *ngIf="headerSetting?.responseData.contactNumber">
           <h3>Phone</h3>
-          <a href="tel:+65 6978 2388">{{headerSetting['responseData'].contactNumber}}</a>
+          <a href="tel:+65 6978 2388">{{
+            headerSetting?.responseData.contactNumber
+          }}</a>
         </div>
       </div>
     </div>

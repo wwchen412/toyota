@@ -1,5 +1,9 @@
-<h1 *ngIf="errorMsg$ | async as errorMsg ; else errorPage">{{errorMsg}}</h1>
+<ng-container *ngIf="errorMsg$ | async as errorMsg ; else errorPage">
+  <app-header></app-header>
+  <img class="success" src="assets/images/fail.svg" alt="">
+  <h1> {{errorMsg}}</h1>
+  <app-footer></app-footer>
+</ng-container>
 <ng-template #errorPage>
   <h1> 404 not found</h1>
-
 </ng-template>

@@ -24,6 +24,7 @@ export class OtpComponent implements OnInit {
   ngOnInit() {
     this.otpMsg$ = this.$data.otpMsg;
     this.$data.currentPage.subscribe(page => (this.page = page));
+    this.pin = '';
     this.$data.getOtpSetting().subscribe(res => {
       this.pinLength = res.responseData.pinLength;
       this.resendInSeconds = res.responseData.resendInSeconds;

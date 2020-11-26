@@ -15,6 +15,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
-    this.headerData$ = this.$data.getPaymentSetting();
+    this.headerData$ = this.$data.getPaymentSetting() || null;
   }
 }

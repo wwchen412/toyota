@@ -39,14 +39,8 @@
             <div class="container">
               <div class="main_form">
                 <h2 class="main_form_title mb-5">
-                  Payment Result Information
+                  Application List
                 </h2>
-                <ng-container *ngIf="result.IsSuccess">
-                  <div class="text-center mb-3">
-                    <img class="success" src="assets/images/success.svg" alt="">
-                    <h2>Success!</h2>
-                  </div>
-                </ng-container>
                 <ng-container *ngIf="!result.IsSuccess">
                   <div class="text-center mb-3">
                     <img class="success" src="assets/images/fail.svg" alt="">
@@ -57,7 +51,7 @@
                   <table>
                     <thead>
                       <tr>
-                        <th>Application</th>
+                        <th>Application Number</th>
                         <th>Model</th>
                         <th>Submitted Date</th>
                         <th>Status</th>
