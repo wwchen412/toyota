@@ -8,27 +8,26 @@ import { NotAvailableComponent } from './not-available/not-available.component';
 import { PaymentInfoComponent } from './payment-info/payment-info.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: StatusResultComponent,
-  //   pathMatch: 'full'
-  // },
   {
-    path: 'payment/:paymentCode',
-    component: PaymentComponent
-  },
-  {
-    path: 'paymentInfo',
-    component: PaymentInfoComponent
-  },
-  {
-    path: 'result/:paymentCode',
-    component: ResultComponent
-  },
-  {
-    path: 'paymentStatus',
+    path: '',
     component: PaymentStatusComponent
   },
+  // {
+  //   path: "payment/:paymentCode",
+  //   component: PaymentComponent
+  // },
+  // {
+  //   path: "paymentInfo",
+  //   component: PaymentInfoComponent
+  // },
+  // {
+  //   path: "result/:paymentCode",
+  //   component: ResultComponent
+  // },
+  // {
+  //   path: 'paymentStatus',
+  //   component: PaymentStatusComponent
+  // },
   {
     path: 'notAvailable',
     component: NotAvailableComponent
