@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-const APIURL = 'https://api-uat.toyotafinancial.sg/';
+const APIURL = 'https://api.toyotafinancial.sg/';
 @Injectable({
   providedIn: 'root'
 })
