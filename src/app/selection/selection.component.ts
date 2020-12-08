@@ -21,17 +21,18 @@ export class SelectionComponent implements OnInit {
     this.headerData$ = this.$data.getPaymentSetting();
     this.payChannel$ = this.$data.getPayChannel();
     this.payInfo$ = this.$data.getPayInfo();
-    this.payMethod = 'CreditCard';
+    this.payMethod = '';
   }
   changeMethod(evt) {
     this.payMethod = evt.target.value;
   }
   sumbitCardChannel() {
+    console.log(this.payMethod);
     if (this.payMethod !== 'CreditCard') {
       window.location.href = '/notAvailable';
     } else {
-      this.$data.changePage('2');
-      this.$data.setProgress(2);
+      this.$data.changePage('3');
+      this.$data.setProgress(3);
     }
   }
   public cancel() {

@@ -87,6 +87,15 @@ export class DataService {
       headers: this.createHeader()
     });
   }
+  reSendOTPwithMode() {
+    return this.$http.post<any>(
+      APIURL + 'otp/api/ResendOTPWithMode',
+      { otpMode: 'Sms' },
+      {
+        headers: this.createHeader()
+      }
+    );
+  }
   validateOTP(pin) {
     return this.$http.post(
       APIURL + 'otp/api/ValidateOTP',
@@ -98,7 +107,7 @@ export class DataService {
       }
     );
   }
-  paymentCodeValidation(paymentCode?: string) {
+  paymentCodeValidation(paymentCode?: string, nric?: string) {
     const headers = new HttpHeaders()
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
@@ -107,7 +116,8 @@ export class DataService {
     return this.$http.post<any>(
       url,
       {
-        paymentCode: paymentCode
+        paymentCode: paymentCode,
+        Nric: nric
       },
       { headers: headers }
     );

@@ -35,7 +35,8 @@ export class PaymentComponent implements OnInit {
       res => {
         if (res.isSuccess) {
           this.$data.setAuth(res.token);
-          this.sendOTP();
+          // this.sendOTP();
+          this.loaded = true;
         } else if (res.isEndPayment) {
           window.location.href = 'result/' + this.paymentCode;
         } else {
@@ -51,7 +52,6 @@ export class PaymentComponent implements OnInit {
   sendOTP() {
     this.$data.sendOTP().subscribe(
       result => {
-        this.loaded = true;
         this.$data.setOtpMsg(result.ResponseData.Message);
       },
       err => {

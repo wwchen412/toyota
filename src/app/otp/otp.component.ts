@@ -62,6 +62,14 @@ export class OtpComponent implements OnInit {
       }
     );
   }
+  reSendOtpWithMode() {
+    this.$data.reSendOTPwithMode().subscribe(res => {
+      this.resendCount = this.resendInSeconds;
+      this.err = false;
+      this.errMsg = '';
+      this.ngOtpInputRef.setValue(null);
+    });
+  }
   sumbitOtp() {
     if (this.pin.length >= 6) {
       this.$data.validateOTP(this.pin).subscribe(

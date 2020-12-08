@@ -1,1 +1,9 @@
-.otp_form {}
+.resendOtp_phone {
+  max-width: 230px;
+}
+
+@media screen and (max-width: 475px) {
+  .resendOtp_phone {
+    max-width: 100%;
+  }
+}

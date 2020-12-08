@@ -19,6 +19,7 @@ export class ResultComponent implements OnInit {
   private data;
   public paymentCode;
   public headerData$: Observable<any>;
+  public errorPage;
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
@@ -31,8 +32,8 @@ export class ResultComponent implements OnInit {
         res => {
           if (!res.isSuccess) {
             this.router.navigate(['']);
-          } else if (!res.isEndPayment) {
-            this.backToPayment();
+          } else if (res.isSuccess && !res.isEndPayment) {
+            this.errorPage = true;
           } else if (res.token) {
             this.$data.setAuth(res.token);
             this.headerData$ = this.$data.getPaymentSetting();
@@ -72,6 +73,6 @@ export class ResultComponent implements OnInit {
   }
   public backToPayment() {
     this.router.navigate(['payment/' + this.paymentCode]);
-    // window.location.href = 'payment/';
+    // window.location.href = "payment/";
   }
 }

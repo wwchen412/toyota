@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-nric',
@@ -13,23 +13,28 @@ export class NricComponent implements OnInit {
   private auth: string;
   public error;
   public errorMsg;
-  private statusModule: string;
   public headerData$: Observable<any>;
-  constructor(private $data: DataService, private $route: ActivatedRoute) {}
+  public paymentCode;
+  public statusModule;
+  constructor(
+    private $data: DataService,
+    private $route: ActivatedRoute,
+    private router: Router
+  ) {}
   ngOnInit() {
     this.$data.currentPage.subscribe(page => (this.page = page));
     this.$data.authToken.subscribe(auth => (this.auth = auth));
     this.headerData$ = this.$data.getStatusSettings();
+    this.paymentCode = this.$route.snapshot.paramMap.get('paymentCode');
     this.$route.queryParams.subscribe(params => {
       this.statusModule = params['module'];
     });
   }
   postpaymentCodeValidation($event) {
     ($event.target as HTMLButtonElement).disabled = true;
-    console.log(this.nricCode);
     if (!!this.nricCode) {
       this.$data
-        .statusValidate(this.nricCode, this.statusModule)
+        .paymentCodeValidation(this.paymentCode, this.nricCode)
         .subscribe(res => {
           ($event.target as HTMLButtonElement).disabled = false;
           if (res['isSuccess']) {

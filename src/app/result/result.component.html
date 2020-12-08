@@ -93,17 +93,20 @@
 
 </ng-container>
 <ng-template #error>
+  <app-header></app-header>
   <div id="form">
     <div class="container">
       <div class="main_form">
         <div class="text-center">
-          <img class="fail" src="assets/images/fail.svg" alt="" style="margin: auto">
-          <p class="mb-3">To complete your payment, please click the button below.</p>
-          <button sytle="background: #17618f;color: #fff;" (click)="backToPayment()">Make Payment</button>
+          <img class="fail mb-3" src="assets/images/fail.svg" alt="" style="margin: auto">
+          <p class="mb-3" style="margin-top:1.5rem">Your payment is not completed. Please click the button below to
+            complete the payment.</p>
+          <button style="background: #17618f;color: #fff;" (click)="backToPayment()">Make Payment</button>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- <app-error-page></app-error-page> -->
+  <app-footer></app-footer>
 </ng-template>
+<ng-container *ngIf="errorPage;then error">
+</ng-container>

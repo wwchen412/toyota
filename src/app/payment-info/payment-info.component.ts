@@ -44,7 +44,7 @@ export class PaymentInfoComponent implements OnInit {
     );
   }
   back() {
-    this.$data.changePage('1');
+    this.$data.changePage('2');
   }
   setPaymentInit(res) {
     const root = this;
@@ -74,8 +74,8 @@ export class PaymentInfoComponent implements OnInit {
               if (res.ResponseData.action) {
                 dropin.handleAction(res.ResponseData.action);
               } else {
-                root.$data.setProgress(3);
-                root.$data.changePage('3');
+                root.$data.setProgress(4);
+                root.$data.changePage('4');
               }
             },
             err => {
