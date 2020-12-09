@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
-const APIURL = 'https://api.toyotafinancial.sg/';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { BehaviorSubject } from "rxjs";
+const APIURL = "https://api-uat.toyotafinancial.sg/";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DataService {
-  private pageSource = new BehaviorSubject('0');
-  private authSource = new BehaviorSubject('');
+  private pageSource = new BehaviorSubject("0");
+  private authSource = new BehaviorSubject("");
   public loadingSource = new BehaviorSubject(false);
   public progressSource = new BehaviorSubject(1);
-  public errorMsgSource = new BehaviorSubject('404 not found');
+  public errorMsgSource = new BehaviorSubject("404 not found");
   // otp
-  private otpMsgSource = new BehaviorSubject('');
+  private otpMsgSource = new BehaviorSubject("");
   // detail req
   private detailDataSource = new BehaviorSubject({});
   // header
@@ -58,7 +58,7 @@ export class DataService {
   createHeader() {
     // console.log('HEADER', this.auth);
     const headers = new HttpHeaders()
-      .set('content-type', 'application/json')
+      .set("content-type", "application/json")
       .set('Access-Control-Allow-Origin', '*')
       .set('Authorization', `Bearer ${this.auth}`);
     return headers;
