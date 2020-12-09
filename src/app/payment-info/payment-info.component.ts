@@ -21,10 +21,12 @@ export class PaymentInfoComponent implements OnInit {
   public headerData$: Observable<any>;
   public tremsConfirm: boolean;
   public err: boolean;
+  public apiLoading: boolean;
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
     this.headerData$ = this.$data.getPaymentSetting();
+    this.apiLoading = true;
   }
   toggleTrems(evt) {
     this.tremsConfirm = evt.target.checked;
@@ -33,7 +35,7 @@ export class PaymentInfoComponent implements OnInit {
     this.$data.getPaymentMethod().subscribe(
       res => {
         this.paymentMethod = res;
-        // console.log(this.paymentMethod);
+        this.apiLoading = false;
         setTimeout(() => {
           this.setPaymentInit(res.ResponseData);
         }, 1000);

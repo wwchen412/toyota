@@ -37,10 +37,12 @@ export class NricComponent implements OnInit {
         .paymentCodeValidation(this.paymentCode, this.nricCode)
         .subscribe(res => {
           ($event.target as HTMLButtonElement).disabled = false;
-          if (res['isSuccess']) {
+          if (res.isSuccess && !res.isEndPayment) {
             this.$data.setAuth(res['token']);
             this.sendOTP();
             this.$data.changePage('1');
+          } else if (res.isEndPayment) {
+            this.router.navigate(['result/' + this.paymentCode]);
           } else {
             this.errorMsg = res['errorMessage'];
             this.error = true;

@@ -31,23 +31,23 @@ export class PaymentComponent implements OnInit {
     this.$data.currentPage.subscribe(page => (this.page = page));
     this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
 
-    this.$data.paymentCodeValidation(this.paymentCode).subscribe(
-      res => {
-        if (res.isSuccess) {
-          this.$data.setAuth(res.token);
-          // this.sendOTP();
-          this.loaded = true;
-        } else if (res.isEndPayment) {
-          window.location.href = 'result/' + this.paymentCode;
-        } else {
-          this.$data.setErrorMsg(res.errorMessage);
-          this.router.navigate(['']);
-        }
-      },
-      err => {
-        this.router.navigate(['']);
-      }
-    );
+    // this.$data.paymentCodeValidation(this.paymentCode).subscribe(
+    //   res => {
+    //     if (res.isSuccess) {
+    //       this.$data.setAuth(res.token);
+    //       // this.sendOTP();
+    //       this.loaded = true;
+    //     } else if (res.isEndPayment) {
+    //       window.location.href = 'result/' + this.paymentCode;
+    //     } else {
+    //       this.$data.setErrorMsg(res.errorMessage);
+    //       this.router.navigate(['']);
+    //     }
+    //   },
+    //   err => {
+    //     this.router.navigate(['']);
+    //   }
+    // );
   }
   sendOTP() {
     this.$data.sendOTP().subscribe(
