@@ -29,6 +29,7 @@ export class NricComponent implements OnInit {
     this.$route.queryParams.subscribe(params => {
       this.statusModule = params['module'];
     });
+    this.$data.pageIsLoad(true);
   }
   postpaymentCodeValidation($event) {
     ($event.target as HTMLButtonElement).disabled = true;
@@ -40,6 +41,7 @@ export class NricComponent implements OnInit {
           if (res.isSuccess && !res.isEndPayment) {
             this.$data.setAuth(res['token']);
             this.sendOTP();
+            this.$data.pageIsLoad(false);
             this.$data.changePage('1');
           } else if (res.isEndPayment) {
             this.router.navigate(['result/' + this.paymentCode]);
@@ -59,6 +61,7 @@ export class NricComponent implements OnInit {
     this.$data.sendOTP().subscribe(
       result => {
         this.$data.setOtpMsg(result.ResponseData.Message);
+        this.$data.pageIsLoad(true);
       },
       err => {
         console.log(err);

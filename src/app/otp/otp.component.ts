@@ -72,6 +72,7 @@ export class OtpComponent implements OnInit {
   }
   sumbitOtp() {
     if (this.pin.length >= 6) {
+      this.$data.pageIsLoad(false);
       this.$data.validateOTP(this.pin).subscribe(
         result => {
           if (result['IsSuccess'] === true) {
@@ -79,9 +80,11 @@ export class OtpComponent implements OnInit {
             this.$data.setAuth(result['Token']);
             const nextPage = parseInt(this.page, 10) + 1;
             this.$data.changePage(nextPage.toString());
+            this.$data.pageIsLoad(true);
           } else {
             this.err = true;
             this.errMsg = result['errorMessage'];
+            this.$data.pageIsLoad(true);
           }
         },
         err => {

@@ -1,4 +1,4 @@
-<ng-container *ngIf="headerData$ | async as contactData">
+<ng-container *ngIf="headerData$ | async as contactData; else loading">
   <app-header [headerSetting]="contactData">
   </app-header>
   <div id="form">
@@ -20,3 +20,6 @@
   </div>
   <app-footer [footerSetting]="contactData"></app-footer>
 </ng-container>
+<ng-template #loading>
+  <app-loading-page></app-loading-page>
+</ng-template>

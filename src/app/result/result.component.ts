@@ -23,13 +23,14 @@ export class ResultComponent implements OnInit {
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
-
     this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
     this.data = this.$data.detail.subscribe(res => {
+      this.$data.pageIsLoad(false);
       this.data = res;
       this.$data.setProgress(3);
       this.$data.PaymentCodeResultValidation(this.paymentCode).subscribe(
         res => {
+          this.$data.pageIsLoad(true);
           if (!res.isSuccess) {
             this.router.navigate(['']);
           } else if (res.isSuccess && !res.isEndPayment) {
@@ -43,6 +44,7 @@ export class ResultComponent implements OnInit {
           }
         },
         err => {
+          this.$data.pageIsLoad(true);
           this.backToPayment();
         }
       );

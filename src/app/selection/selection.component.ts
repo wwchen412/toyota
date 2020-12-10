@@ -27,7 +27,6 @@ export class SelectionComponent implements OnInit {
     this.payMethod = evt.target.value;
   }
   sumbitCardChannel() {
-    console.log(this.payMethod);
     if (this.payMethod !== 'CreditCard') {
       window.location.href = '/notAvailable';
     } else {

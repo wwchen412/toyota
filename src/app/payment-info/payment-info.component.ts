@@ -70,10 +70,11 @@ export class PaymentInfoComponent implements OnInit {
             browserInfo: browserInfo,
             reference: oPamentInfo.referenceCode
           };
+          root.$data.pageIsLoad(false);
           root.$data.cardSubmission(oRequest).subscribe(
             res => {
-              console.log(res);
               if (res.ResponseData.action) {
+                root.$data.pageIsLoad(true);
                 dropin.handleAction(res.ResponseData.action);
               } else {
                 root.$data.setProgress(4);
