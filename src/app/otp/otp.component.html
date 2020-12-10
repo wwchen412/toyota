@@ -1,6 +1,6 @@
-<ng-container *ngIf="headerData$">
+<ng-container *ngIf="headerData$; else loading">
   <app-header [headerSetting]="headerData$"></app-header>
-  <div id="form" *ngIf="otpMsg$ | async as otpMsg">
+  <div id="form" *ngIf="otpMsg$ | async as otpMsg; else loading">
     <div class="container">
       <div class="main_form">
         <h2 class="main_form_title mb-5">
@@ -33,3 +33,6 @@
   </div>
   <app-footer [footerSetting]="headerData$"></app-footer>
 </ng-container>
+<ng-template #loading>
+  <app-loading-page></app-loading-page>
+</ng-template>

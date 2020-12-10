@@ -1,3 +1,8 @@
-<app-nric *ngIf="page === '0'"></app-nric>
-<app-otp *ngIf="page === '1'"></app-otp>
-<app-status-result *ngIf="page === '2'"></app-status-result>
+<ng-container *ngIf="loaded; else loading">
+  <app-nric *ngIf="page === '0'"></app-nric>
+  <app-otp *ngIf="page === '1'"></app-otp>
+  <app-status-result *ngIf="page === '2'"></app-status-result>
+</ng-container>
+<ng-template #loading>
+  <app-loading-page></app-loading-page>
+</ng-template>

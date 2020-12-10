@@ -1,4 +1,4 @@
-    <ng-container *ngIf="headerData$ | async as contactData">
+    <ng-container *ngIf="headerData$ | async as contactData; else loading">
       <app-header [headerSetting]="contactData"></app-header>
       <ng-container *ngIf="statusModule === 'paymentstatus'">
         <ng-container *ngIf="result$ | async as result">
@@ -74,3 +74,6 @@
       </ng-container>
       <app-footer [footerSetting]="contactData"></app-footer>
     </ng-container>
+    <ng-template #loading>
+      <app-loading-page></app-loading-page>
+    </ng-template>
