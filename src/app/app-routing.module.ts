@@ -9,7 +9,7 @@ import { PaymentInfoComponent } from './payment-info/payment-info.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'payment/:paymentCode',
     component: PaymentStatusComponent
   },
   // {

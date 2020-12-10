@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { DataService } from '../data.service';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { DataService } from "../data.service";
+import { Observable } from "rxjs";
 @Component({
-  selector: 'app-otp',
-  templateUrl: './otp.component.html',
-  styleUrls: ['./otp.component.scss']
+  selector: "app-otp",
+  templateUrl: "./otp.component.html",
+  styleUrls: ["./otp.component.scss"]
 })
 export class OtpComponent implements OnInit {
   public pinLength: number;
@@ -18,13 +18,13 @@ export class OtpComponent implements OnInit {
   public contactNumber: string;
   private page;
   public headerData$: Observable<any>;
-  @ViewChild('ngOtpInput', { static: false }) ngOtpInputRef: any;
+  @ViewChild("ngOtpInput", { static: false }) ngOtpInputRef: any;
   constructor(private $data: DataService) {}
 
   ngOnInit() {
     this.otpMsg$ = this.$data.otpMsg;
     this.$data.currentPage.subscribe(page => (this.page = page));
-    this.pin = '';
+    this.pin = "";
     this.$data.getOtpSetting().subscribe(res => {
       this.pinLength = res.responseData.pinLength;
       this.resendInSeconds = res.responseData.resendInSeconds;
@@ -54,7 +54,7 @@ export class OtpComponent implements OnInit {
       res => {
         this.resendCount = this.resendInSeconds;
         this.err = false;
-        this.errMsg = '';
+        this.errMsg = "";
         this.ngOtpInputRef.setValue(null);
       },
       err => {
@@ -62,18 +62,26 @@ export class OtpComponent implements OnInit {
       }
     );
   }
+  reSendOtpWithMode() {
+    this.$data.reSendOTPwithMode().subscribe(res => {
+      this.resendCount = this.resendInSeconds;
+      this.err = false;
+      this.errMsg = "";
+      this.ngOtpInputRef.setValue(null);
+    });
+  }
   sumbitOtp() {
     if (this.pin.length >= 6) {
       this.$data.validateOTP(this.pin).subscribe(
         result => {
-          if (result['IsSuccess'] === true) {
+          if (result["IsSuccess"] === true) {
             this.err = false;
-            this.$data.setAuth(result['Token']);
+            this.$data.setAuth(result["Token"]);
             const nextPage = parseInt(this.page, 10) + 1;
             this.$data.changePage(nextPage.toString());
           } else {
             this.err = true;
-            this.errMsg = result['errorMessage'];
+            this.errMsg = result["errorMessage"];
           }
         },
         err => {
@@ -83,7 +91,7 @@ export class OtpComponent implements OnInit {
       );
     } else {
       this.err = true;
-      this.errMsg = 'Pin is required';
+      this.errMsg = "Pin is required";
     }
   }
   clearOtp() {
