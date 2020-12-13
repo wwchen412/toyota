@@ -6,11 +6,16 @@ import { PaymentStatusComponent } from './payment-status/payment-status.componen
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { NotAvailableComponent } from './not-available/not-available.component';
 import { PaymentInfoComponent } from './payment-info/payment-info.component';
+import { ApplicationComponent } from './application/application.component';
 
 const routes: Routes = [
   {
     path: 'payment/:paymentCode',
     component: PaymentStatusComponent
+  },
+  {
+    path: 'application',
+    component: ApplicationComponent
   },
   // {
   //   path: "payment/:paymentCode",
