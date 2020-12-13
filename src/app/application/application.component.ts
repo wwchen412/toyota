@@ -13,10 +13,14 @@ export class ApplicationComponent implements OnInit {
   public headerData$: Observable<any>;
   public paymentCode;
   public loaded: boolean;
+  private systemCode;
   constructor(private $data: DataService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
+    this.route.queryParams.subscribe(params => {
+      this.systemCode = params['systemCode'];
+    });
     this.$data.currentPage.subscribe(page => (this.page = page));
     this.$data.loading.subscribe(load => (this.loaded = load));
     this.$data.pageIsLoad(true);
