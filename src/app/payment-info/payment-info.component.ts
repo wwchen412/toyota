@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import AdyenCheckout from '@adyen/adyen-web';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 // import '@adyen/adyen-web/dist/adyen.css';
 @Component({
   selector: 'app-payment-info',
@@ -14,7 +15,8 @@ export class PaymentInfoComponent implements OnInit {
   constructor(
     private $data: DataService,
     private elementRef: ElementRef,
-    private $http: HttpClient
+    private $http: HttpClient,
+    private route: ActivatedRoute
   ) {}
   public isMobileLayout = false;
   paymentMethod;
@@ -22,10 +24,12 @@ export class PaymentInfoComponent implements OnInit {
   public tremsConfirm: boolean;
   public err: boolean;
   public apiLoading: boolean;
+  private paymentCode;
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
-    this.headerData$ = this.$data.getPaymentSetting();
+    this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
+    this.headerData$ = this.$data.getPaymentSetting(this.paymentCode);
     this.apiLoading = true;
   }
   toggleTrems(evt) {

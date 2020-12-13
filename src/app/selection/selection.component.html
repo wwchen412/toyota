@@ -78,10 +78,10 @@
              </div>
            </div>
            <div class="information_payment mb-5">
-             <h4 class="mb-3">Payment Channel</h4>
+             <h4 class="mb-3">Payment Method</h4>
              <select name="" id="" *ngIf="payChannel$ | async as payChannel" (change)="changeMethod($event)">
-               <option *ngFor="let payOption of payChannel.ResponseData" [value]="payOption.ChannelCode">
-                 {{payOption.ChannelName}}
+               <option *ngFor="let payOption of payChannel.ResponseData" [value]="payOption.MethodCode">
+                 {{payOption.MethodName}}
                </option>
              </select>
            </div>

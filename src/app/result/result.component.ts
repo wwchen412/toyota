@@ -37,7 +37,7 @@ export class ResultComponent implements OnInit {
             this.errorPage = true;
           } else if (res.token) {
             this.$data.setAuth(res.token);
-            this.headerData$ = this.$data.getPaymentSetting();
+            this.headerData$ = this.$data.getPaymentSetting(this.paymentCode);
             this.getPaymentDetail$ = this.$data.getPaymentInfo();
           } else {
             this.router.navigate(['']);

@@ -21,14 +21,15 @@ export class PaymentComponent implements OnInit {
   public paymentCode;
   public headerData$: Observable<any>;
   ngOnInit() {
-    this.headerData$ = this.$data.getPaymentSetting();
+    this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
+    this.headerData$ = this.$data.getPaymentSetting(this.paymentCode);
     this.$data.authToken.subscribe(auth => (this.auth = auth));
 
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
 
     this.$data.currentPage.subscribe(page => (this.page = page));
-    this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
+
     this.$data.pageIsLoad(true);
     this.$data.loading.subscribe(load => (this.loaded = load));
     // this.$data.paymentCodeValidation(this.paymentCode).subscribe(

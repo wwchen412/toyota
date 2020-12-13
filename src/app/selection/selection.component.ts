@@ -1,24 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-selection',
   templateUrl: './selection.component.html',
   styleUrls: ['./selection.component.scss']
 })
 export class SelectionComponent implements OnInit {
-  constructor(private $data: DataService) {}
+  constructor(private $data: DataService, private route: ActivatedRoute) {}
 
   public isMobileLayout = false;
   payChannel$: Observable<any>;
   payInfo$: Observable<any>;
   public headerData$: Observable<any>;
   public payMethod: string;
+  private paymentCode;
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
-    this.headerData$ = this.$data.getPaymentSetting();
+    this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
+    this.headerData$ = this.$data.getPaymentSetting(this.paymentCode);
     this.payChannel$ = this.$data.getPayChannel();
     this.payInfo$ = this.$data.getPayInfo();
     this.payMethod = '';
@@ -38,7 +40,6 @@ export class SelectionComponent implements OnInit {
     let checkCancel = window.confirm(
       'Are you sure you want to quit the payment process?'
     );
-    console.log(checkCancel);
     if (checkCancel === true) {
       if (
         navigator.userAgent.indexOf('Firefox') !== -1 ||

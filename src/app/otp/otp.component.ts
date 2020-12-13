@@ -52,6 +52,7 @@ export class OtpComponent implements OnInit {
   reSendOtp() {
     this.$data.reSendOTP().subscribe(
       res => {
+        this.$data.setOtpMsg('');
         this.resendCount = this.resendInSeconds;
         this.err = false;
         this.errMsg = '';
@@ -64,6 +65,7 @@ export class OtpComponent implements OnInit {
   }
   reSendOtpWithMode() {
     this.$data.reSendOTPwithMode().subscribe(res => {
+      this.$data.setOtpMsg(res.ResponseData.Message);
       this.resendCount = this.resendInSeconds;
       this.err = false;
       this.errMsg = '';
@@ -72,7 +74,6 @@ export class OtpComponent implements OnInit {
   }
   sumbitOtp() {
     if (this.pin.length >= 6) {
-      this.$data.pageIsLoad(false);
       this.$data.validateOTP(this.pin).subscribe(
         result => {
           if (result['IsSuccess'] === true) {
@@ -88,8 +89,9 @@ export class OtpComponent implements OnInit {
           }
         },
         err => {
-          // this.err = true;
-          // this.errMsg = err["errorMessage"];
+          this.err = true;
+          this.errMsg = err['errorMessage'];
+          this.$data.pageIsLoad(true);
         }
       );
     } else {
