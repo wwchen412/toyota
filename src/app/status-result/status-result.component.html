@@ -1,6 +1,6 @@
     <ng-container *ngIf="headerData$ | async as contactData; else loading">
       <app-header [headerSetting]="contactData"></app-header>
-      <ng-container *ngIf="statusModule === 'paymentstatus'">
+      <ng-container *ngIf="status === 'paymentstatus'">
         <ng-container *ngIf="result$ | async as result">
           <div id="form">
             <div class="container">
@@ -19,11 +19,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let res of result.ResponseData">
-                        <td data-head='Number'>{{res.PaymentNumber}}</td>
-                        <td data-head='Amount'>{{res.Currency}} {{res.PayAmount |amountConverter}}$ </td>
-                        <td data-head='Source'>{{res.System}}</td>
-                        <td data-head='Status'>{{res.Status}}</td>
+                      <tr>
+                        <td data-head='Number'>{{result.ResponseData.PaymentNumber}}</td>
+                        <td data-head='Amount'>{{result.ResponseData.Currency}}
+                          {{result.ResponseData.PayAmount |amountConverter}}</td>
+                        <td data-head='Source'>{{result.ResponseData.System}}</td>
+                        <td data-head='Status'>{{result.ResponseData.Status}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -33,44 +34,46 @@
           </div>
         </ng-container>
       </ng-container>
-      <ng-container *ngIf="result$ | async as result">
-        <div id="form">
-          <div class="container">
-            <div class="main_form">
-              <h2 class="main_form_title mb-5">
-                Application List
-              </h2>
-              <ng-container *ngIf="!result.IsSuccess">
-                <div class="text-center mb-3">
-                  <img class="success" src="assets/images/fail.svg" alt="">
-                  <h2>{{result.ErrorMessage}}</h2>
+      <ng-container *ngIf="status === 'applicationstatus'">
+        <ng-container *ngIf="result$ | async as result">
+          <div id="form">
+            <div class="container">
+              <div class="main_form">
+                <h2 class="main_form_title mb-5">
+                  Application List
+                </h2>
+                <ng-container *ngIf="!result.IsSuccess">
+                  <div class="text-center mb-3">
+                    <img class="success" src="assets/images/fail.svg" alt="">
+                    <h2>{{result.ErrorMessage}}</h2>
+                  </div>
+                </ng-container>
+                <div class="payment_form mb-3">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Application Number</th>
+                        <th>Payment Source</th>
+                        <th>Description</th>
+                        <th>Payable Amount</th>
+                        <th>Payment Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-head='Application'>{{result.ResponseData.PaymentNumber}}</td>
+                        <td data-head='Payment Source'>{{result.ResponseData.System}}</td>
+                        <td data-head='Description'>{{result.ResponseData.PaymentDescription}}</td>
+                        <td data-head='Payable Amount'>{{result.ResponseData.PayAmount}}</td>
+                        <td data-head='Payment Status'>{{result.ResponseData.Status}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-              </ng-container>
-              <div class="payment_form mb-3">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Application Number</th>
-                      <th>Payment Source</th>
-                      <th>Description</th>
-                      <th>Payable Amount</th>
-                      <th>Payment Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td data-head='Application'>{{result.ResponseData.PaymentNumber}}</td>
-                      <td data-head='Payment Source'>{{result.ResponseData.System}}</td>
-                      <td data-head='Description'>{{result.ResponseData.PaymentDescription}}</td>
-                      <td data-head='Payable Amount'>{{result.ResponseData.PayAmount}}</td>
-                      <td data-head='Payment Status'>{{result.ResponseData.Status}}</td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
             </div>
           </div>
-        </div>
+        </ng-container>
       </ng-container>
       <app-footer [footerSetting]="contactData"></app-footer>
     </ng-container>

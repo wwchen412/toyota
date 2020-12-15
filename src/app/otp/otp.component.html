@@ -1,12 +1,12 @@
 <ng-container *ngIf="headerData$; else loading">
   <app-header [headerSetting]="headerData$"></app-header>
-  <div id="form" *ngIf="otpMsg$ | async as otpMsg; else loading">
+  <div id="form">
     <div class="container">
       <div class="main_form">
         <h2 class="main_form_title mb-5">
           Enter OTP
         </h2>
-        <p class="mb-5">
+        <p class="mb-5" *ngIf="otpMsg$ | async as otpMsg;">
           {{otpMsg}}
         </p>
         <div class="otp_form" [ngClass]="{'error': !!err}">
@@ -26,7 +26,7 @@
         </div>
         <p style="margin: 1.5rem 0 .5rem">You may click the button "Resend via Sms" to receive OTP on your mobile.</p>
         <button class="button_outline resendOtp_phone" (click)="reSendOtpWithMode()" [disabled]="resendCount>0">
-          Resend<ng-container *ngIf="resendCount>0">({{resendCount}})</ng-container>
+          Resend via Sms<ng-container *ngIf="resendCount>0">({{resendCount}})</ng-container>
         </button>
       </div>
     </div>
