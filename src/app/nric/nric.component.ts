@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { DataService } from "../data.service";
-import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 @Component({
-  selector: "app-nric",
-  templateUrl: "./nric.component.html",
-  styleUrls: ["./nric.component.scss"]
+  selector: 'app-nric',
+  templateUrl: './nric.component.html',
+  styleUrls: ['./nric.component.scss']
 })
 export class NricComponent implements OnInit {
   public nricCode;
@@ -22,9 +22,9 @@ export class NricComponent implements OnInit {
     this.$data.currentPage.subscribe(page => (this.page = page));
     this.$data.authToken.subscribe(auth => (this.auth = auth));
     this.headerData$ = this.$data.getStatusSettings();
-    this.paymentCode = this.$route.snapshot.paramMap.get("paymentCode");
+    this.paymentCode = this.$route.snapshot.paramMap.get('paymentCode');
     this.$route.queryParams.subscribe(params => {
-      this.systemCode = params["systemCode"];
+      this.systemCode = params['systemCode'];
     });
   }
   postpaymentCodeValidation($event) {
@@ -35,19 +35,19 @@ export class NricComponent implements OnInit {
       if (this.systemCode) {
         this.$data.statusValidate(this.nricCode, this.systemCode).subscribe(
           res => {
-            if (res["isSuccess"]) {
+            if (res['isSuccess']) {
               this.sendOTP();
               this.$data.pageIsLoad(true);
-              this.$data.changePage("1");
+              this.$data.changePage('1');
             } else {
-              this.errorMsg = res["errorMessage"];
+              this.errorMsg = res['errorMessage'];
               this.error = true;
               this.$data.pageIsLoad(true);
               ($event.target as HTMLButtonElement).disabled = false;
             }
           },
           err => {
-            this.errorMsg = err["errorMessage"];
+            this.errorMsg = err['errorMessage'];
             this.error = true;
             this.$data.pageIsLoad(true);
             ($event.target as HTMLButtonElement).disabled = false;
@@ -58,13 +58,13 @@ export class NricComponent implements OnInit {
           .paymentCodeValidation(this.nricCode, this.paymentCode)
           .subscribe(res => {
             ($event.target as HTMLButtonElement).disabled = false;
-            if (res["isSuccess"]) {
-              this.$data.setAuth(res["token"]);
+            if (res['isSuccess']) {
+              this.$data.setAuth(res['token']);
               this.sendOTP();
               this.$data.pageIsLoad(true);
-              this.$data.changePage("1");
+              this.$data.changePage('1');
             } else {
-              this.errorMsg = res["errorMessage"];
+              this.errorMsg = res['errorMessage'];
               this.error = true;
               this.$data.pageIsLoad(true);
               ($event.target as HTMLButtonElement).disabled = false;
@@ -73,7 +73,7 @@ export class NricComponent implements OnInit {
       }
     } else {
       this.error = true;
-      this.errorMsg = "NRIC is required";
+      this.errorMsg = 'NRIC is required';
       ($event.target as HTMLButtonElement).disabled = false;
     }
   }

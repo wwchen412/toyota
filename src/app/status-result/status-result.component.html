@@ -5,29 +5,55 @@
           <div id="form">
             <div class="container">
               <div class="main_form">
+                <div class="text-center">
+                  <img class="success" src="assets/images/success.svg" alt="">
+                  <h2>Success!</h2>
+                </div>
                 <h2 class="main_form_title mb-5">
                   Payment Result Information
                 </h2>
-                <div class="payment_form mb-3">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Application Number</th>
-                        <th>Payable Amount </th>
-                        <th>Payment Source</th>
-                        <th>Payment Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td data-head='Number'>{{result.ResponseData.PaymentNumber}}</td>
-                        <td data-head='Amount'>{{result.ResponseData.Currency}}
-                          {{result.ResponseData.PayAmount |amountConverter}}</td>
-                        <td data-head='Source'>{{result.ResponseData.System}}</td>
-                        <td data-head='Status'>{{result.ResponseData.Status}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div class="paymentStatus_main_form mb-3">
+                  <div class="paymentStatus_main_form_table">
+                    <div class="paymentStatus_main_form_row">
+                      <div class="title">
+                        Payment Status
+                      </div>
+                      <div class="content">{{result.ResponseData.Status}}</div>
+                    </div>
+                    <div class="payment_form_row" *ngIf="!isMobileLayout">
+                      <div class="title">
+
+                      </div>
+                      <div class="content"></div>
+                    </div>
+                    <div class="paymentStatus_main_form_row">
+                      <div class="title">
+                        Application Number
+                      </div>
+                      <div class="content">{{result.ResponseData.PaymentNumber}}</div>
+                    </div>
+                    <div class="paymentStatus_main_form_row">
+                      <div class="title">
+                        Description
+                      </div>
+                      <div class="content">{{result.ResponseData.PaymentDescription}}</div>
+                    </div>
+                    <div class="paymentStatus_main_form_row">
+                      <div class="title">
+                        Payment Source
+                      </div>
+                      <div class="content">{{result.ResponseData.System}}</div>
+                    </div>
+                    <div class="paymentStatus_main_form_row  paymentStatus_main_form_row-noborder">
+                      <div class="title">
+                        Payable Amount
+                      </div>
+                      <div class="content">
+                        {{result.ResponseData.Currency}} <span style="color:red;margin-left:5px">
+                          {{result.ResponseData.PayAmount | amountConverter}}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
