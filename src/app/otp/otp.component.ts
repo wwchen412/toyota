@@ -50,13 +50,14 @@ export class OtpComponent implements OnInit {
     this.pin = pin;
   }
   reSendOtp() {
+    this.$data.setOtpMsg('');
     this.$data.reSendOTP().subscribe(
       res => {
         this.$data.pageIsLoad(true);
-        this.$data.setOtpMsg('');
         this.resendCount = this.resendInSeconds;
         this.err = false;
         this.errMsg = '';
+        this.$data.setOtpMsg(res.ResponseData.Message);
         this.ngOtpInputRef.setValue(null);
       },
       err => {
@@ -76,6 +77,7 @@ export class OtpComponent implements OnInit {
   }
   sumbitOtp() {
     if (this.pin.length >= 6) {
+      this.$data.pageIsLoad(false);
       this.$data.validateOTP(this.pin).subscribe(
         result => {
           if (result['IsSuccess'] === true) {
