@@ -21,6 +21,7 @@ export class PaymentComponent implements OnInit {
   public paymentCode;
   public headerData$: Observable<any>;
   ngOnInit() {
+    this.loaded = false;
     this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
     this.headerData$ = this.$data.getPaymentSetting(this.paymentCode);
     this.$data.authToken.subscribe(auth => (this.auth = auth));
@@ -32,23 +33,6 @@ export class PaymentComponent implements OnInit {
 
     this.$data.pageIsLoad(true);
     this.$data.loading.subscribe(load => (this.loaded = load));
-    // this.$data.paymentCodeValidation(this.paymentCode).subscribe(
-    //   res => {
-    //     if (res.isSuccess) {
-    //       this.$data.setAuth(res.token);
-    //       // this.sendOTP();
-    //       this.loaded = true;
-    //     } else if (res.isEndPayment) {
-    //       window.location.href = 'result/' + this.paymentCode;
-    //     } else {
-    //       this.$data.setErrorMsg(res.errorMessage);
-    //       this.router.navigate(['']);
-    //     }
-    //   },
-    //   err => {
-    //     this.router.navigate(['']);
-    //   }
-    // );
   }
   sendOTP() {
     this.$data.sendOTP().subscribe(

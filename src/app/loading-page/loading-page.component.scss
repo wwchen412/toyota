@@ -1,18 +1,37 @@
-#loadingPage{
+#loadingPage {
   height: 100vh;
+  width: 100vw;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background: #fff;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  #loading{
+
+  #loading {
     animation: loading 3s infinite linear;
   }
 }
+
 @keyframes loading {
-  0%{
+  0% {
     transform: rotate(0)
   }
-  100%{
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0)
+  }
+
+  100% {
     transform: rotate(360deg);
   }
 }

@@ -1,4 +1,4 @@
-<ng-container *ngIf="loaded; else loading">
+<ng-container>
   <app-nric *ngIf="page === '0'"></app-nric>
   <app-otp *ngIf="page === '1'"></app-otp>
   <app-selection *ngIf="page === '2'"></app-selection>
@@ -6,6 +6,6 @@
   <app-result *ngIf="page === '4'"></app-result>
 </ng-container>
 
-<ng-template #loading>
+<ng-container *ngIf="!loaded">
   <app-loading-page></app-loading-page>
-</ng-template>
+</ng-container>

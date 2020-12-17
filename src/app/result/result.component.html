@@ -1,4 +1,4 @@
-<ng-container *ngIf="getPaymentDetail$ | async as getPaymentDetail">
+<ng-container *ngIf="getPaymentDetail$ | async as getPaymentDetail;else loading">
   <ng-container *ngIf="getPaymentDetail.IsSuccess && getPaymentDetail.IsEndPayment; then success;
     else (getPaymentDetail.IsSuccess && !getPaymentDetail.IsEndPayment && fail )
     || (!getPaymentDetail.IsSuccess && !getPaymentDetail.IsEndPayment && error)">
@@ -45,7 +45,7 @@
                   </div>
                   <div class="content">{{getPaymentDetail.ResponseData.paymentDescription}}</div>
                 </div>
-                <div class="payment_form_row">
+                <div class="payment_form_row  payment_form_row-noborder">
                   <div class="title">
                     Payment Source
                   </div>
@@ -110,3 +110,6 @@
 </ng-template>
 <ng-container *ngIf="errorPage;then error">
 </ng-container>
+<ng-template #loading>
+  <app-loading-page></app-loading-page>
+</ng-template>
