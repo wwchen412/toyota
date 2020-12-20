@@ -1,20 +1,20 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { BehaviorSubject } from "rxjs";
-import { environment } from "../environments/environment";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class DataService {
   private APIURL: string = environment.apiUrl;
-  private pageSource = new BehaviorSubject("0");
-  private authSource = new BehaviorSubject("");
+  private pageSource = new BehaviorSubject('0');
+  private authSource = new BehaviorSubject('');
   public loadingSource = new BehaviorSubject(false);
   public progressSource = new BehaviorSubject(1);
-  public errorMsgSource = new BehaviorSubject("404 not found");
+  public errorMsgSource = new BehaviorSubject('404 not found');
   // otp
-  private otpMsgSource = new BehaviorSubject("");
+  private otpMsgSource = new BehaviorSubject('');
   // detail req
   private detailDataSource = new BehaviorSubject({});
   // header
@@ -60,16 +60,16 @@ export class DataService {
   createHeader() {
     // console.log('HEADER', this.auth);
     const headers = new HttpHeaders()
-      .set("content-type", "application/json")
-      .set("Access-Control-Allow-Origin", "*")
-      .set("Authorization", `Bearer ${this.auth}`);
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('Authorization', `Bearer ${this.auth}`);
     return headers;
   }
 
   getPaymentSetting(paymentCode) {
     this.authToken.subscribe(auth => (this.auth = auth));
     return this.$http.post<any>(
-      this.APIURL + "payment/api/PaymentSettings",
+      this.APIURL + 'payment/api/PaymentSettings',
       {
         paymentCode: paymentCode
       },
@@ -79,26 +79,26 @@ export class DataService {
     );
   }
   getOtpSetting() {
-    return this.$http.get<any>(this.APIURL + "otp/api/OTPSettings");
+    return this.$http.get<any>(this.APIURL + 'otp/api/OTPSettings');
   }
   getStatusSettings() {
-    return this.$http.get<any>(this.APIURL + "status/api/StatusSettings");
+    return this.$http.get<any>(this.APIURL + 'status/api/StatusSettings');
   }
   sendOTP() {
     this.authToken.subscribe(auth => (this.auth = auth));
-    return this.$http.post<any>(this.APIURL + "otp/api/SendOtp", "", {
+    return this.$http.post<any>(this.APIURL + 'otp/api/SendOtp', '', {
       headers: this.createHeader()
     });
   }
   reSendOTP() {
-    return this.$http.post<any>(this.APIURL + "otp/api/ResendOtp", "", {
+    return this.$http.post<any>(this.APIURL + 'otp/api/ResendOtp', '', {
       headers: this.createHeader()
     });
   }
   reSendOTPwithMode() {
     return this.$http.post<any>(
-      this.APIURL + "otp/api/ResendOTPWithMode",
-      { otpMode: "Sms" },
+      this.APIURL + 'otp/api/ResendOTPWithMode',
+      { otpMode: 'Sms' },
       {
         headers: this.createHeader()
       }
@@ -106,7 +106,7 @@ export class DataService {
   }
   validateOTP(pin) {
     return this.$http.post(
-      this.APIURL + "otp/api/ValidateOTP",
+      this.APIURL + 'otp/api/ValidateOTP',
       {
         pin: pin
       },
@@ -117,10 +117,10 @@ export class DataService {
   }
   paymentCodeValidation(paymentCode?: string, nric?: string) {
     const headers = new HttpHeaders()
-      .set("content-type", "application/json")
-      .set("Access-Control-Allow-Origin", "*");
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
 
-    const url = this.APIURL + "payment/api/PaymentCodeValidation";
+    const url = this.APIURL + 'payment/api/PaymentCodeValidation';
     return this.$http.post<any>(
       url,
       {
@@ -133,10 +133,10 @@ export class DataService {
 
   PaymentCodeResultValidation(paymentCode: string) {
     const headers = new HttpHeaders()
-      .set("content-type", "application/json")
-      .set("Access-Control-Allow-Origin", "*");
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
 
-    const url = this.APIURL + "payment/api/PaymentCodeResultValidation";
+    const url = this.APIURL + 'payment/api/PaymentCodeResultValidation';
     return this.$http.post<any>(
       url,
       {
@@ -146,25 +146,23 @@ export class DataService {
     );
   }
   getPayChannel() {
-    return this.$http.get<any>(this.APIURL + "payment/api/GetPaymentMethod", {
+    return this.$http.get<any>(this.APIURL + 'payment/api/GetPaymentMethod', {
       headers: this.createHeader()
     });
   }
   getPayInfo() {
-    return this.$http.get<any>(this.APIURL + "payment/api/PaymentInfo", {
+    return this.$http.get<any>(this.APIURL + 'payment/api/PaymentInfo', {
       headers: this.createHeader()
     });
   }
   getPaymentMethod() {
-    // console.log('getPaymentMethod');
-    return this.$http.get<any>(this.APIURL + "payment/api/PaymentMethod", {
+    return this.$http.get<any>(this.APIURL + 'payment/api/PaymentMethod', {
       headers: this.createHeader()
     });
   }
   cardSubmission(req) {
-    // console.log('cardSubmission', req);
     return this.$http.post<any>(
-      this.APIURL + "payment/api/CardSubmission",
+      this.APIURL + 'payment/api/CardSubmission',
       { ...req },
       {
         headers: this.createHeader()
@@ -173,25 +171,25 @@ export class DataService {
   }
   getPaymentInfo() {
     this.authToken.subscribe(auth => (this.auth = auth));
-    return this.$http.get<any>(this.APIURL + "payment/api/PaymentInfo ", {
+    return this.$http.get<any>(this.APIURL + 'payment/api/PaymentInfo ', {
       headers: this.createHeader()
     });
   }
   // TFSSG status API
   statusValidate(nricCode, status) {
-    console.log("status", status);
-    return this.$http.post(this.APIURL + "status/api/IdentityValidation", {
+    console.log('status', status);
+    return this.$http.post(this.APIURL + 'status/api/IdentityValidation', {
       IdentityCode: nricCode,
       ModuleName: status
     });
   }
   getApplication() {
-    return this.$http.post(this.APIURL + "status/api/GetApplications", "", {
+    return this.$http.post(this.APIURL + 'status/api/GetApplications', '', {
       headers: this.createHeader()
     });
   }
   getPayments() {
-    return this.$http.post(this.APIURL + "status/api/GetPayments", "", {
+    return this.$http.post(this.APIURL + 'status/api/GetPayments', '', {
       headers: this.createHeader()
     });
   }

@@ -22,16 +22,19 @@ export class SelectionComponent implements OnInit {
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
     this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
     this.headerData$ = this.$data.getPaymentSetting(this.paymentCode);
-    this.payChannel$ = this.$data.getPayChannel();
+    this.$data.getPayChannel().subscribe(res => {
+      this.payChannel$ = res.ResponseData;
+      this.methodValue = this.payChannel$[0].MethodName;
+      this.payMethod = this.payChannel$[0].MethodName;
+    });
     this.payInfo$ = this.$data.getPayInfo();
-    this.payMethod = this.methodValue;
   }
   changeMethod(evt) {
     this.payMethod = this.methodValue;
   }
   sumbitCardChannel() {
     this.payMethod = this.methodValue;
-    if (this.payMethod !== 'CreditCard') {
+    if (this.payMethod !== 'Credit Card') {
       window.location.href = '/notAvailable';
     } else {
       this.$data.changePage('3');

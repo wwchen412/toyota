@@ -24,7 +24,7 @@ export class NricComponent implements OnInit {
   ngOnInit() {
     this.$data.currentPage.subscribe(page => (this.page = page));
     this.$data.authToken.subscribe(auth => (this.auth = auth));
-    this.headerData$ = this.$data.getStatusSettings();
+    this.headerData$ = this.$data.getPaymentSetting(this.paymentCode);
     this.paymentCode = this.$route.snapshot.paramMap.get('paymentCode');
     this.$route.queryParams.subscribe(params => {
       this.statusModule = params['module'];
