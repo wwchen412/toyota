@@ -1,4 +1,4 @@
-<ng-container *ngIf="getPaymentDetail$ | async as getPaymentDetail;else loading">
+<ng-container *ngIf="getPaymentDetail$ | async as getPaymentDetail;">
   <ng-container *ngIf="getPaymentDetail.IsSuccess && getPaymentDetail.IsEndPayment; then success;
     else (getPaymentDetail.IsSuccess && !getPaymentDetail.IsEndPayment && fail )
     || (!getPaymentDetail.IsSuccess && !getPaymentDetail.IsEndPayment && error)">
@@ -6,8 +6,8 @@
 
 
   <ng-template #success>
-    <ng-container *ngIf="headerData$ | async as contactData">
-      <app-header [headerSetting]="contactData"></app-header>
+    <ng-container *ngIf="headerData$">
+      <app-header [headerSetting]="headerData$"></app-header>
       <app-progress-bar class="no-print"></app-progress-bar>
       <div id="form">
         <div class="container">
@@ -71,12 +71,12 @@
           </div>
         </div>
       </div>
-      <app-footer [footerSetting]="contactData"></app-footer>
+      <app-footer [footerSetting]="headerData$"></app-footer>
     </ng-container>
   </ng-template>
   <ng-template #fail>
-    <ng-container *ngIf="headerData$ | async as contactData">
-      <app-header [headerSetting]="contactData"></app-header>
+    <ng-container *ngIf="headerData$">
+      <app-header [headerSetting]="headerData$"></app-header>
       <div id="form">
         <div class="container">
           <div class="main_form">
@@ -87,13 +87,13 @@
           </div>
         </div>
       </div>
-      <app-footer [footerSetting]="contactData"></app-footer>
+      <app-footer [footerSetting]="headerData$"></app-footer>
     </ng-container>
   </ng-template>
 
 </ng-container>
 <ng-template #error>
-  <app-header></app-header>
+  <app-header [headerSetting]="headerData$"></app-header>
   <div id="form">
     <div class="container">
       <div class="main_form">
@@ -106,7 +106,7 @@
       </div>
     </div>
   </div>
-  <app-footer></app-footer>
+  <app-footer [footerSetting]="headerData$"></app-footer>
 </ng-template>
 <ng-container *ngIf="errorPage;then error">
 </ng-container>

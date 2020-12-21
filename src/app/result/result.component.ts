@@ -24,6 +24,9 @@ export class ResultComponent implements OnInit {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
     this.paymentCode = this.route.snapshot.paramMap.get('paymentCode');
+    this.$data.getPaymentSetting(this.paymentCode).subscribe(res => {
+      this.headerData$ = res;
+    });
     this.data = this.$data.detail.subscribe(res => {
       this.$data.pageIsLoad(false);
       this.data = res;
@@ -31,13 +34,13 @@ export class ResultComponent implements OnInit {
       this.$data.PaymentCodeResultValidation(this.paymentCode).subscribe(
         res => {
           this.$data.pageIsLoad(true);
+
           if (!res.isSuccess) {
             this.router.navigate(['']);
           } else if (res.isSuccess && !res.isEndPayment) {
             this.errorPage = true;
           } else if (res.token) {
             this.$data.setAuth(res.token);
-            this.headerData$ = this.$data.getPaymentSetting(this.paymentCode);
             this.getPaymentDetail$ = this.$data.getPaymentInfo();
           } else {
             this.router.navigate(['']);

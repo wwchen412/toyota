@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
@@ -17,20 +18,22 @@ export class OtpComponent implements OnInit {
   public contactEmail: string;
   public contactNumber: string;
   private page;
+  private paymentCode;
   public headerData$: Observable<any>;
   @ViewChild('ngOtpInput', { static: false }) ngOtpInputRef: any;
-  constructor(private $data: DataService) {}
+  constructor(private $data: DataService, private $route: ActivatedRoute) {}
 
   ngOnInit() {
     this.otpMsg$ = this.$data.otpMsg;
     this.$data.currentPage.subscribe(page => (this.page = page));
     this.pin = '';
-    this.$data.getOtpSetting().subscribe(res => {
+    this.paymentCode = this.$route.snapshot.paramMap.get('paymentCode');
+    this.$data.getPaymentSetting(this.paymentCode).subscribe(res => {
       this.pinLength = res.responseData.pinLength;
       this.resendInSeconds = res.responseData.resendInSeconds;
       this.resendCount = res.responseData.resendInSeconds;
       this.headerData$ = res;
-      // console.log(this.headerData$);
+      console.log(this.headerData$);
       const headerContactData = {
         contactEmail: res.responseData.contactEmail,
         contactNumber: res.responseData.contactNumber,

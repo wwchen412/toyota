@@ -34,7 +34,7 @@ export class SelectionComponent implements OnInit {
   }
   sumbitCardChannel() {
     this.payMethod = this.methodValue;
-    if (this.payMethod !== 'Credit Card') {
+    if (this.payMethod.replace(/\s/g, '').toLowerCase() !== 'creditcard') {
       window.location.href = '/notAvailable';
     } else {
       this.$data.changePage('3');
