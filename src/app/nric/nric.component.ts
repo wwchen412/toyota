@@ -37,6 +37,7 @@ export class NricComponent implements OnInit {
           res => {
             if (res['isSuccess']) {
               this.sendOTP();
+              this.$data.setAuth(res['token']);
               this.$data.pageIsLoad(true);
               this.$data.changePage('1');
             } else {
