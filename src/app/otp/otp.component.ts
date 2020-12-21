@@ -28,12 +28,11 @@ export class OtpComponent implements OnInit {
     this.$data.currentPage.subscribe(page => (this.page = page));
     this.pin = '';
     this.paymentCode = this.$route.snapshot.paramMap.get('paymentCode');
-    this.$data.getPaymentSetting(this.paymentCode).subscribe(res => {
+    this.$data.getOtpSetting().subscribe(res => {
       this.pinLength = res.responseData.pinLength;
       this.resendInSeconds = res.responseData.resendInSeconds;
       this.resendCount = res.responseData.resendInSeconds;
       this.headerData$ = res;
-      console.log(this.headerData$);
       const headerContactData = {
         contactEmail: res.responseData.contactEmail,
         contactNumber: res.responseData.contactNumber,
@@ -56,11 +55,16 @@ export class OtpComponent implements OnInit {
     this.$data.setOtpMsg('');
     this.$data.reSendOTP().subscribe(
       res => {
-        this.$data.setOtpMsg(res.ResponseData.Message);
-        this.resendCount = this.resendInSeconds;
-        this.err = false;
-        this.errMsg = '';
-        this.ngOtpInputRef.setValue(null);
+        if (res.IsSuccess) {
+          this.$data.setOtpMsg(res.ResponseData.Message);
+          this.resendCount = this.resendInSeconds;
+          this.err = false;
+          this.errMsg = '';
+          this.ngOtpInputRef.setValue(null);
+        } else {
+          this.err = true;
+          this.errMsg = res['errorMessage'];
+        }
       },
       err => {
         // console.log("err");
@@ -68,12 +72,18 @@ export class OtpComponent implements OnInit {
     );
   }
   reSendOtpWithMode() {
+    this.$data.setOtpMsg('');
     this.$data.reSendOTPwithMode().subscribe(res => {
-      this.$data.setOtpMsg(res.ResponseData.Message);
-      this.resendCount = this.resendInSeconds;
-      this.err = false;
-      this.errMsg = '';
-      this.ngOtpInputRef.setValue(null);
+      if (res.IsSuccess) {
+        this.$data.setOtpMsg(res.ResponseData.Message);
+        this.resendCount = this.resendInSeconds;
+        this.err = false;
+        this.errMsg = '';
+        this.ngOtpInputRef.setValue(null);
+      } else {
+        this.err = true;
+        this.errMsg = res['errorMessage'];
+      }
     });
   }
   sumbitOtp() {
