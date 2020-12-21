@@ -53,38 +53,36 @@ export class OtpComponent implements OnInit {
     this.$data.setOtpMsg('');
     this.$data.reSendOTP().subscribe(
       res => {
-        this.$data.pageIsLoad(true);
-        this.resendCount = this.resendInSeconds;
-        this.err = false;
-        this.errMsg = '';
-        this.$data.setOtpMsg(res.ResponseData.Message);
-        this.ngOtpInputRef.setValue(null);
-        if (!res.IsSuccess) {
-          this.errMsg = res.ErrorMessage;
+        if (res.IsSuccess) {
+          this.$data.setOtpMsg(res.ResponseData.Message);
+          this.resendCount = this.resendInSeconds;
+          this.err = false;
+          this.errMsg = '';
+          this.ngOtpInputRef.setValue(null);
+        } else {
+          this.err = true;
+          this.errMsg = res['errorMessage'];
         }
       },
       err => {
-        this.errMsg = err.ErrorMessage;
+        // console.log("err");
       }
     );
   }
   reSendOtpWithMode() {
-    this.$data.reSendOTPwithMode().subscribe(
-      res => {
-        this.$data.pageIsLoad(true);
+    this.$data.setOtpMsg('');
+    this.$data.reSendOTPwithMode().subscribe(res => {
+      if (res.IsSuccess) {
         this.$data.setOtpMsg(res.ResponseData.Message);
         this.resendCount = this.resendInSeconds;
         this.err = false;
         this.errMsg = '';
         this.ngOtpInputRef.setValue(null);
-        if (!res.IsSuccess) {
-          this.errMsg = res.ErrorMessage;
-        }
-      },
-      err => {
-        this.errMsg = err.ErrorMessage;
+      } else {
+        this.err = true;
+        this.errMsg = res['errorMessage'];
       }
-    );
+    });
   }
   sumbitOtp() {
     if (this.pin.length >= 6) {
