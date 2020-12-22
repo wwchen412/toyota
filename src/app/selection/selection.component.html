@@ -79,8 +79,8 @@
            </div>
            <div class="information_payment mb-5">
              <h4 class="mb-3">Payment Method</h4>
-             <select name="" id="" *ngIf="payChannel$" (change)="changeMethod($event)" [(ngModel)]="methodValue">
-               <option *ngFor="let payOption of payChannel$" [value]="payMethod">
+             <select name="" id="" *ngIf="payChannel$" (change)="changeMethod($event)" [value]="payMethod">
+               <option *ngFor="let payOption of payChannel$">
                  {{payOption.MethodName}}
                </option>
              </select>

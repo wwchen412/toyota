@@ -16,7 +16,7 @@ export class SelectionComponent implements OnInit {
   public headerData$: Observable<any>;
   public payMethod: string;
   private paymentCode;
-  public methodValue;
+  // public methodValue;
   ngOnInit() {
     this.isMobileLayout = window.innerWidth <= 475;
     window.onresize = () => (this.isMobileLayout = window.innerWidth <= 475);
@@ -24,16 +24,18 @@ export class SelectionComponent implements OnInit {
     this.headerData$ = this.$data.getPaymentSetting(this.paymentCode);
     this.$data.getPayChannel().subscribe(res => {
       this.payChannel$ = res.ResponseData;
-      this.methodValue = this.payChannel$[0].MethodName;
+      // this.methodValue = this.payChannel$[0].MethodName;
       this.payMethod = this.payChannel$[0].MethodName;
     });
     this.payInfo$ = this.$data.getPayInfo();
   }
   changeMethod(evt) {
-    this.payMethod = this.methodValue;
+    this.payMethod = evt.target.value;
+    // this.methodValue = this.payMethod;
+    // console.log(evt.target.value, this.methodValue, this.payMethod);
   }
   sumbitCardChannel() {
-    this.payMethod = this.methodValue;
+    // this.payMethod = this.methodValue;
     if (this.payMethod.replace(/\s/g, '').toLowerCase() !== 'creditcard') {
       window.location.href = '/notAvailable';
     } else {
