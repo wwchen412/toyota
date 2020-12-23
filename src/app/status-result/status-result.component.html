@@ -86,12 +86,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td data-head='Application'>{{result.ResponseData.PaymentNumber}}</td>
-                        <td data-head='Payment Source'>{{result.ResponseData.System}}</td>
-                        <td data-head='Description'>{{result.ResponseData.PaymentDescription}}</td>
-                        <td data-head='Payable Amount'>{{result.ResponseData.PayAmount}}</td>
-                        <td data-head='Payment Status'>{{result.ResponseData.Status}}</td>
+                      <tr *ngFor="let res of result.ResponseData">
+                        <td data-head='Application'>{{res.RcoNo}}</td>
+                        <td data-head='Payment Source'>{{res.vehicleMake}}</td>
+                        <td data-head='Description'>{{res.vehicleModel}}</td>
+                        <td data-head='Payable Amount'>{{res.vehicleVariant}}</td>
+                        <td data-head='Payment Status'>{{res.Status}}</td>
                       </tr>
                     </tbody>
                   </table>

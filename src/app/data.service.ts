@@ -105,7 +105,7 @@ export class DataService {
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
 
-    const url = this.APIURL + 'payment/api/PaymentCodeValidation';
+    const url = this.APIURL + 'status/api/PaymentCodeValidation';
     return this.$http.post<any>(
       url,
       {

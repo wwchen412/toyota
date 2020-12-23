@@ -35,14 +35,17 @@ export class NricComponent implements OnInit {
       if (this.systemCode) {
         this.$data.statusValidate(this.nricCode, this.systemCode).subscribe(
           res => {
+            ($event.target as HTMLButtonElement).disabled = false;
             if (res['isSuccess']) {
               this.$data.setAuth(res['token']);
               this.sendOTP();
               this.$data.pageIsLoad(true);
               this.$data.changePage('1');
             } else {
-              this.errorMsg = res['errorMessage'];
               this.error = true;
+              this.errorMsg = res['errorMessage'];
+              console.log(this.errorMsg);
+
               this.$data.pageIsLoad(true);
               ($event.target as HTMLButtonElement).disabled = false;
             }
