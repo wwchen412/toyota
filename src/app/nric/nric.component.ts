@@ -44,7 +44,7 @@ export class NricComponent implements OnInit {
             } else {
               this.error = true;
               this.errorMsg = res['errorMessage'];
-              console.log(this.errorMsg);
+              // console.log(this.errorMsg);
 
               this.$data.pageIsLoad(true);
               ($event.target as HTMLButtonElement).disabled = false;

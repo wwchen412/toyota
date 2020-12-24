@@ -79,18 +79,16 @@
                     <thead>
                       <tr>
                         <th>Application Number</th>
-                        <th>Payment Source</th>
-                        <th>Description</th>
-                        <th>Payable Amount</th>
+                        <th>Model</th>
+                        <th>Submitted Date</th>
                         <th>Payment Status</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let res of result.ResponseData">
-                        <td data-head='Application'>{{res.RcoNo}}</td>
-                        <td data-head='Payment Source'>{{res.vehicleMake}}</td>
-                        <td data-head='Description'>{{res.vehicleModel}}</td>
-                        <td data-head='Payable Amount'>{{res.vehicleVariant}}</td>
+                        <td data-head='Application'>{{res.Id}}</td>
+                        <td data-head='Model'>{{res.VehicleModel}}</td>
+                        <td data-head='Submitted Date'>{{res.CreatedDate | date}}</td>
                         <td data-head='Payment Status'>{{res.Status}}</td>
                       </tr>
                     </tbody>
