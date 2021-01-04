@@ -169,3 +169,9 @@ td:last-child {
     }
   }
 }
+
+@media screen and (max-width: 475px) {
+  .hidden_mobile {
+    display: none;
+  }
+}

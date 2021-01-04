@@ -5,10 +5,10 @@
           <div id="form">
             <div class="container">
               <div class="main_form">
-                <div class="text-center">
+                <!-- <div class="text-center">
                   <img class="success" src="assets/images/success.svg" alt="">
                   <h2>Success!</h2>
-                </div>
+                </div> -->
                 <h2 class="main_form_title mb-5">
                   Payment Result Information
                 </h2>
@@ -20,7 +20,7 @@
                       </div>
                       <div class="content">{{result.ResponseData.Status}}</div>
                     </div>
-                    <div class="paymentStatus_main_form_row" *ngIf="!isMobileLayout">
+                    <div class="paymentStatus_main_form_row hidden_mobile" *ngIf="!isMobileLayout">
                       <div class="title">
 
                       </div>
@@ -81,7 +81,7 @@
                         <th>Application Number</th>
                         <th>Model</th>
                         <th>Submitted Date</th>
-                        <th>Payment Status</th>
+                        <th>Status</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -89,7 +89,7 @@
                         <td data-head='Application'>{{res.Id}}</td>
                         <td data-head='Model'>{{res.VehicleModel}}</td>
                         <td data-head='Submitted Date'>{{res.CreatedDate | date}}</td>
-                        <td data-head='Payment Status'>{{res.Status}}</td>
+                        <td data-head='Status'>{{res.Status}}</td>
                       </tr>
                     </tbody>
                   </table>
