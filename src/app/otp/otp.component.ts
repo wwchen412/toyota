@@ -53,6 +53,7 @@ export class OtpComponent implements OnInit {
   }
   reSendOtp() {
     this.$data.setOtpMsg('');
+    this.$data.pageIsLoad(false);
     this.$data.reSendOTP().subscribe(
       res => {
         if (res.IsSuccess) {
@@ -61,9 +62,11 @@ export class OtpComponent implements OnInit {
           this.err = false;
           this.errMsg = '';
           this.ngOtpInputRef.setValue(null);
+          this.$data.pageIsLoad(true);
         } else {
           this.err = true;
           this.errMsg = res['errorMessage'];
+          this.$data.pageIsLoad(true);
         }
       },
       err => {
@@ -73,6 +76,7 @@ export class OtpComponent implements OnInit {
   }
   reSendOtpWithMode() {
     this.$data.setOtpMsg('');
+    this.$data.pageIsLoad(false);
     this.$data.reSendOTPwithMode().subscribe(res => {
       if (res.IsSuccess) {
         this.$data.setOtpMsg(res.ResponseData.Message);
@@ -80,9 +84,11 @@ export class OtpComponent implements OnInit {
         this.err = false;
         this.errMsg = '';
         this.ngOtpInputRef.setValue(null);
+        this.$data.pageIsLoad(true);
       } else {
         this.err = true;
         this.errMsg = res['errorMessage'];
+        this.$data.pageIsLoad(true);
       }
     });
   }
